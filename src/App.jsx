@@ -37,7 +37,10 @@ function App() {
             </Canvas>
           </div>
 
-          <LiquidGlass />
+          {/* Liquid Glass Effect - Desktop Only */}
+          <div className="hidden md:block">
+            <LiquidGlass />
+          </div>
           <Navbar />
           <BackToTop />
           <PortfolioBot />

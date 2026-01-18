@@ -114,6 +114,12 @@ export const socialLinks = [
     iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/instagram.svg",
     color: "#e4405f",
   },
+  {
+    name: "Facebook",
+    link: "https://www.facebook.com/rabi.p.bhagat.18/",
+    iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/facebook.svg",
+    color: "#1877F2",
+  },
 ];
 
 export const experience = [
