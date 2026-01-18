@@ -110,7 +110,7 @@ export const socialLinks = [
   },
   {
     name: "Instagram",
-    link: "https://www.instagram.com/rabi.p.bhagat/",
+    link: "https://www.instagram.com/rabi.p.bhagat.18?igsh=eWIydWR3Z24xNDV2",
     iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/instagram.svg",
     color: "#e4405f",
   },
