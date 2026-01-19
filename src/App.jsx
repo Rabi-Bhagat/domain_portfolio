@@ -17,9 +17,30 @@ import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [blackMode, setBlackMode] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Check for desktop on mount and resize
+    const checkDesktop = () => {
+        setIsDesktop(window.innerWidth >= 768);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  // Update body background color when mode changes
+  useEffect(() => {
+    if (blackMode) {
+      document.body.style.backgroundColor = '#000000';
+    } else {
+      document.body.style.backgroundColor = '#030712'; 
+    }
+  }, [blackMode]);
 
   return (
-    <div className="bg-dark min-h-screen text-white relative overflow-hidden font-sans">
+    <div className={`${blackMode ? "bg-black" : "bg-dark"} min-h-screen text-white relative overflow-hidden font-sans transition-colors duration-500`}>
       <AnimatePresence>
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
@@ -37,11 +58,10 @@ function App() {
             </Canvas>
           </div>
 
-          {/* Liquid Glass Effect - Desktop Only */}
-          <div className="hidden md:block">
-            <LiquidGlass />
-          </div>
-          <Navbar />
+          {/* Liquid Glass Effect - Desktop Only & Conditionally Rendered */}
+          {isDesktop && <LiquidGlass />}
+          
+          <Navbar blackMode={blackMode} setBlackMode={setBlackMode} />
           <BackToTop />
           <PortfolioBot />
 

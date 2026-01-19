@@ -91,24 +91,29 @@ export default function Contact() {
                 Contact Information
               </h3>
               <div className="space-y-6">
-                <a
+                <motion.a
                   href={`mailto:${contactInfo.email}`}
-                  className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group"
+                  whileHover={{ x: 10 }}
+                  className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group p-3 rounded-xl hover:bg-white/5"
                 >
-                  <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 border border-slate-700 group-hover:border-primary/50">
-                    <Mail size={22} />
+                  <div className="relative w-14 h-14 rounded-xl bg-slate-800/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 border border-slate-700 group-hover:border-primary shadow-lg group-hover:shadow-primary/50 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <Mail size={24} className="relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <span className="text-lg">{contactInfo.email}</span>
-                </a>
-                <a
+                  <span className="text-lg font-medium">{contactInfo.email}</span>
+                </motion.a>
+
+                <motion.a
                   href={`tel:${contactInfo.phone}`}
-                  className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group"
+                  whileHover={{ x: 10 }}
+                  className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group p-3 rounded-xl hover:bg-white/5"
                 >
-                  <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300 border border-slate-700 group-hover:border-secondary/50">
-                    <Phone size={22} />
+                  <div className="relative w-14 h-14 rounded-xl bg-slate-800/50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-500 border border-slate-700 group-hover:border-secondary shadow-lg group-hover:shadow-secondary/50 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <Phone size={24} className="relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <span className="text-lg">{contactInfo.phone}</span>
-                </a>
+                  <span className="text-lg font-medium">{contactInfo.phone}</span>
+                </motion.a>
               </div>
             </div>
 
@@ -118,21 +123,34 @@ export default function Contact() {
               </h4>
               <div className="flex gap-4">
                 {socialLinks.map((social) => (
-                  <a
+                  <motion.a
                     key={social.name}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-slate-800/80 flex items-center justify-center hover:bg-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20"
-                    style={{ color: social.color }}
+                    whileHover={{ 
+                        scale: 1.2, 
+                        rotateX: 10, 
+                        rotateY: 10,
+                        backgroundColor: social.color,
+                        color: "#ffffff" // Icon turns white
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    initial={{ backgroundColor: "rgba(30, 41, 59, 0.8)" }} // slate-800/80
+                    className="w-14 h-14 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/5 shadow-lg group relative overflow-hidden"
                     title={social.name}
+                    style={{ perspective: 1000 }}
                   >
+                    {/* Glossy Reflection Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    
+                    {/* Icon - using img as before but improved */}
                     <img
                       src={social.iconUrl}
                       alt={social.name}
-                      className="w-6 h-6 filter hover:brightness-125"
+                      className="w-7 h-7 transition-all duration-300 group-hover:filter group-hover:brightness-0 group-hover:invert drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
                     />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>

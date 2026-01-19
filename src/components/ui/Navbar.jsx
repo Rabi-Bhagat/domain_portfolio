@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbar({ blackMode, setBlackMode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -54,7 +54,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -66,15 +66,33 @@ export default function Navbar() {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
           ))}
+          
+          <button
+             onClick={() => setBlackMode(!blackMode)}
+             className="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+             title={blackMode ? "Switch to Dark Mode" : "Switch to Black Mode"}
+          >
+             {blackMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-slate-100 hover:text-accent transition-colors focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="md:hidden flex items-center gap-4">
+            <button
+                 onClick={() => setBlackMode(!blackMode)}
+                 className="p-2 rounded-full hover:bg-white/10 text-slate-300 transition-colors"
+            >
+                 {blackMode ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="text-slate-100 hover:text-accent transition-colors focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+        </div>
       </div>
 
       {/* Mobile Dropdown */}

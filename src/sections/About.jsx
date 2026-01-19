@@ -42,13 +42,17 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
         >
-            <div className="relative w-80 h-80">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-30 animate-pulse-slow"></div>
-                <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-30 animate-pulse-slow animation-delay-2000"></div>
+            <div className="relative w-80 h-80 group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-lg"></div>
+                <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-lg delay-100"></div>
                 
-                <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border border-white/10 flex items-center justify-center overflow-hidden z-10 shadow-2xl">
-                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-                     <span className="text-9xl font-black text-slate-800 select-none tracking-tighter">DEV</span>
+                <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border border-white/10 overflow-hidden z-10 shadow-2xl relative">
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20"></div>
+                     <img 
+                        src="/src/assets/profile-pic.jpg" 
+                        alt="Rabi Bhagat" 
+                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                     />
                 </div>
             </div>
         </motion.div>

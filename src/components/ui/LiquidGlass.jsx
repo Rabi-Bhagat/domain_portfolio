@@ -56,9 +56,9 @@ export default function LiquidGlass() {
         // Added styling to make it look nicer in the context of the portfolio
         this.container.style.cssText = `
           position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          position: fixed;
+          bottom: 40px;
+          right: 40px;
           width: ${this.width}px;
           height: ${this.height}px;
           overflow: hidden;

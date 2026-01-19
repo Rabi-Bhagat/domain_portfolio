@@ -99,25 +99,25 @@ export const socialLinks = [
   {
     name: "GitHub",
     link: "https://github.com/Rabi-Bhagat",
-    iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg",
+    iconUrl: "https://cdn.simpleicons.org/github/white",
     color: "#181717",
   },
   {
     name: "LinkedIn",
     link: "https://linkedin.com/in/rabi-bhagat789",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
+    iconUrl: "/linkedin.svg",
     color: "#0a66c2",
   },
   {
     name: "Instagram",
     link: "https://www.instagram.com/rabi.p.bhagat.18?igsh=eWIydWR3Z24xNDV2",
-    iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/instagram.svg",
+    iconUrl: "https://cdn.simpleicons.org/instagram/white",
     color: "#e4405f",
   },
   {
     name: "Facebook",
     link: "https://www.facebook.com/rabi.p.bhagat.18/",
-    iconUrl: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/facebook.svg",
+    iconUrl: "https://cdn.simpleicons.org/facebook/white",
     color: "#1877F2",
   },
 ];
