@@ -36,13 +36,13 @@ export default function About() {
 
         {/* Visual/Image */}
         <motion.div 
-            className="relative hidden md:flex justify-center"
+            className="relative flex justify-center mt-12 md:mt-0"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
         >
-            <div className="relative w-80 h-80 group">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
                 <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl delay-100"></div>
                 
