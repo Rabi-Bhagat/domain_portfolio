@@ -1,5 +1,6 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
+import profilePic from "../assets/profile-pic.jpg";
 
 export default function About() {
   return (
@@ -49,7 +50,7 @@ export default function About() {
                 <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border-2 border-white/20 overflow-hidden z-10 shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] transition-all duration-500 relative">
                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-20"></div>
                      <img 
-                        src="/src/assets/profile-pic.jpg" 
+                        src={profilePic} 
                         alt="Rabi Bhagat" 
                         className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                      />
