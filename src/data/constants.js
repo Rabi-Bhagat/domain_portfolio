@@ -1,54 +1,112 @@
 
 export const skills = [
   {
-    name: "Flutter",
+    title: "Frontend Development",
+    desc: "Building responsive web interfaces",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    color: "#61DAFB",
+    skills: [
+      {
+        name: "React",
+        desc: "Modern UI library",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        desc: "Utility-first CSS",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "JavaScript",
+        desc: "Dynamic web features",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+    ]
+  },
+  {
+    title: "Backend Development",
+    desc: "Server-side logic & APIs",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    color: "#339933",
+    skills: [
+       {
+        name: "Node.js",
+        desc: "Server-side JavaScript",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Express.js",
+        desc: "Fast web frameworks",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      },
+    ]
+  },
+  {
+    title: "Mobile App Development",
     desc: "Cross-platform mobile apps",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+    color: "#02569B",
+    skills: [
+      {
+        name: "Flutter",
+        desc: "Beautiful native apps",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+    ]
   },
   {
-    name: "Python",
-    desc: "Automation and backend",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  },
-  {
-    name: "C++",
-    desc: "High-performance coding",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  },
-  {
-    name: "JavaScript",
-    desc: "Dynamic web features",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  },
-  {
-    name: "Node.js",
-    desc: "Server-side JavaScript",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "Express.js",
-    desc: "Fast, minimal web frameworks",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-  },
-  {
-    name: "React",
-    desc: "Modern UI library",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  },
-  {
-    name: "MongoDB",
-    desc: "NoSQL Database",
+    title: "Database Management",
+    desc: "Efficient data storage",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    color: "#47A248",
+    skills: [
+      {
+        name: "MongoDB",
+        desc: "NoSQL Database",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      },
+    ]
   },
   {
-    name: "Tailwind CSS",
-    desc: "Utility-first CSS",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    title: "Programming Languages",
+    desc: "Core coding languages",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    color: "#3776AB",
+    skills: [
+      {
+        name: "Python",
+        desc: "Versatile language",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "C++",
+        desc: "System programming",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+      },
+      {
+        name: "C",
+        desc: "Foundation language",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+      },
+    ]
   },
   {
-    name: "Git",
-    desc: "Version Control",
+    title: "Tools & DevOps",
+    desc: "Development workflow",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    color: "#F05032",
+    skills: [
+      {
+        name: "Git",
+        desc: "Version Control",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "VS Code",
+        desc: "Code Editor",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+      },
+    ]
   },
 ];
 

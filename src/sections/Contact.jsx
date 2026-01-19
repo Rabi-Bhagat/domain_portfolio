@@ -83,7 +83,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="space-y-8"
         >
-          <div className="glass-card p-8 space-y-8 relative overflow-hidden">
+          <div className="glass-card p-5 md:p-8 space-y-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
 
             <div>
@@ -173,7 +173,7 @@ export default function Contact() {
         >
           <form
             onSubmit={handleSubmit}
-            className="glass-card p-8 md:p-10 space-y-6"
+            className="glass-card p-5 md:p-10 space-y-6"
           >
             <div className="space-y-4">
               <div>
