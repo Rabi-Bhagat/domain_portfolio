@@ -43,15 +43,15 @@ export default function About() {
             transition={{ duration: 0.8 }}
         >
             <div className="relative w-80 h-80 group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-lg"></div>
-                <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-lg delay-100"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl delay-100"></div>
                 
-                <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border border-white/10 overflow-hidden z-10 shadow-2xl relative">
-                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20"></div>
+                <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border-2 border-white/20 overflow-hidden z-10 shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] transition-all duration-500 relative">
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-20"></div>
                      <img 
                         src="/src/assets/profile-pic.jpg" 
                         alt="Rabi Bhagat" 
-                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                      />
                 </div>
             </div>
