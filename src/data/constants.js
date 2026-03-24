@@ -112,6 +112,46 @@ export const skills = [
 
 export const projects = [
   {
+    name: "Mohanpur Village",
+    desc: "Complete MERN stack application for village management and services.",
+    tech: "MongoDB, Express, React, Node.js",
+    category: "Full Stack",
+    link: "https://mohanpur-village.vercel.app",
+    repo: "https://github.com/Rabi-Bhagat",
+  },
+  {
+    name: "HotelBazaar",
+    desc: "Booking application (HotelBazaar) for seamlessly booking hotels.",
+    tech: "React",
+    category: "Web App",
+    link: "https://booking-app-hotelbazaar.pages.dev/",
+    repo: "https://github.com/Rabi-Bhagat",
+  },
+  {
+    name: "SecureDocs",
+    desc: "Application for secure documents management and storage.",
+    tech: "React",
+    category: "Web App",
+    link: "https://securedocs-a3x.pages.dev",
+    repo: "https://github.com/Rabi-Bhagat",
+  },
+  {
+    name: "Signify Pro",
+    desc: "Professional digital signature page application.",
+    tech: "React",
+    category: "Web App",
+    link: "https://signify-pro.pages.dev",
+    repo: "https://github.com/Rabi-Bhagat",
+  },
+  {
+    name: "TODO List Pro",
+    desc: "Feature-rich, complete MERN stack To-Do list application.",
+    tech: "MongoDB, Express, React, Node.js",
+    category: "Full Stack",
+    link: "https://todo-list-pro.pages.dev/",
+    repo: "https://github.com/Rabi-Bhagat",
+  },
+  {
     name: "Signature App",
     desc: "Web app for creating and securing digital signatures.",
     tech: "HTML, CSS, JS, Flutter",
