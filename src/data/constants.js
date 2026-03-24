@@ -239,5 +239,5 @@ export const experience = [
 
 export const contactInfo = {
   email: "rabibhagat789@gmail.com",
-  phone: "+91 8307855628",
+  phone: "+91 8307855628, +977 9815787410",
 };
