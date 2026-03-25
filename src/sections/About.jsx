@@ -1,6 +1,6 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
-import profilePic from "../assets/profile-pic.jpg";
+import profilePic from "../assets/profile-pic.png";
 
 export default function About() {
   return (
