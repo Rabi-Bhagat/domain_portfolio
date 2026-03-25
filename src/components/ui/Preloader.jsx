@@ -8,8 +8,8 @@ export default function Preloader({ onComplete }) {
 
   useEffect(() => {
     // Timeline configuration
-    const showNamasteTime = 500;
-    const showWelcomeTime = 2500; // 500 (start) + 2000 (duration)
+    const showNamasteTime = 300;
+    const showWelcomeTime = 2000; // 500 (start) + 2000 (duration)
 
     const timer1 = setTimeout(() => {
         setStep(1);

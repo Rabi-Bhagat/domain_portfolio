@@ -65,7 +65,7 @@ export default function PortfolioBot() {
   // Show greeting bubble on load
   useEffect(() => {
     const timer = setTimeout(() => setShowGreeting(true), 1500);
-    const hideTimer = setTimeout(() => setShowGreeting(false), 8000); // Hide after 8s
+    const hideTimer = setTimeout(() => setShowGreeting(false), 6000); // Hide after 8s
     return () => { clearTimeout(timer); clearTimeout(hideTimer); };
   }, []);
 

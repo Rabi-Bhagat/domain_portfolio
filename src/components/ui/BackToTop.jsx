@@ -35,7 +35,7 @@ export default function BackToTop() {
           onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-40 bg-primary/80 hover:bg-primary text-white p-3 rounded-full shadow-lg backdrop-blur-sm transition-colors border border-white/20"
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={20} />
         </motion.button>
       )}
     </AnimatePresence>

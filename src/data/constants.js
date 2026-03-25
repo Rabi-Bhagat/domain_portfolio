@@ -117,7 +117,7 @@ export const projects = [
     tech: "MongoDB, Express, React, Node.js",
     category: "Full Stack",
     link: "https://mohanpur-village.vercel.app",
-    repo: "https://github.com/Rabi-Bhagat",
+    repo: "https://github.com/Rabi-Bhagat/mohanpur_village",
   },
   {
     name: "HotelBazaar",
@@ -125,7 +125,7 @@ export const projects = [
     tech: "React",
     category: "Web App",
     link: "https://booking-app-hotelbazaar.pages.dev/",
-    repo: "https://github.com/Rabi-Bhagat",
+    repo: "https://github.com/Rabi-Bhagat/Booking-App-hotelBazaar-",
   },
   {
     name: "SecureDocs",
@@ -133,7 +133,7 @@ export const projects = [
     tech: "React",
     category: "Web App",
     link: "https://securedocs-a3x.pages.dev",
-    repo: "https://github.com/Rabi-Bhagat",
+    repo: "https://github.com/Rabi-Bhagat/SecureDocs-document-management-system-",
   },
   {
     name: "Signify Pro",
@@ -141,7 +141,7 @@ export const projects = [
     tech: "React",
     category: "Web App",
     link: "https://signify-pro.pages.dev",
-    repo: "https://github.com/Rabi-Bhagat",
+    repo: "https://github.com/Rabi-Bhagat/Signify-Pro",
   },
   {
     name: "TODO List Pro",
@@ -149,7 +149,7 @@ export const projects = [
     tech: "MongoDB, Express, React, Node.js",
     category: "Full Stack",
     link: "https://todo-list-pro.pages.dev/",
-    repo: "https://github.com/Rabi-Bhagat",
+    repo: "https://github.com/Rabi-Bhagat/TODO-List-pro",
   },
   {
     name: "Signature App",
