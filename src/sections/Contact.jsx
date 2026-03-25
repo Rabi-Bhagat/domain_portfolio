@@ -71,7 +71,7 @@ export default function Contact() {
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-lg">
           Have a project in mind or just want to say hi? I'd love to hear from
-          you.
+          you.🙌
         </p>
       </div>
 

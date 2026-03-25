@@ -122,7 +122,7 @@ export const projects = [
   {
     name: "HotelBazaar",
     desc: "Booking application (HotelBazaar) for seamlessly booking hotels.",
-    tech: "React",
+    tech: "MongoDB, Express, React, Node.js",
     category: "Web App",
     link: "https://booking-app-hotelbazaar.pages.dev/",
     repo: "https://github.com/Rabi-Bhagat/Booking-App-hotelBazaar-",
@@ -130,7 +130,7 @@ export const projects = [
   {
     name: "SecureDocs",
     desc: "Application for secure documents management and storage.",
-    tech: "React",
+    tech: "MongoDB, Express, React, Node.js",
     category: "Web App",
     link: "https://securedocs-a3x.pages.dev",
     repo: "https://github.com/Rabi-Bhagat/SecureDocs-document-management-system-",
@@ -154,7 +154,7 @@ export const projects = [
   {
     name: "Signature App",
     desc: "Web app for creating and securing digital signatures.",
-    tech: "HTML, CSS, JS, Flutter",
+    tech: "HTML, CSS, JS",
     category: "Web App",
     link: "https://signaturepage-umber.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/build%20a%20signature%20app%20with%20HTML%20%2C%20CSS%20%20and%20JS%20(PR-2)",
@@ -170,7 +170,7 @@ export const projects = [
   {
     name: "Guessing Game",
     desc: "Interactive number guessing game with JavaScript.",
-    tech: "JS",
+    tech: "JS, HTML,CSS",
     category: "Game",
     link: "https://numberguessinggame-nine.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/number%20guessing%20game",

@@ -34,7 +34,7 @@ export default function Hero() {
           className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl px-4 leading-relaxed mb-10"
         >
           I am <span className="text-white font-semibold">Rabi Bhagat</span>, a
-          Full-Stack Developer crafting intuitive, high-performance web & mobile
+          Full-Stack Developer crafting intuitive, high-performance web 
           experiences.
         </motion.p>
 

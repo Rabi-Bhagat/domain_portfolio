@@ -22,11 +22,11 @@ export default function About() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10"></div>
                 
                 <p>
-                  I’m a dedicated developer pursuing my <span className="text-white font-semibold">B.Tech in CSE (2023–2027)</span> at Maharishi Markandeshwar University.
+                  I’m a dedicated developer pursuing  <span className="text-white font-semibold">B.Tech in CSE (2023–2027)</span> at Maharishi Markandeshwar University.
                 </p>
                 <p>
                   My passion lies in building responsive, user-centric web and mobile applications. 
-                  I specialize in <span className="text-primary font-bold">Flutter, Python, and Modern Web Technologies</span>.
+                  I specialize in <span className="text-primary font-bold">React, Nodejs, Expressjs, MangoDB, Python, and Modern Web Technologies</span>.
                 </p>
                 <p>
                   I’m driven by curiosity, always learning new technologies to create innovative solutions that solve real-world problems.
