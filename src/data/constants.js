@@ -151,18 +151,11 @@ export const projects = [
     link: "https://todo-list-pro.pages.dev/",
     repo: "https://github.com/Rabi-Bhagat/TODO-List-pro",
   },
-  {
-    name: "Signature App",
-    desc: "Web app for creating and securing digital signatures.",
-    tech: "HTML, CSS, JS",
-    category: "Web App",
-    link: "https://signaturepage-umber.vercel.app/",
-    repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/build%20a%20signature%20app%20with%20HTML%20%2C%20CSS%20%20and%20JS%20(PR-2)",
-  },
+  
   {
     name: "E-commerce",
     desc: "Responsive e-commerce frontend for seamless shopping.",
-    tech: "HTML, CSS, JS",
+    tech: "MongoDB, Express, React, Node.js",
     category: "Web App",
     link: "https://ecommerce-seven-amber-35.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/project-4(%20E%20commerece%20app%20using%20HTML%20and%20css)",
@@ -173,7 +166,7 @@ export const projects = [
     tech: "JS, HTML,CSS",
     category: "Game",
     link: "https://numberguessinggame-nine.vercel.app/",
-    repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/number%20guessing%20game",
+    repo: "https://github.com/Rabi-Bhagat/frontened-project/Ftree/main/number%20guessing%20game",
   },
   {
     name: "To-Do List",
