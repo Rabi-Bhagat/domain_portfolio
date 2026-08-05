@@ -10,7 +10,7 @@ export default function StarBackground(props) {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const isLowPower = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isLowPower) return 0;
-    return isMobile ? 1500 : 6000;
+    return isMobile ? 1500 : 4000;
   });
 
   const [sphere] = useState(() => {

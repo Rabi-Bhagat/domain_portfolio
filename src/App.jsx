@@ -7,9 +7,14 @@ import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import Experience from './sections/Experience';
 import Certifications from './sections/Certifications';
+import Services from './sections/Services';
+import CaseStudies from './sections/CaseStudies';
+import Testimonials from './sections/Testimonials';
+import Blog from './sections/Blog';
 import Preloader from './components/ui/Preloader';
 import BackToTop from './components/ui/BackToTop';
 import PortfolioBot from './components/ui/PortfolioBot';
+import PwaInstall from './components/ui/PwaInstall';
 import TechMarquee from './components/ui/TechMarquee';
 import { AnimatePresence } from 'framer-motion';
 
@@ -61,15 +66,20 @@ function App() {
           <Navbar blackMode={blackMode} setBlackMode={setBlackMode} />
           <BackToTop />
           <PortfolioBot />
+          <PwaInstall />
 
           <main className="relative z-10 w-full overflow-y-auto">
             <Hero />
             <TechMarquee />
             <About />
+            <Services />
             <Skills />
             <Experience />
             <Certifications />
             <Projects />
+            <CaseStudies />
+            <Testimonials />
+            <Blog />
             <Contact />
             
             <footer className="py-8 text-center text-slate-500 text-sm relative z-10 glass-card mx-6 mb-6 mt-10">

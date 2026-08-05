@@ -1,6 +1,7 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
 import profilePic from "../assets/profile-pic.jpg";
+import { githubUsername } from "../data/constants";
 
 export default function About() {
   return (
@@ -62,6 +63,30 @@ export default function About() {
             </div>
         </motion.div>
       </div>
+
+      {/* GitHub Stats */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mt-16 flex flex-col md:flex-row justify-center items-center gap-6"
+      >
+        <img
+          src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&theme=tokyonight&hide_border=true&count_private=true`}
+          alt="Rabi Bhagat's GitHub stats"
+          loading="lazy"
+          decoding="async"
+          className="max-w-xs md:max-w-sm w-full"
+        />
+        <img
+          src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername}&theme=tokyonight&hide_border=true&layout=compact`}
+          alt="Rabi Bhagat's most used languages"
+          loading="lazy"
+          decoding="async"
+          className="max-w-xs md:max-w-sm w-full"
+        />
+      </motion.div>
     </Section>
   );
 }

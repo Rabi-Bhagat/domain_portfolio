@@ -4,6 +4,7 @@ import Section from "../components/ui/Section";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
 import { heroRoles, stats, socialLinks } from "../data/constants";
+import profilePic from "../assets/profile-pic.jpg";
 
 function useTypewriter(words, typeSpeed = 80, deleteSpeed = 40, pause = 1800) {
   const [index, setIndex] = useState(0);
@@ -56,16 +57,37 @@ export default function Hero() {
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow"></div>
         <div className="absolute top-20 -right-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow animation-delay-2000"></div>
 
+        {/* Profile Photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative mb-8 group"
+        >
+          <div className="absolute -inset-2 bg-gradient-to-tr from-primary via-secondary to-accent rounded-full opacity-60 blur-xl animate-pulse-slow"></div>
+          <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full p-1 bg-gradient-to-tr from-primary via-secondary to-accent">
+            <div className="w-full h-full rounded-full overflow-hidden border-4 border-slate-900">
+              <img
+                src={profilePic}
+                alt="Rabi Bhagat"
+                width="176"
+                height="176"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Name */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8 relative"
+          className="mb-4"
         >
           <h1 className="text-5xl md:text-8xl font-black text-white tracking-tight leading-tight">
-            Building <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x bg-[length:200%_auto]">
-              Digital Reality
+              Rabi Bhagat
             </span>
           </h1>
         </motion.div>
@@ -86,11 +108,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl px-4 leading-relaxed mb-10"
+          className="text-lg md:text-xl text-slate-400 font-light max-w-2xl px-4 leading-relaxed mb-10"
         >
-          I am <span className="text-white font-semibold">Rabi Bhagat</span>, a
-          Full-Stack Developer crafting intuitive, high-performance web
-          experiences.
+          I build high-performance web & mobile experiences — crafting{" "}
+          <span className="text-white font-semibold">Digital Reality</span>{" "}
+          with React, Node.js, and Flutter.
         </motion.p>
 
         <motion.div
@@ -163,23 +185,7 @@ export default function Hero() {
           transition={{ delay: 1.2, duration: 1 }}
           className="mt-16"
         >
-        {/* Availability Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-emerald-300 border-emerald-500/30">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            Available for freelance work
-          </span>
-        </motion.div>
-
-        <motion.div
+          <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
             className="flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors cursor-pointer"
