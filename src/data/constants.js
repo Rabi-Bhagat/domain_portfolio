@@ -166,7 +166,7 @@ export const projects = [
     tech: "JS, HTML,CSS",
     category: "Game",
     link: "https://numberguessinggame-nine.vercel.app/",
-    repo: "https://github.com/Rabi-Bhagat/frontened-project/Ftree/main/number%20guessing%20game",
+    repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/number%20guessing%20game",
   },
   {
     name: "To-Do List",
@@ -184,6 +184,18 @@ export const projects = [
     link: "https://code-alpha-task2-sandy.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/CodeAlpha_web_internship_project/tree/main/task%202",
   },
+];
+
+export const heroRoles = [
+  "Full-Stack Developer",
+  "MERN Stack Engineer",
+  "UI/UX Enthusiast",
+];
+
+export const stats = [
+  { label: "Projects Built", value: 9, suffix: "+" },
+  { label: "Technologies", value: 15, suffix: "+" },
+  { label: "Years Coding", value: 3, suffix: "+" },
 ];
 
 export const socialLinks = [
@@ -230,9 +242,29 @@ export const experience = [
   },
 ];
 
+export const certifications = [
+  {
+    title: "Web Development Internship",
+    org: "CodeAlpha",
+    date: "2024",
+    desc: "Completed a hands-on web development internship building real projects including a calculator and interactive web applications.",
+    link: "https://github.com/Rabi-Bhagat/codealpha_tasks",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    color: "#f7df1e",
+  },
+  {
+    title: "Web Development Internship",
+    org: "CodSoft",
+    date: "2024",
+    desc: "Completed an internship focused on building responsive web applications and improving frontend development skills.",
+    link: "https://github.com/Rabi-Bhagat/CODSOFT",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    color: "#22d3ee",
+  },
+];
+
 export const contactInfo = {
   email: "rabibhagat789@gmail.com",
-  phone: "+91 8307855628, +977 9815787410",
+  phone: "+91 8307855628",
+  phoneAlt: "+977 9815787410",
 };
-
-// this contact section

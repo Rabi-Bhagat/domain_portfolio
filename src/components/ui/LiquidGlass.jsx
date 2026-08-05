@@ -1,41 +1,34 @@
 import { useEffect } from "react";
 
-export default function LiquidGlass() {
-  useEffect(() => {
-    if (window.liquidGlass) {
-      window.liquidGlass.destroy();
-    }
+function smoothStep(a, b, t) {
+  t = Math.max(0, Math.min(1, (t - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+}
 
-    function smoothStep(a, b, t) {
-      t = Math.max(0, Math.min(1, (t - a) / (b - a)));
-      return t * t * (3 - 2 * t);
-    }
+function length(x, y) {
+  return Math.sqrt(x * x + y * y);
+}
 
-    function length(x, y) {
-      return Math.sqrt(x * x + y * y);
-    }
+function roundedRectSDF(x, y, width, height, radius) {
+  const qx = Math.abs(x) - width + radius;
+  const qy = Math.abs(y) - height + radius;
+  return (
+    Math.min(Math.max(qx, qy), 0) +
+    length(Math.max(qx, 0), Math.max(qy, 0)) -
+    radius
+  );
+}
 
-    function roundedRectSDF(x, y, width, height, radius) {
-      const qx = Math.abs(x) - width + radius;
-      const qy = Math.abs(y) - height + radius;
-      return (
-        Math.min(Math.max(qx, qy), 0) +
-        length(Math.max(qx, 0), Math.max(qy, 0)) -
-        radius
-      );
-    }
+function texture(x, y) {
+  return { type: "t", x, y };
+}
 
-    function texture(x, y) {
-      return { type: "t", x, y };
-    }
+// Generate unique ID
+function generateId() {
+  return "liquid-glass-" + Math.random().toString(36).substr(2, 9);
+}
 
-    // Generate unique ID
-    function generateId() {
-      return "liquid-glass-" + Math.random().toString(36).substr(2, 9);
-    }
-
-    // Main Shader class
-    class Shader {
+class Shader {
       constructor(options = {}) {
         this.width = options.width || 100;
         this.height = options.height || 100;
@@ -57,7 +50,6 @@ export default function LiquidGlass() {
         this.container = document.createElement("div");
         // Added styling to make it look nicer in the context of the portfolio
         this.container.style.cssText = `
-          position: fixed;
           position: fixed;
           bottom: 40px;
           right: 40px;
@@ -303,11 +295,17 @@ export default function LiquidGlass() {
       }
     }
 
+export default function LiquidGlass() {
+  useEffect(() => {
+    if (window.liquidGlass) {
+      window.liquidGlass.destroy();
+    }
+
     // Create the liquid glass effect
     const shader = new Shader({
       width: 180,
       height: 120,
-      fragment: (uv, mouse) => {
+      fragment: (uv) => {
         const ix = uv.x - 0.5;
         const iy = uv.y - 0.5;
         const distanceToEdge = roundedRectSDF(ix, iy, 0.3, 0.2, 0.6);

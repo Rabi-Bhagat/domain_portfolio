@@ -1,0 +1,22 @@
+{
+  "name": "Rabi Bhagat | Full-Stack Developer",
+  "short_name": "Rabi Bhagat",
+  "description": "Portfolio of Rabi Bhagat - Full Stack Developer specializing in React, Three.js, Flutter, and modern web technologies.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

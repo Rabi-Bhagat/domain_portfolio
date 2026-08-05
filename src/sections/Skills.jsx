@@ -48,7 +48,7 @@ export default function Skills() {
                         <p className="text-slate-400 text-sm">{category.desc}</p>
                       </div>
                       <div className="w-12 h-12 rounded-xl bg-slate-800/50 p-2 flex items-center justify-center border border-white/5">
-                        <img src={category.iconUrl} alt={category.title} className="w-full h-full object-contain" />
+                        <img src={category.iconUrl} alt={category.title} loading="lazy" decoding="async" width="48" height="48" className="w-full h-full object-contain" />
                       </div>
                    </div>
 
@@ -56,7 +56,7 @@ export default function Skills() {
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {category.skills.map((skill) => (
                         <div key={skill.name} className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <img src={skill.iconUrl} alt={skill.name} className="w-6 h-6 object-contain" />
+                            <img src={skill.iconUrl} alt={skill.name} loading="lazy" decoding="async" width="24" height="24" className="w-6 h-6 object-contain" />
                             <span className="text-slate-300 font-medium text-sm">{skill.name}</span>
                         </div>
                       ))}

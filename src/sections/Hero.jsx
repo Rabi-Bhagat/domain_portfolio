@@ -1,12 +1,55 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Section from "../components/ui/Section";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import Button3D from "../components/ui/Button3D";
+import { heroRoles, stats, socialLinks } from "../data/constants";
+
+function useTypewriter(words, typeSpeed = 80, deleteSpeed = 40, pause = 1800) {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[index % words.length];
+
+    if (!deleting && text === current) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+
+    if (deleting && text === "") {
+      const t = setTimeout(() => {
+        setDeleting(false);
+        setIndex((i) => (i + 1) % words.length);
+      }, typeSpeed);
+      return () => clearTimeout(t);
+    }
+
+    const t = setTimeout(
+      () => {
+        setText(
+          deleting
+            ? current.slice(0, text.length - 1)
+            : current.slice(0, text.length + 1),
+        );
+      },
+      deleting ? deleteSpeed : typeSpeed,
+    );
+
+    return () => clearTimeout(t);
+  }, [text, deleting, index, words, typeSpeed, deleteSpeed, pause]);
+
+  return text;
+}
 
 export default function Hero() {
+  const typedRole = useTypewriter(heroRoles);
+
   return (
     <Section
       id="home"
-      className="pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden"
+      className="pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-grid"
     >
       <div className="flex flex-col items-center justify-center text-center z-10 relative">
         {/* Ambient Glows */}
@@ -19,22 +62,34 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8 relative"
         >
-          <h1 className="text-6xl md:text-8xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-5xl md:text-8xl font-black text-white tracking-tight leading-tight">
             Building <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x bg-[length:200%_auto]">
               Digital Reality
             </span>
           </h1>
         </motion.div>
 
-        <motion.p
+        {/* Typewriter Roles */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-xl md:text-3xl text-slate-300 font-semibold font-mono mb-4 min-h-[2em] flex items-center justify-center"
+        >
+          <span className="text-accent">&gt;</span>
+          <span className="text-white">{typedRole}</span>
+          <span className="caret-blink text-primary ml-0.5">|</span>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
           className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl px-4 leading-relaxed mb-10"
         >
           I am <span className="text-white font-semibold">Rabi Bhagat</span>, a
-          Full-Stack Developer crafting intuitive, high-performance web 
+          Full-Stack Developer crafting intuitive, high-performance web
           experiences.
         </motion.p>
 
@@ -42,22 +97,101 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6"
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6 mb-12"
         >
-          <a
-            href="#projects"
-            className="group relative px-8 py-4 bg-primary hover:bg-blue-600 text-white font-bold rounded-full transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center justify-center gap-2 overflow-hidden"
-          >
-            <span className="relative z-10">View Projects</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
-          <a
-            href="#contact"
-            className="px-8 py-4 bg-slate-900/50 border border-white/10 hover:border-white/30 text-white font-bold rounded-full transition-all backdrop-blur-sm hover:bg-slate-800/50 flex items-center justify-center"
-          >
+          <Button3D href="#projects" variant="primary" size="lg">
+            View Projects
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button3D>
+          <Button3D href="#contact" variant="secondary" size="lg">
             Contact Me
-          </a>
+          </Button3D>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.6 }}
+          className="flex gap-4 mb-14"
+        >
+          {socialLinks.map((social) => (
+            <motion.a
+              key={social.name}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -4 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="w-11 h-11 rounded-xl glass-card flex items-center justify-center border-white/10 hover:border-white/30 transition-colors"
+              title={social.name}
+              aria-label={social.name}
+            >
+              <img src={social.iconUrl} alt={social.name} loading="lazy" decoding="async" width="20" height="20" className="w-5 h-5 object-contain" />
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Stats Strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
+          className="grid grid-cols-3 gap-4 md:gap-10 w-full max-w-xl"
+        >
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="glass-card px-4 py-5 rounded-2xl text-center"
+            >
+              <div className="text-3xl md:text-4xl font-black text-gradient">
+                {stat.value}
+                {stat.suffix}
+              </div>
+              <div className="text-xs md:text-sm text-slate-400 mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="mt-16"
+        >
+        {/* Availability Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-emerald-300 border-emerald-500/30">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            Available for freelance work
+          </span>
+        </motion.div>
+
+        <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors cursor-pointer"
+            onClick={() =>
+              document
+                .getElementById("about")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
+            <ChevronDown size={20} />
+          </motion.div>
         </motion.div>
       </div>
     </Section>

@@ -1,19 +1,35 @@
-import { Suspense, useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
+import React, { Suspense, useState, useEffect } from 'react';
 import Navbar from './components/ui/Navbar';
-import StarBackground from './components/3d/StarBackground';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import Experience from './sections/Experience';
+import Certifications from './sections/Certifications';
 import Preloader from './components/ui/Preloader';
 import BackToTop from './components/ui/BackToTop';
 import LiquidGlass from './components/ui/LiquidGlass';
-import ScrollProgress from './components/ui/ScrollProgress';
 import PortfolioBot from './components/ui/PortfolioBot';
+import TechMarquee from './components/ui/TechMarquee';
 import { AnimatePresence } from 'framer-motion';
+
+const Canvas = React.lazy(() =>
+  import('@react-three/fiber').then((m) => ({ default: m.Canvas })),
+);
+const StarBackground = React.lazy(() =>
+  import('./components/3d/StarBackground'),
+);
+
+function StarField() {
+  return (
+    <Canvas camera={{ position: [0, 0, 1] }}>
+      <Suspense fallback={null}>
+        <StarBackground />
+      </Suspense>
+    </Canvas>
+  );
+}
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -47,15 +63,11 @@ function App() {
 
       {!loading && (
         <>
-          <ScrollProgress />
-          
           {/* 3D Background */}
           <div className="fixed inset-0 z-0">
-            <Canvas camera={{ position: [0, 0, 1] }}>
-              <Suspense fallback={null}>
-                <StarBackground />
-              </Suspense>
-            </Canvas>
+            <Suspense fallback={null}>
+              <StarField />
+            </Suspense>
           </div>
 
           {/* Liquid Glass Effect - Desktop Only & Conditionally Rendered */}
@@ -67,9 +79,11 @@ function App() {
 
           <main className="relative z-10 w-full overflow-y-auto">
             <Hero />
+            <TechMarquee />
             <About />
             <Skills />
             <Experience />
+            <Certifications />
             <Projects />
             <Contact />
             

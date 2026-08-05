@@ -42,7 +42,7 @@ export default function Contact() {
         setToastMessage("Oops! Something went wrong.");
         setToastType("error");
       }
-    } catch (error) {
+    } catch {
       setToastMessage("Error sending message. Please try again.");
       setToastType("error");
     } finally {
@@ -104,7 +104,7 @@ export default function Contact() {
                 </motion.a>
 
                 <motion.a
-                  href={`tel:${contactInfo.phone}`}
+                  href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                   whileHover={{ x: 10 }}
                   className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group p-3 rounded-xl hover:bg-white/5"
                 >
@@ -112,7 +112,12 @@ export default function Contact() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <Phone size={24} className="relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <span className="text-lg font-medium">{contactInfo.phone}</span>
+                  <div className="text-lg">
+                    <div className="font-medium">{contactInfo.phone}</div>
+                    {contactInfo.phoneAlt && (
+                      <div className="text-sm text-slate-500 group-hover:text-slate-400">{contactInfo.phoneAlt}</div>
+                    )}
+                  </div>
                 </motion.a>
               </div>
             </div>
@@ -148,6 +153,10 @@ export default function Contact() {
                     <img
                       src={social.iconUrl}
                       alt={social.name}
+                      loading="lazy"
+                      decoding="async"
+                      width="28"
+                      height="28"
                       className="w-7 h-7 transition-all duration-300 group-hover:filter group-hover:brightness-0 group-hover:invert drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
                     />
                   </motion.a>

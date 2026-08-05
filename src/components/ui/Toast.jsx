@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, X } from "lucide-react";
 
 export default function Toast({ message, type = "success", onClose }) {
   return (
@@ -23,6 +23,15 @@ export default function Toast({ message, type = "success", onClose }) {
           </h4>
           <p className="text-sm text-slate-200">{message}</p>
         </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            aria-label="Close notification"
+            className="ml-2 p-1 rounded-full hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+          >
+            <X size={16} />
+          </button>
+        )}
       </motion.div>
     </AnimatePresence>
   );

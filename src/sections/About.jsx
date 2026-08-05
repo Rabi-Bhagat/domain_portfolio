@@ -1,6 +1,6 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
-import profilePic from "../assets/profile-pic.png";
+import profilePic from "../assets/profile-pic.jpg";
 
 export default function About() {
   return (
@@ -26,7 +26,7 @@ export default function About() {
                 </p>
                 <p>
                   My passion lies in building responsive, user-centric web and mobile applications. 
-                  I specialize in <span className="text-primary font-bold">React, Nodejs, Expressjs, MangoDB, Python, and Modern Web Technologies</span>.
+                  I specialize in <span className="text-primary font-bold">React, Node.js, Express.js, MongoDB, Python, and Modern Web Technologies</span>.
                 </p>
                 <p>
                   I’m driven by curiosity, always learning new technologies to create innovative solutions that solve real-world problems.
@@ -52,6 +52,10 @@ export default function About() {
                      <img 
                         src={profilePic} 
                         alt="Rabi Bhagat" 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="640" 
+                        height="800" 
                         className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                      />
                 </div>

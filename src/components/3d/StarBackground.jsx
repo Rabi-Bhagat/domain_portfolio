@@ -6,9 +6,16 @@ export default function StarBackground(props) {
   const ref = useRef();
   const groupRef = useRef();
 
+  const [particleCount] = useState(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isLowPower = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isLowPower) return 0;
+    return isMobile ? 1500 : 6000;
+  });
+
   const [sphere] = useState(() => {
-    const positions = new Float32Array(6000 * 3);
-    for (let i = 0; i < 6000; i++) {
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
       const r = 15 + Math.random() * 30;
       const theta = 2 * Math.PI * Math.random();
       const phi = Math.acos(2 * Math.random() - 1);
@@ -55,6 +62,7 @@ export default function StarBackground(props) {
   }, []);
 
   useFrame((state, delta) => {
+    if (!ref.current || !groupRef.current) return;
     ref.current.rotation.x -= delta / 15;
     ref.current.rotation.y -= delta / 20;
 
@@ -65,6 +73,10 @@ export default function StarBackground(props) {
         (targetRotation.current.y - groupRef.current.rotation.y) * delta * 2;
     }
   });
+
+  if (particleCount === 0) {
+    return null;
+  }
 
   return (
     <group ref={groupRef} rotation={[0, 0, Math.PI / 4]}>

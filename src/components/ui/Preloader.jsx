@@ -8,8 +8,8 @@ export default function Preloader({ onComplete }) {
 
   useEffect(() => {
     // Timeline configuration
-    const showNamasteTime = 300;
-    const showWelcomeTime = 2000; // 500 (start) + 2000 (duration)
+    const showNamasteTime = 150;
+    const showWelcomeTime = 650; // 150 (start) + 650 (duration)
 
     const timer1 = setTimeout(() => {
         setStep(1);
@@ -35,10 +35,10 @@ export default function Preloader({ onComplete }) {
             
             if (index === secondaryText.length) {
                 clearInterval(interval);
-                // Wait 1.5s after finishing typing before closing
-                setTimeout(onComplete, 1500);
+                // Wait 0.3s after finishing typing before closing
+                setTimeout(onComplete, 300);
             }
-        }, 50);
+        }, 18);
 
         return () => clearInterval(interval);
     }
@@ -79,7 +79,7 @@ export default function Preloader({ onComplete }) {
             className="h-full bg-gradient-to-r from-primary to-secondary"
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
-            transition={{ duration: 4.5, ease: "easeInOut" }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
         />
       </div>
     </div>
