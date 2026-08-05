@@ -9,7 +9,6 @@ import Experience from './sections/Experience';
 import Certifications from './sections/Certifications';
 import Preloader from './components/ui/Preloader';
 import BackToTop from './components/ui/BackToTop';
-import LiquidGlass from './components/ui/LiquidGlass';
 import PortfolioBot from './components/ui/PortfolioBot';
 import TechMarquee from './components/ui/TechMarquee';
 import { AnimatePresence } from 'framer-motion';
@@ -34,17 +33,6 @@ function StarField() {
 function App() {
   const [loading, setLoading] = useState(true);
   const [blackMode, setBlackMode] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    // Check for desktop on mount and resize
-    const checkDesktop = () => {
-        setIsDesktop(window.innerWidth >= 768);
-    };
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-    return () => window.removeEventListener('resize', checkDesktop);
-  }, []);
 
   // Update body background color when mode changes
   useEffect(() => {
@@ -70,9 +58,6 @@ function App() {
             </Suspense>
           </div>
 
-          {/* Liquid Glass Effect - Desktop Only & Conditionally Rendered */}
-          {isDesktop && <LiquidGlass />}
-          
           <Navbar blackMode={blackMode} setBlackMode={setBlackMode} />
           <BackToTop />
           <PortfolioBot />
