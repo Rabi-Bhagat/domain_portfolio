@@ -45,7 +45,7 @@ export default function Preloader({ onComplete }) {
   }, [step, onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-dark flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-slate-50 dark:bg-dark flex flex-col items-center justify-center">
       <AnimatePresence mode="wait">
         {step === 1 && (
             <motion.div
@@ -65,7 +65,7 @@ export default function Preloader({ onComplete }) {
                 key="welcome"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-xl md:text-3xl font-mono font-bold text-white text-center px-4"
+                className="text-xl md:text-3xl font-mono font-bold text-slate-800 dark:text-white text-center px-4"
             >
                 {text}
                 <span className="animate-pulse text-primary inline-block ml-1">|</span>
@@ -74,7 +74,7 @@ export default function Preloader({ onComplete }) {
       </AnimatePresence>
       
       {/* Loading Bar - Continues throughout */}
-      <div className="absolute bottom-20 w-64 h-1 bg-slate-800 rounded-full overflow-hidden">
+      <div className="absolute bottom-20 w-64 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
         <motion.div 
             className="h-full bg-gradient-to-r from-primary to-secondary"
             initial={{ width: 0 }}

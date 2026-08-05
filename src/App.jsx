@@ -7,14 +7,9 @@ import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import Experience from './sections/Experience';
 import Certifications from './sections/Certifications';
-import Services from './sections/Services';
-import CaseStudies from './sections/CaseStudies';
-import Testimonials from './sections/Testimonials';
-import Blog from './sections/Blog';
 import Preloader from './components/ui/Preloader';
 import BackToTop from './components/ui/BackToTop';
 import PortfolioBot from './components/ui/PortfolioBot';
-import PwaInstall from './components/ui/PwaInstall';
 import TechMarquee from './components/ui/TechMarquee';
 import { AnimatePresence } from 'framer-motion';
 
@@ -25,11 +20,11 @@ const StarBackground = React.lazy(() =>
   import('./components/3d/StarBackground'),
 );
 
-function StarField() {
+function StarField({ dark }) {
   return (
     <Canvas camera={{ position: [0, 0, 1] }}>
       <Suspense fallback={null}>
-        <StarBackground />
+        <StarBackground dark={dark} />
       </Suspense>
     </Canvas>
   );
@@ -37,19 +32,15 @@ function StarField() {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [blackMode, setBlackMode] = useState(false);
+  const [dark, setDark] = useState(true);
 
-  // Update body background color when mode changes
+  // Sync theme class on <html> so Tailwind `dark:` variants apply
   useEffect(() => {
-    if (blackMode) {
-      document.body.style.backgroundColor = '#000000';
-    } else {
-      document.body.style.backgroundColor = '#030712'; 
-    }
-  }, [blackMode]);
+    document.documentElement.classList.toggle('dark', dark);
+  }, [dark]);
 
   return (
-    <div className={`${blackMode ? "bg-black" : "bg-dark"} min-h-screen text-white relative overflow-hidden font-sans transition-colors duration-500`}>
+    <div className={`min-h-screen bg-slate-50 text-slate-900 dark:bg-dark dark:text-white relative overflow-hidden font-sans transition-colors duration-500`}>
       <AnimatePresence>
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
@@ -59,30 +50,25 @@ function App() {
           {/* 3D Background */}
           <div className="fixed inset-0 z-0">
             <Suspense fallback={null}>
-              <StarField />
+              <StarField dark={dark} />
             </Suspense>
           </div>
 
-          <Navbar blackMode={blackMode} setBlackMode={setBlackMode} />
+          <Navbar dark={dark} setDark={setDark} />
           <BackToTop />
           <PortfolioBot />
-          <PwaInstall />
 
           <main className="relative z-10 w-full overflow-y-auto">
             <Hero />
             <TechMarquee />
             <About />
-            <Services />
             <Skills />
             <Experience />
             <Certifications />
             <Projects />
-            <CaseStudies />
-            <Testimonials />
-            <Blog />
             <Contact />
-            
-            <footer className="py-8 text-center text-slate-500 text-sm relative z-10 glass-card mx-6 mb-6 mt-10">
+
+            <footer className="py-8 text-center text-slate-500 dark:text-slate-500 text-sm relative z-10 glass-card mx-6 mb-6 mt-10">
               <p>© {new Date().getFullYear()} Rabi Bhagat. All rights reserved.</p>
               <p className="mt-1">Built with React, Three.js & Tailwind CSS</p>
             </footer>

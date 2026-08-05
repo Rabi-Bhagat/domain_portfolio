@@ -79,25 +79,26 @@ export default function PortfolioBot() {
                 initial={{ opacity: 0, scale: 0.8, y: 20, x: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.8, y: 20, x: -20 }}
-                className="w-[300px] md:w-[350px] h-[450px] glass-card rounded-2xl flex flex-col overflow-hidden shadow-2xl border border-white/20 bg-slate-900/90"
+                className="w-[300px] md:w-[350px] h-[450px] glass-card rounded-2xl flex flex-col overflow-hidden shadow-2xl border border-slate-200 dark:border-white/20 bg-white/95 dark:bg-slate-900/90"
             >
                 {/* Header */}
-                <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between">
+                <div className="p-4 border-b border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-lg">
                             🤖
                         </div>
                         <div>
-                            <h3 className="font-bold text-white text-sm">Portfolio Assistant</h3>
+                            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Portfolio Assistant</h3>
                             <div className="flex items-center gap-1.5">
                                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                <span className="text-xs text-slate-400">Online</span>
+                                <span className="text-xs text-slate-500 dark:text-slate-400">Online</span>
                             </div>
                         </div>
                     </div>
                     <button 
                         onClick={() => setIsOpen(false)}
-                        className="text-slate-400 hover:text-white transition-colors"
+                        className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                        aria-label="Close chat"
                     >
                         <X size={18} />
                     </button>
@@ -110,7 +111,7 @@ export default function PortfolioBot() {
                             <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
                                 msg.type === 'user' 
                                     ? 'bg-primary text-white rounded-tr-none' 
-                                    : 'bg-slate-800 text-slate-200 rounded-tl-none border border-slate-700'
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-tl-none border border-slate-200 dark:border-slate-700'
                             }`}>
                                 {msg.text}
                             </div>
@@ -120,14 +121,14 @@ export default function PortfolioBot() {
                 </div>
 
                 {/* Options / Input Area */}
-                <div className="p-4 border-t border-white/10 bg-white/5">
+                <div className="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-100/60 dark:bg-white/5">
                     <p className="text-xs text-slate-500 mb-3 ml-1">Suggested actions:</p>
                     <div className="flex flex-wrap gap-2">
                         {options.map((opt, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => handleOptionClick(opt)}
-                                className="text-xs px-3 py-2 rounded-full bg-slate-800 hover:bg-primary hover:text-white border border-slate-700 hover:border-primary transition-all duration-300 flex items-center gap-1 text-slate-300"
+                                className="text-xs px-3 py-2 rounded-full bg-slate-100 hover:bg-primary hover:text-white border border-slate-200 dark:bg-slate-800 dark:hover:bg-primary dark:border-slate-700 dark:hover:border-primary transition-all duration-300 flex items-center gap-1 text-slate-600 dark:text-slate-300"
                             >
                                 {opt.label} <ChevronRight size={10} />
                             </button>

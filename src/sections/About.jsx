@@ -1,7 +1,6 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
 import profilePic from "../assets/profile-pic.jpg";
-import { githubUsername } from "../data/constants";
 
 export default function About() {
   return (
@@ -15,18 +14,18 @@ export default function About() {
              viewport={{ once: true }}
              transition={{ duration: 0.8 }}
           >
-             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                 About <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">Me</span>
              </h2>
-             
-             <div className="glass-card p-8 space-y-5 text-slate-300 text-lg leading-relaxed shadow-xl relative overflow-hidden">
+
+             <div className="glass-card p-8 space-y-5 text-slate-600 dark:text-slate-300 text-lg leading-relaxed shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10"></div>
-                
+
                 <p>
-                  I’m a dedicated developer pursuing  <span className="text-white font-semibold">B.Tech in CSE (2023–2027)</span> at Maharishi Markandeshwar University.
+                  I’m a dedicated developer pursuing  <span className="text-slate-900 dark:text-white font-semibold">B.Tech in CSE (2023–2027)</span> at Maharishi Markandeshwar University.
                 </p>
                 <p>
-                  My passion lies in building responsive, user-centric web and mobile applications. 
+                  My passion lies in building responsive, user-centric web and mobile applications.
                   I specialize in <span className="text-primary font-bold">React, Node.js, Express.js, MongoDB, Python, and Modern Web Technologies</span>.
                 </p>
                 <p>
@@ -37,7 +36,7 @@ export default function About() {
         </div>
 
         {/* Visual/Image */}
-        <motion.div 
+        <motion.div
             className="relative flex justify-center mt-12 md:mt-0"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -47,46 +46,22 @@ export default function About() {
             <div className="relative w-64 h-64 md:w-80 md:h-80 group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-[2rem] rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
                 <div className="absolute inset-0 bg-gradient-to-bl from-secondary to-accent rounded-[2rem] -rotate-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-2xl delay-100"></div>
-                
-                <div className="absolute inset-2 bg-slate-900 rounded-[1.5rem] border-2 border-white/20 overflow-hidden z-10 shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] transition-all duration-500 relative">
+
+                <div className="absolute inset-2 bg-slate-100 dark:bg-slate-900 rounded-[1.5rem] border-2 border-slate-300 dark:border-white/20 overflow-hidden z-10 shadow-[0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] transition-all duration-500 relative">
                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-20"></div>
-                     <img 
-                        src={profilePic} 
-                        alt="Rabi Bhagat" 
-                        loading="lazy" 
-                        decoding="async" 
-                        width="640" 
-                        height="800" 
+                     <img
+                        src={profilePic}
+                        alt="Rabi Bhagat"
+                        loading="lazy"
+                        decoding="async"
+                        width="640"
+                        height="800"
                         className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                      />
                 </div>
             </div>
         </motion.div>
       </div>
-
-      {/* GitHub Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mt-16 flex flex-col md:flex-row justify-center items-center gap-6"
-      >
-        <img
-          src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&theme=tokyonight&hide_border=true&count_private=true`}
-          alt="Rabi Bhagat's GitHub stats"
-          loading="lazy"
-          decoding="async"
-          className="max-w-xs md:max-w-sm w-full"
-        />
-        <img
-          src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername}&theme=tokyonight&hide_border=true&layout=compact`}
-          alt="Rabi Bhagat's most used languages"
-          loading="lazy"
-          decoding="async"
-          className="max-w-xs md:max-w-sm w-full"
-        />
-      </motion.div>
     </Section>
   );
 }

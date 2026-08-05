@@ -44,26 +44,33 @@ npm run lint      # run ESLint
 
 **Everything you need to edit is in `src/data/constants.js`.** No need to touch any component files.
 
-### Sections you can update
-| Data export | Controls | Notes |
-|---|---|---|
-| `projects` | Project cards + lightbox | Add `image`, `imageFallback`, `highlights` |
-| `services` | "What I Offer" cards | Add/remove services |
-| `caseStudies` | Problem → Solution → Result blocks | Showcases your top projects |
-| `testimonials` | Client/colleague quotes | ⚠️ Replace the 3 placeholders with real people |
-| `blogPosts` | "Latest Insights" cards | Replace placeholders with your real posts |
-| `certifications` | Certifications cards | Keep links current |
-| `skills`, `experience` | Skills timeline, Experience timeline | |
-| `socialLinks` | Social icons (Hero + Contact) | WhatsApp already added |
-| `heroRoles`, `stats` | Typewriter words, hero counters | |
-| `contactInfo` | Email, phones, **WhatsApp**, location, status | WhatsApp link uses `https://wa.me/9779815787410` |
-| `githubUsername` | Live GitHub stats widget in About | Set to your GitHub handle |
+### Social Links (`socialLinks`)
+```js
+{ name: "GitHub", link: "https://github.com/Rabi-Bhagat", iconUrl: "...", color: "#181717" }
+```
+Add or remove entries to change the social icons in the Hero and Contact sections.
 
-### Project screenshots
-Each project loads a **live screenshot** of its URL (via `s.wordpress.com/mshots`). If it can't load, it falls back to the local thumbnail in `public/projects/<slug>.png`. To use your own screenshots, just replace the `image` field with your image URL.
+### Projects (`projects`)
+```js
+{
+  name: "Mohanpur Village",
+  desc: "Short description",
+  tech: "MongoDB, Express, React, Node.js",
+  category: "Full Stack",        // used for the filter buttons
+  link: "https://live-demo.com", // Live Demo button
+  repo: "https://github.com/you/repo", // Code button
+}
+```
 
-### Contact form
-The form is wired to **Formspree**. To use your own account, change the endpoint in `src/sections/Contact.jsx` (the `fetch("https://formspree.io/f/...")` call).
+### Skills (`skills`), Experience (`experience`), Certifications (`certifications`)
+Same pattern — one object per item. Categories drive the timeline layout in Skills and the filter in Projects automatically.
+
+### Hero text & stats
+- `heroRoles` → the typewriter words
+- `stats` → the number counters under the hero
+
+### Contact info (`contactInfo`)
+Update email / phone. **The contact form itself is wired to Formspree** — change the endpoint in `src/sections/Contact.jsx` (line 28: `fetch("https://formspree.io/f/...")`) if you use your own account.
 
 ---
 

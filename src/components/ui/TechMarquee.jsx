@@ -28,7 +28,7 @@ export default function TechMarquee() {
         transition={{ duration: 0.8 }}
         className="flex flex-col items-center gap-6"
       >
-        <div className="flex items-center gap-2 text-sm text-slate-400 uppercase tracking-widest">
+        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 uppercase tracking-widest">
           <Sparkles size={14} className="text-accent" />
           Tech Stack I Work With
         </div>
@@ -42,7 +42,7 @@ export default function TechMarquee() {
                 title={tech.name}
               >
                 <img src={tech.icon} alt={tech.name} loading="lazy" decoding="async" width="28" height="28" className="w-7 h-7 object-contain" />
-                <span className="text-slate-300 font-medium">{tech.name}</span>
+                <span className="text-slate-700 dark:text-slate-300 font-medium">{tech.name}</span>
               </div>
             ))}
           </div>

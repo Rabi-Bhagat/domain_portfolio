@@ -10,7 +10,7 @@ export default function StarBackground(props) {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const isLowPower = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isLowPower) return 0;
-    return isMobile ? 1500 : 4000;
+    return isMobile ? 1500 : 6000;
   });
 
   const [sphere] = useState(() => {
@@ -89,7 +89,7 @@ export default function StarBackground(props) {
       >
         <PointMaterial
           transparent
-          color="#ffffff"
+          color={props.dark ? "#ffffff" : "#64748b"}
           size={0.05}
           sizeAttenuation={true}
           depthWrite={false}

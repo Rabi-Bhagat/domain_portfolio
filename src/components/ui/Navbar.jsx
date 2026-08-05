@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar({ blackMode, setBlackMode }) {
+export default function Navbar({ dark, setDark }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,7 +17,6 @@ export default function Navbar({ blackMode, setBlackMode }) {
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
@@ -39,12 +38,12 @@ export default function Navbar({ blackMode, setBlackMode }) {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-slate-900/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent py-2"
+        scrolled ? "bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border-b border-slate-200 dark:border-white/5" : "bg-transparent py-2"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           className="text-2xl font-bold relative group"
           onClick={(e) => handleClick(e, "#home")}
         >
@@ -60,39 +59,42 @@ export default function Navbar({ blackMode, setBlackMode }) {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group py-2"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors relative group py-2"
               onClick={(e) => handleClick(e, link.href)}
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
           ))}
-          
+
           <button
-             onClick={() => setBlackMode(!blackMode)}
-             className="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
-             title={blackMode ? "Switch to Dark Mode" : "Switch to Black Mode"}
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+            title={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label="Toggle theme"
           >
-             {blackMode ? <Sun size={20} /> : <Moon size={20} />}
+            {dark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>
 
         {/* Mobile Actions */}
         <div className="md:hidden flex items-center gap-4">
-            <button
-                 onClick={() => setBlackMode(!blackMode)}
-                 className="p-2 rounded-full hover:bg-white/10 text-slate-300 transition-colors"
-            >
-                 {blackMode ? <Sun size={24} /> : <Moon size={24} />}
-            </button>
+          <button
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {dark ? <Sun size={24} /> : <Moon size={24} />}
+          </button>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="text-slate-100 hover:text-accent transition-colors focus:outline-none"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+          {/* Mobile Menu Button */}
+          <button
+            className="text-slate-700 dark:text-slate-100 hover:text-accent transition-colors focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </div>
 
@@ -103,14 +105,14 @@ export default function Navbar({ blackMode, setBlackMode }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
+            className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-white/5 overflow-hidden"
           >
             <div className="flex flex-col p-6 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-medium text-slate-300 hover:text-accent hover:pl-2 transition-all duration-300"
+                  className="text-lg font-medium text-slate-600 hover:text-accent dark:text-slate-300 dark:hover:text-accent hover:pl-2 transition-all duration-300"
                   onClick={(e) => handleClick(e, link.href)}
                 >
                   {link.name}
