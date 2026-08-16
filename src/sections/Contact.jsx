@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Section from "../components/ui/Section";
 import { contactInfo, socialLinks } from "../data/constants";
-import { Mail, Phone, Download, Send } from "lucide-react";
+import { Mail, Phone, Download, Send, CheckCircle, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import Toast from "../components/ui/Toast";
 
@@ -35,15 +35,15 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        setToastMessage("Message sent successfully!");
+        setToastMessage("Thank you! Your message has been sent successfully.");
         setToastType("success");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setToastMessage("Oops! Something went wrong.");
+        setToastMessage("Oops! Something went wrong while sending. Please try again.");
         setToastType("error");
       }
     } catch {
-      setToastMessage("Error sending message. Please try again.");
+      setToastMessage("Network error sending message. Please try WhatsApp or direct email.");
       setToastType("error");
     } finally {
       setIsSubmitting(false);
@@ -62,100 +62,94 @@ export default function Contact() {
         />
       )}
 
-      <div className="text-center mb-16 space-y-4">
+      <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
           Get in{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-primary to-secondary">
             Touch
           </span>
         </h2>
-        <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg">
-          Have a project in mind or just want to say hi? I'd love to hear from
-          you.🙌
+        <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+          Have a project in mind, open position, or want to discuss full-stack opportunities? Feel free to reach out directly! 🙌
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-16">
+        {/* Left Column: Contact Cards */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="space-y-8"
+          className="space-y-6"
         >
-          <div className="glass-card p-5 md:p-8 space-y-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+          <div className="glass-card p-6 md:p-8 space-y-8 relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Contact Information
               </h3>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 <motion.a
                   href={`mailto:${contactInfo.email}`}
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors group p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5"
+                  whileHover={{ x: 6 }}
+                  className="flex items-center gap-4 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors group p-3.5 rounded-2xl hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10"
                 >
-                  <div className="relative w-14 h-14 rounded-xl bg-slate-100 dark:bg-slate-800/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 border border-slate-200 dark:border-slate-700 group-hover:border-primary shadow-lg group-hover:shadow-primary/50 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <Mail size={24} className="relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
+                  <div className="relative w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 border border-primary/20">
+                    <Mail size={22} />
                   </div>
-                  <span className="text-lg font-medium">{contactInfo.email}</span>
+                  <div className="min-w-0">
+                    <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Email Address</span>
+                    <span className="text-base font-bold truncate block">{contactInfo.email}</span>
+                  </div>
                 </motion.a>
 
                 <motion.a
                   href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors group p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5"
+                  whileHover={{ x: 6 }}
+                  className="flex items-center gap-4 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors group p-3.5 rounded-2xl hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10"
                 >
-                  <div className="relative w-14 h-14 rounded-xl bg-slate-100 dark:bg-slate-800/50 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-500 border border-slate-200 dark:border-slate-700 group-hover:border-secondary shadow-lg group-hover:shadow-secondary/50 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <Phone size={24} className="relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
+                  <div className="relative w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300 shrink-0 border border-secondary/20">
+                    <Phone size={22} />
                   </div>
-                  <div className="text-lg">
-                    <div className="font-medium">{contactInfo.phone}</div>
+                  <div className="min-w-0">
+                    <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Phone Contact</span>
+                    <span className="text-base font-bold block">{contactInfo.phone}</span>
                     {contactInfo.phoneAlt && (
-                      <div className="text-sm text-slate-400 dark:text-slate-500 group-hover:text-slate-500 dark:group-hover:text-slate-400">{contactInfo.phoneAlt}</div>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 block">{contactInfo.phoneAlt} (Nepal)</span>
                     )}
                   </div>
                 </motion.a>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-200 dark:border-white/5">
-              <h4 className="text-slate-900 dark:text-white font-semibold mb-4">
-                Connect with me
+            {/* Social Channels */}
+            <div className="pt-6 border-t border-slate-200 dark:border-white/10">
+              <h4 className="text-slate-900 dark:text-white font-bold mb-4 text-sm uppercase tracking-wider">
+                Connect on Social Platforms
               </h4>
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.name}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{
-                        scale: 1.2,
-                        rotateX: 10,
-                        rotateY: 10,
-                        backgroundColor: social.color,
-                        color: "#ffffff"
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    initial={{ backgroundColor: "rgba(241, 245, 249, 1)" }}
-                    className="w-14 h-14 rounded-xl flex items-center justify-center backdrop-blur-md border border-slate-200 dark:border-white/5 shadow-lg group relative overflow-hidden dark:!bg-slate-800/80"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-white/10 shadow-md group transition-colors"
                     title={social.name}
-                    style={{ perspective: 1000 }}
+                    aria-label={social.name}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
                     <img
                       src={social.iconUrl}
                       alt={social.name}
                       loading="lazy"
                       decoding="async"
-                      width="28"
-                      height="28"
-                      className="w-7 h-7 invert dark:invert-0 transition-all duration-300 group-hover:filter group-hover:brightness-0 group-hover:invert drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
+                      width="24"
+                      height="24"
+                      className="w-5 h-5 invert dark:invert-0 transition-transform group-hover:scale-110"
                     />
                   </motion.a>
                 ))}
@@ -163,29 +157,30 @@ export default function Contact() {
             </div>
           </div>
 
-          <a
-            href="/resume.pdf"
-            download
-            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all transform hover:-translate-y-1"
-          >
-            <Download size={20} /> Download Resume
-          </a>
+          {/* Resume & WhatsApp Action Buttons */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            <a
+              href="/resume.pdf"
+              download="Rabi_Bhagat_Resume.pdf"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all transform hover:-translate-y-0.5 text-sm"
+            >
+              <Download size={18} /> Download Resume
+            </a>
 
-          <a
-            href={`https://wa.me/${contactInfo.whatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
-              "Hi Rabi, I saw your portfolio and I'd like to discuss a project.",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all transform hover:-translate-y-1"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Chat on WhatsApp
-          </a>
+            <a
+              href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent(
+                "Hi Rabi, I saw your portfolio and I'd like to discuss a project or opportunity.",
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 text-sm"
+            >
+              <MessageSquare size={18} /> Chat on WhatsApp
+            </a>
+          </div>
         </motion.div>
 
+        {/* Right Column: Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -194,12 +189,16 @@ export default function Contact() {
         >
           <form
             onSubmit={handleSubmit}
-            className="glass-card p-5 md:p-10 space-y-6"
+            className="glass-card p-6 md:p-8 space-y-6 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl"
           >
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              Send a Message
+            </h3>
+
             <div className="space-y-4">
               <div>
-                <label className="block text-slate-500 dark:text-slate-400 text-sm font-medium mb-2 pl-1">
-                  Name
+                <label className="block text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mb-2">
+                  Your Name
                 </label>
                 <input
                   type="text"
@@ -207,13 +206,14 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600"
-                  placeholder="Your Name"
+                  className="w-full bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-700/80 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400 text-sm"
+                  placeholder="e.g. Alex Johnson"
                 />
               </div>
+
               <div>
-                <label className="block text-slate-500 dark:text-slate-400 text-sm font-medium mb-2 pl-1">
-                  Email
+                <label className="block text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mb-2">
+                  Email Address
                 </label>
                 <input
                   type="email"
@@ -221,12 +221,13 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600"
-                  placeholder="your@email.com"
+                  className="w-full bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-700/80 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400 text-sm"
+                  placeholder="alex@example.com"
                 />
               </div>
+
               <div>
-                <label className="block text-slate-500 dark:text-slate-400 text-sm font-medium mb-2 pl-1">
+                <label className="block text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider mb-2">
                   Message
                 </label>
                 <textarea
@@ -234,9 +235,9 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows="5"
-                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-slate-600"
-                  placeholder="Tell me about your project..."
+                  rows="4"
+                  className="w-full bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-700/80 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none placeholder:text-slate-400 text-sm"
+                  placeholder="Tell me about your project or job role..."
                 ></textarea>
               </div>
             </div>
@@ -244,15 +245,22 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-slate-900 text-white font-bold py-4 rounded-lg hover:bg-slate-700 transition-colors flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+              className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-sm"
             >
-              {isSubmitting ? "Sending..." : "Send Message"}{" "}
-              <Send
-                size={18}
-                className={`group-hover:translate-x-1 transition-transform ${
-                  isSubmitting ? "hidden" : ""
-                }`}
-              />
+              {isSubmitting ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                  <span>Sending Message...</span>
+                </>
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <Send
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </>
+              )}
             </button>
           </form>
         </motion.div>

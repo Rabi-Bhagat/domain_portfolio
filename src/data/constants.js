@@ -1,109 +1,118 @@
-
 export const skills = [
   {
     title: "Frontend Development",
-    desc: "Building responsive web interfaces",
+    desc: "Building responsive, modern & dynamic web interfaces",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     color: "#61DAFB",
     skills: [
       {
         name: "React",
-        desc: "Modern UI library",
+        desc: "Modern UI library & component architecture",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       },
       {
         name: "Tailwind CSS",
-        desc: "Utility-first CSS",
+        desc: "Utility-first CSS framework for rapid UI styling",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
       },
       {
         name: "JavaScript",
-        desc: "Dynamic web features",
+        desc: "ES6+, async programming & web APIs",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "HTML5 & CSS3",
+        desc: "Semantic structure & responsive layouts",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
       },
     ]
   },
   {
     title: "Backend Development",
-    desc: "Server-side logic & APIs",
+    desc: "Robust server-side logic & RESTful APIs",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
     color: "#339933",
     skills: [
        {
         name: "Node.js",
-        desc: "Server-side JavaScript",
+        desc: "Server-side JavaScript runtime",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
       },
       {
         name: "Express.js",
-        desc: "Fast web frameworks",
+        desc: "Fast, unopinionated web framework for Node.js",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
       },
     ]
   },
   {
     title: "Mobile App Development",
-    desc: "Cross-platform mobile apps",
+    desc: "Cross-platform mobile apps for Android & iOS",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
     color: "#02569B",
     skills: [
       {
         name: "Flutter",
-        desc: "Beautiful native apps",
+        desc: "Single codebase native mobile applications",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "Dart",
+        desc: "Client-optimized language for fast apps",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
       },
     ]
   },
   {
     title: "Database Management",
-    desc: "Efficient data storage",
+    desc: "Scalable data storage & query optimization",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
     color: "#47A248",
     skills: [
       {
         name: "MongoDB",
-        desc: "NoSQL Database",
+        desc: "Document-oriented NoSQL database",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
       },
     ]
   },
   {
     title: "Programming Languages",
-    desc: "Core coding languages",
+    desc: "Core computational & algorithmic languages",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
     color: "#3776AB",
     skills: [
       {
         name: "Python",
-        desc: "Versatile language",
+        desc: "Data structures, scripting & web dev",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
       {
         name: "C++",
-        desc: "System programming",
+        desc: "System programming & competitive coding",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
       },
       {
         name: "C",
-        desc: "Foundation language",
+        desc: "Foundation language for memory management",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
       },
     ]
   },
   {
     title: "Tools & DevOps",
-    desc: "Development workflow",
+    desc: "Modern dev workflows & toolchains",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     color: "#F05032",
     skills: [
       {
-        name: "Git",
-        desc: "Version Control",
+        name: "Git & GitHub",
+        desc: "Version control & collaborative development",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
       },
       {
         name: "VS Code",
-        desc: "Code Editor",
+        desc: "Primary IDE with custom dev extensions",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
       },
     ]
@@ -112,89 +121,400 @@ export const skills = [
 
 export const projects = [
   {
+    id: "mohanpur-village",
     name: "Mohanpur Village",
-    desc: "Complete MERN stack application for village management and services.",
-    tech: "MongoDB, Express, React, Node.js",
+    desc: "Full-stack MERN portal empowering village administration with citizen service requests, notice boards, and community management.",
+    tech: "MongoDB, Express, React, Node.js, Tailwind CSS",
     category: "Full Stack",
     link: "https://mohanpur-village.vercel.app",
     repo: "https://github.com/Rabi-Bhagat/mohanpur_village",
+    color: "#3b82f6",
+    features: [
+      "Citizen Service Request Portal",
+      "Notice & Event Broadcast System",
+      "Role-Based Admin Dashboard",
+      "Responsive Glassmorphic Interface"
+    ],
+    status: "Live Production"
   },
   {
+    id: "hotelbazaar",
     name: "HotelBazaar",
-    desc: "Booking application (HotelBazaar) for seamlessly booking hotels.",
-    tech: "MongoDB, Express, React, Node.js",
+    desc: "End-to-end hotel booking platform enabling users to search, compare, and reserve rooms seamlessly with real-time feedback.",
+    tech: "MongoDB, Express, React, Node.js, Cloudflare Pages",
     category: "Web App",
     link: "https://booking-app-hotelbazaar.pages.dev/",
     repo: "https://github.com/Rabi-Bhagat/Booking-App-hotelBazaar-",
+    color: "#a855f7",
+    features: [
+      "Real-time Room Search & Filtering",
+      "Booking Confirmation Engine",
+      "User Reservation History",
+      "Interactive Card Gallery"
+    ],
+    status: "Live Production"
   },
   {
+    id: "securedocs",
     name: "SecureDocs",
-    desc: "Application for secure documents management and storage.",
+    desc: "Enterprise-grade document management system featuring secure uploads, access control, and organized document repository.",
     tech: "MongoDB, Express, React, Node.js",
     category: "Web App",
     link: "https://securedocs-a3x.pages.dev",
     repo: "https://github.com/Rabi-Bhagat/SecureDocs-document-management-system-",
+    color: "#10b981",
+    features: [
+      "Encrypted Document Management",
+      "Multi-user Access Control",
+      "Category Tagging & Fast Search",
+      "Audit Trail & Storage Logs"
+    ],
+    status: "Live Production"
   },
   {
+    id: "signify-pro",
     name: "Signify Pro",
-    desc: "Professional digital signature page application.",
-    tech: "React",
+    desc: "Sleek web application for drawing, customizing, and exporting high-resolution digital signatures onto documents.",
+    tech: "React, HTML5 Canvas, Tailwind CSS",
     category: "Web App",
     link: "https://signify-pro.pages.dev",
     repo: "https://github.com/Rabi-Bhagat/Signify-Pro",
+    color: "#ec4899",
+    features: [
+      "Touch & Mouse Canvas Drawing",
+      "PNG/SVG Signature Export",
+      "Stroke Thickness & Color Selector",
+      "Instant Clear & Undo Controls"
+    ],
+    status: "Live Production"
   },
   {
+    id: "todo-list-pro",
     name: "TODO List Pro",
-    desc: "Feature-rich, complete MERN stack To-Do list application.",
+    desc: "Feature-packed task management suite built with MERN stack featuring priority tags, category filters, and persistent cloud sync.",
     tech: "MongoDB, Express, React, Node.js",
     category: "Full Stack",
     link: "https://todo-list-pro.pages.dev/",
     repo: "https://github.com/Rabi-Bhagat/TODO-List-pro",
+    color: "#f59e0b",
+    features: [
+      "Category & Priority Filtering",
+      "Task Completion Stats",
+      "Subtask Checklists",
+      "Cross-device Synchronization"
+    ],
+    status: "Live Production"
   },
-  
   {
-    name: "E-commerce",
-    desc: "Responsive e-commerce frontend for seamless shopping.",
-    tech: "MongoDB, Express, React, Node.js",
+    id: "ecommerce",
+    name: "E-Commerce Frontend",
+    desc: "Modern e-commerce platform interface with interactive product gallery, shopping cart drawer, and responsive checkout flow.",
+    tech: "HTML5, CSS3, JavaScript, Flexbox/Grid",
     category: "Web App",
     link: "https://ecommerce-seven-amber-35.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/project-4(%20E%20commerece%20app%20using%20HTML%20and%20css)",
+    color: "#6366f1",
+    features: [
+      "Product Catalog Grid",
+      "Interactive Shopping Cart",
+      "Filter by Price & Category",
+      "Mobile-Optimized Navigation"
+    ],
+    status: "Live Production"
   },
   {
+    id: "guessing-game",
     name: "Guessing Game",
-    desc: "Interactive number guessing game with JavaScript.",
-    tech: "JS, HTML,CSS",
+    desc: "Engaging interactive number guessing web game featuring dynamic attempt tracking, score records, and responsive animations.",
+    tech: "JavaScript, HTML5, CSS3 Animations",
     category: "Game",
     link: "https://numberguessinggame-nine.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/number%20guessing%20game",
+    color: "#14b8a6",
+    features: [
+      "Dynamic Higher/Lower Hints",
+      "High Score Tracking",
+      "Interactive Restart & Game Modes",
+      "Vibrant Visual Feedback"
+    ],
+    status: "Live Production"
   },
   {
-    name: "To-Do List",
-    desc: "User-friendly to-do list with a clean design.",
-    tech: "HTML, CSS, JS",
+    id: "to-do-list",
+    name: "Agile To-Do List",
+    desc: "Lightweight, ultra-fast task tracker with clean aesthetic UI, state persistence via local storage, and task filtering.",
+    tech: "HTML5, CSS3, JavaScript",
     category: "Tool",
     link: "https://frontenedoftodolist.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/frontened-project/tree/main/Agileproject(to-do%20list)",
+    color: "#06b6d4",
+    features: [
+      "Fast Task Addition & Deletion",
+      "Local Storage Persistence",
+      "Completed Task Toggle",
+      "Minimalist Dark UI"
+    ],
+    status: "Live Production"
   },
   {
-    name: "Calculator",
-    desc: "Simple calculator for basic arithmetic operations.",
-    tech: "HTML, CSS, JS",
+    id: "calculator",
+    name: "Interactive Calculator",
+    desc: "Clean web calculator supporting arithmetic operations, keyboard inputs, operator chaining, and clear entry functionality.",
+    tech: "HTML5, CSS3, JavaScript",
     category: "Tool",
     link: "https://code-alpha-task2-sandy.vercel.app/",
     repo: "https://github.com/Rabi-Bhagat/CodeAlpha_web_internship_project/tree/main/task%202",
+    color: "#f97316",
+    features: [
+      "Full Keyboard & Click Controls",
+      "Formatted Calculation History",
+      "Error Handling & Overflow Prevention",
+      "Neumorphic Button Styling"
+    ],
+    status: "Live Production"
   },
 ];
 
+export const achievements = [
+  {
+    id: "sde-bluestock-intern",
+    title: "Software Development Engineer (SDE) Intern Offer",
+    org: "Bluestock Fintech",
+    category: "Internship Offer",
+    type: "internship",
+    date: "May 2025 - Jun 2025",
+    issueDate: "April 05, 2025",
+    desc: "Received official appointment letter for SDE Intern position at Bluestock Fintech, contributing to fintech applications, component design, and dynamic software development.",
+    previewImage: "/internship and skill certificate and hackathon/SDE_internship_offer_letter_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/SDE internship offer letter.pdf",
+    color: "#4f46e5",
+    badge: "#startupindia Recognized",
+    certId: "BFSD31245"
+  },
+  {
+    id: "buildwithindia-top5000",
+    title: "BuildWithIndia Hackathon Finale (Top 5,000 / 25,000 Teams)",
+    org: "HackWithIndia & Google Office",
+    category: "Hackathon Award",
+    type: "hackathon",
+    date: "2025",
+    issueDate: "2025",
+    desc: "Ranked among the Top 5,000 teams out of 25,000 participating teams across India in the national BuildWithIndia hackathon finale hosted at Google Office.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi Bhagat.png",
+    fileUrl: "/internship and skill certificate and hackathon/Rabi Bhagat.png",
+    color: "#a855f7",
+    badge: "Top 20% National Rank",
+    certId: "BUILDWITHINDIA-2025"
+  },
+  {
+    id: "web-hack-national-winner",
+    title: "WEB HACK - Web Page Making Competition Certificate",
+    org: "Alpha Intern & MMEC (National Tech Fest 2025)",
+    category: "Hackathon Award",
+    type: "hackathon",
+    date: "2025",
+    issueDate: "2025",
+    desc: "Awarded Certificate of Achievement for outstanding performance in the national-level WEB HACK Web Page Making Competition as part of National Level Tech Fest 2025, supported by AICTE & MSME.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi_prasad_Bhagat_WEB_HACK_Certificate_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/Rabi prasad Bhagat WEB HACK Certificate.pdf",
+    color: "#06b6d4",
+    badge: "AICTE & MoE Recognized",
+    certId: "AI/WH/2025/2587"
+  },
+  {
+    id: "gdg-solution-challenge",
+    title: "Google Developer Groups Solution Challenge 2025",
+    org: "Google Developer Groups (GDG) & Hack2skill",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "2025",
+    issueDate: "2025",
+    desc: "Awarded Certificate of Participation for building impactful tech solutions addressing real-world societal problems in the global GDG Solution Challenge.",
+    previewImage: "/internship and skill certificate and hackathon/Hack2skill-Certificate.png",
+    fileUrl: "/internship and skill certificate and hackathon/Hack2skill-Certificate.png",
+    color: "#3b82f6",
+    badge: "Google Developer Groups",
+    certId: "2025H2S01GSC-P02397"
+  },
+  {
+    id: "codealpha-frontend-certificate",
+    title: "Frontend Development Virtual Internship Certificate",
+    org: "CodeAlpha (MSME Govt. of India)",
+    category: "Internship Certificate",
+    type: "internship",
+    date: "15 May 2025 - 15 Jun 2025",
+    issueDate: "16th June 2025",
+    desc: "Successfully completed one-month intensive Frontend Development Virtual Internship building interactive web applications, tools, and UI components.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi Prasad Bhagat (1)_page-0001.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/11232737_Rabi-prasad-bhagat.pdf",
+    color: "#f59e0b",
+    badge: "MSME Govt of India",
+    certId: "CA/MA1/8178"
+  },
+  {
+    id: "codealpha-lor",
+    title: "Official Letter of Recommendation (LOR)",
+    org: "CodeAlpha",
+    category: "Recommendation Letter",
+    type: "internship",
+    date: "June 2025",
+    issueDate: "16th June 2025",
+    desc: "Received formal Letter of Recommendation from Founder & CEO of CodeAlpha highlighting exceptional frontend development performance, technical productivity, and team collaboration.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi Prasad Bhagat_page-0001.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/recomendetaion Letter Codealpha.pdf",
+    color: "#10b981",
+    badge: "Executive LOR",
+    certId: "CA/MA1/8178-LOR"
+  },
+  {
+    id: "devarc-2026-hackathon",
+    title: "DevArc 2026 Technical Hackathon",
+    org: "GDG on Campus MM(DU) & Department of CSE",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "1 Jan 2026 - 17 Jan 2026",
+    issueDate: "January 2026",
+    desc: "Certificate of Participation in the DevArc 2026 annual developer hackathon organized by GDG on Campus MM(DU) and CSE Department, MMEC.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi_Prasad_Bhagt.png",
+    fileUrl: "/internship and skill certificate and hackathon/Rabi_Prasad_Bhagt.png",
+    color: "#ec4899",
+    badge: "GDG MM(DU)",
+    certId: "MMEC/25-26/A/026/126"
+  },
+  {
+    id: "gdg-hackureka-2025",
+    title: "GDG HACKUREKA 2025 Certificate of Appreciation",
+    org: "GDG on Campus MM(DU) & CSE Department",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "15th February 2025",
+    issueDate: "February 2025",
+    desc: "Awarded Certificate of Appreciation for participating and presenting innovative project submissions during the GDG Hackureka 2025 hackathon.",
+    previewImage: "/internship and skill certificate and hackathon/WhatsApp Image 2025-02-19 at 14.44.45_bc32ebb0.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/WhatsApp Image 2025-02-19 at 14.44.45_bc32ebb0.jpg",
+    color: "#ef4444",
+    badge: "GDG Hackureka",
+    certId: "Mmec/24-25/GDGH/029"
+  },
+  {
+    id: "ey-techathon-6",
+    title: "EY Techathon 6.0 Executive Summary Submission",
+    org: "Ernst & Young (EY)",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "2025",
+    issueDate: "2025",
+    desc: "Certificate of Participation for completing Round 1 Executive Summary Submission in the national EY Techathon 6.0 competition organized by EY.",
+    previewImage: "/internship and skill certificate and hackathon/EY_Techathon_certificate_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/EY Techathon certificate.pdf",
+    color: "#eab308",
+    badge: "EY Global",
+    certId: "EY-TECHATHON-6.0"
+  },
+  {
+    id: "aarambh-bajaj-auto",
+    title: "AARAMBH - First Step Forward Technical Quiz",
+    org: "Bajaj Auto Credit Limited",
+    category: "Competition Award",
+    type: "hackathon",
+    date: "2025",
+    issueDate: "2025",
+    desc: "Certificate of Appreciation awarded by Bajaj Auto Credit Limited Human Resources for excellent performance in the national AARAMBH technical challenge.",
+    previewImage: "/internship and skill certificate and hackathon/Rabi-Prasad-Bhagat-Maharishi-Markandeshwar-Deemed-University-Mullana-Ambala_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/Rabi-Prasad-Bhagat-Maharishi-Markandeshwar-Deemed-University-Mullana-Ambala.pdf",
+    color: "#0284c7",
+    badge: "Bajaj Auto Credit",
+    certId: "BAJAJ-AARAMBH-2025"
+  },
+  {
+    id: "gdsc-android-bootcamp",
+    title: "Android Bootcamp with Compose 2023",
+    org: "Google Developer Student Clubs (GDSC) MM(DU)",
+    category: "Certification",
+    type: "certification",
+    date: "11 Dec 2023 - 22 Dec 2023",
+    issueDate: "22nd December 2023",
+    desc: "Completed 2-week intensive Android App Development Bootcamp mastering Jetpack Compose, Kotlin UI elements, and modern Android architecture.",
+    previewImage: "/internship and skill certificate and hackathon/certificate of android (9).png",
+    fileUrl: "/internship and skill certificate and hackathon/certificate of android (9).png",
+    color: "#10b981",
+    badge: "GDSC Android Compose",
+    certId: "GDSC-Android-9"
+  },
+  {
+    id: "tcs-ion-soft-skills",
+    title: "TCS iON Career Edge - Professional Soft Skills & Communication",
+    org: "Tata Consultancy Services (TCS iON)",
+    category: "Certification",
+    type: "certification",
+    date: "2024",
+    issueDate: "2024",
+    desc: "Certified in corporate communication, effective email writing, telephone etiquette, interpersonal skills, and resume building by TCS iON.",
+    previewImage: "/internship and skill certificate and hackathon/RabiBhagatTCSion_certificate_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/RabiBhagatTCSion certificate.pdf",
+    color: "#0d9488",
+    badge: "TCS iON Certified",
+    certId: "TCS-ION-SOFT-SKILLS"
+  },
+  {
+    id: "coursera-wordpress",
+    title: "Building Websites with WordPress",
+    org: "Coursera Project Network",
+    category: "Certification",
+    type: "certification",
+    date: "Mar 11, 2024",
+    issueDate: "March 11, 2024",
+    desc: "Authorized online non-credit project certification offered through Coursera Project Network for building custom websites and content management systems.",
+    previewImage: "/internship and skill certificate and hackathon/Course_WordPress_certificate_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/Course WordPress certificate.pdf",
+    color: "#6366f1",
+    badge: "Coursera Verified",
+    certId: "MJNJUZ7ZQ8J9"
+  },
+  {
+    id: "imun-campus-ambassador",
+    title: "International MUN Campus Ambassador Internship Offer",
+    org: "International Model United Nations (IMUN)",
+    category: "Internship Offer",
+    type: "internship",
+    date: "2024",
+    issueDate: "2024",
+    desc: "Selected as Campus Ambassador Intern for International Model United Nations, promoting youth leadership and global diplomatic dialogue.",
+    previewImage: "/internship and skill certificate and hackathon/offer_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/offer.pdf",
+    color: "#8b5cf6",
+    badge: "International MUN",
+    certId: "IMUN-CA-2024"
+  },
+  {
+    id: "nvidia-gtc-2026",
+    title: "NVIDIA GTC Spring 2026 Global AI Conference",
+    org: "NVIDIA Corporation",
+    category: "Conference Pass",
+    type: "certification",
+    date: "March 2026",
+    issueDate: "March 18, 2026",
+    desc: "Virtual registration pass for NVIDIA GTC Spring 2026, exploring cutting-edge AI breakthroughs, GPU computing, and deep learning technologies.",
+    previewImage: "/internship and skill certificate and hackathon/nvidia_gtc26_custom_1773847172314001LnyV_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/nvidia_gtc26_custom_1773847172314001LnyV.pdf",
+    color: "#76b900",
+    badge: "NVIDIA GTC AI",
+    certId: "NVIDIA-GTC-2026"
+  }
+];
+
+export const certifications = achievements;
+
 export const heroRoles = [
   "Full-Stack Developer",
-  "MERN Stack Engineer",
-  "UI/UX Enthusiast",
+  "MERN Stack Specialist",
+  "Mobile App Creator (Flutter)",
+  "UI/UX Craftsperson",
 ];
 
 export const stats = [
   { label: "Projects Built", value: 9, suffix: "+" },
-  { label: "Technologies", value: 15, suffix: "+" },
+  { label: "Certificates & Hackathons", value: 15, suffix: "+" },
   { label: "Years Coding", value: 3, suffix: "+" },
 ];
 
@@ -203,24 +523,28 @@ export const socialLinks = [
     name: "GitHub",
     link: "https://github.com/Rabi-Bhagat",
     iconUrl: "https://cdn.simpleicons.org/github/white",
+    lightIconUrl: "https://cdn.simpleicons.org/github/000000",
     color: "#181717",
   },
   {
     name: "LinkedIn",
     link: "https://linkedin.com/in/rabi-bhagat789",
     iconUrl: "/linkedin.svg",
+    lightIconUrl: "/linkedin.svg",
     color: "#0a66c2",
   },
   {
     name: "Instagram",
     link: "https://www.instagram.com/rabi.p.bhagat.18?igsh=eWIydWR3Z24xNDV2",
     iconUrl: "https://cdn.simpleicons.org/instagram/white",
+    lightIconUrl: "https://cdn.simpleicons.org/instagram/e4405f",
     color: "#e4405f",
   },
   {
     name: "Facebook",
     link: "https://www.facebook.com/rabi.p.bhagat.18/",
     iconUrl: "https://cdn.simpleicons.org/facebook/white",
+    lightIconUrl: "https://cdn.simpleicons.org/facebook/1877F2",
     color: "#1877F2",
   },
 ];
@@ -228,38 +552,31 @@ export const socialLinks = [
 export const experience = [
   {
     role: "Full-Stack Developer",
-    company: "Freelance",
+    company: "Freelance / Self-Directed",
     date: "2024 - Present",
-    desc: "Developing modern web applications and mobile apps for clients. Specializing in MERN stack and Flutter.",
-    skills: ["React", "Node.js", "Flutter", "MongoDB"],
+    desc: "Engineering full-stack MERN applications and cross-platform mobile apps for web and mobile. Specializing in high-performance React frontends, Node.js REST APIs, and MongoDB database architecture.",
+    skills: ["React", "Node.js", "Express.js", "MongoDB", "Flutter", "Tailwind CSS"],
   },
   {
-    role: "B.Tech in CSE",
+    role: "SDE Intern (Software Development Engineer)",
+    company: "Bluestock Fintech",
+    date: "May 2025 - Jun 2025",
+    desc: "Selected for Software Development Engineer internship working remotely on fintech application development, modular React components, and dynamic software features.",
+    skills: ["React", "JavaScript", "Fintech Applications", "UI Components"],
+  },
+  {
+    role: "Frontend Development Intern",
+    company: "CodeAlpha",
+    date: "May 2025 - Jun 2025",
+    desc: "Completed virtual frontend internship program building responsive web applications, task tools, and calculators. Earned LOR from Founder & CEO.",
+    skills: ["HTML5", "CSS3", "JavaScript", "React", "Git"],
+  },
+  {
+    role: "B.Tech in Computer Science & Engineering",
     company: "Maharishi Markandeshwar University",
     date: "2023 - 2027",
-    desc: "Pursuing a Bachelor's degree in Computer Science & Engineering. Building a strong foundation in algorithms, data structures, and software engineering.",
-    skills: ["Data Structures", "Algorithms", "Software Engineering"],
-  },
-];
-
-export const certifications = [
-  {
-    title: "Web Development Internship",
-    org: "CodeAlpha",
-    date: "2024",
-    desc: "Completed a hands-on web development internship building real projects including a calculator and interactive web applications.",
-    link: "https://github.com/Rabi-Bhagat/codealpha_tasks",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    color: "#f7df1e",
-  },
-  {
-    title: "Web Development Internship",
-    org: "CodSoft",
-    date: "2024",
-    desc: "Completed an internship focused on building responsive web applications and improving frontend development skills.",
-    link: "https://github.com/Rabi-Bhagat/CODSOFT",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-    color: "#22d3ee",
+    desc: "Pursuing Bachelor of Technology degree. Building rigorous foundations in Data Structures, Algorithms, Software Engineering, Database Systems, and Web Application Architecture.",
+    skills: ["Data Structures", "Algorithms", "C++", "Python", "Software Engineering"],
   },
 ];
 
@@ -267,5 +584,5 @@ export const contactInfo = {
   email: "rabibhagat789@gmail.com",
   phone: "+91 8307855628",
   phoneAlt: "+977 9815787410",
-  whatsapp: "+977 9815787410",
+  whatsapp: "+9779815787410",
 };
