@@ -116,11 +116,24 @@ export default function Contact() {
                   <div className="min-w-0">
                     <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Phone Contact</span>
                     <span className="text-base font-bold block">{contactInfo.phone}</span>
-                    {contactInfo.phoneAlt && (
-                      <span className="text-xs text-slate-500 dark:text-slate-400 block">{contactInfo.phoneAlt} (Nepal)</span>
-                    )}
                   </div>
                 </motion.a>
+
+                {contactInfo.phoneAlt && (
+                  <motion.a
+                    href={`tel:${contactInfo.phoneAlt.replace(/\s/g, "")}`}
+                    whileHover={{ x: 6 }}
+                    className="flex items-center gap-4 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors group p-3.5 rounded-2xl hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10"
+                  >
+                    <div className="relative w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 shrink-0 border border-accent/20">
+                      <Phone size={22} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Alternate Phone</span>
+                      <span className="text-base font-bold block">{contactInfo.phoneAlt}</span>
+                    </div>
+                  </motion.a>
+                )}
               </div>
             </div>
 
@@ -157,27 +170,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Resume & WhatsApp Action Buttons */}
-          <div className="grid sm:grid-cols-2 gap-4">
-            <a
-              href="/resume.pdf"
-              download="Rabi_Bhagat_Resume.pdf"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all transform hover:-translate-y-0.5 text-sm"
-            >
-              <Download size={18} /> Download Resume
-            </a>
-
-            <a
-              href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent(
-                "Hi Rabi, I saw your portfolio and I'd like to discuss a project or opportunity.",
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 text-sm"
-            >
-              <MessageSquare size={18} /> Chat on WhatsApp
-            </a>
-          </div>
+          {/* Action Buttons Removed */}
         </motion.div>
 
         {/* Right Column: Contact Form */}

@@ -455,51 +455,6 @@ export const achievements = [
     color: "#0d9488",
     badge: "TCS iON Certified",
     certId: "TCS-ION-SOFT-SKILLS"
-  },
-  {
-    id: "coursera-wordpress",
-    title: "Building Websites with WordPress",
-    org: "Coursera Project Network",
-    category: "Certification",
-    type: "certification",
-    date: "Mar 11, 2024",
-    issueDate: "March 11, 2024",
-    desc: "Authorized online non-credit project certification offered through Coursera Project Network for building custom websites and content management systems.",
-    previewImage: "/internship and skill certificate and hackathon/Course_WordPress_certificate_preview.jpg",
-    fileUrl: "/internship and skill certificate and hackathon/Course WordPress certificate.pdf",
-    color: "#6366f1",
-    badge: "Coursera Verified",
-    certId: "MJNJUZ7ZQ8J9"
-  },
-  {
-    id: "imun-campus-ambassador",
-    title: "International MUN Campus Ambassador Internship Offer",
-    org: "International Model United Nations (IMUN)",
-    category: "Internship Offer",
-    type: "internship",
-    date: "2024",
-    issueDate: "2024",
-    desc: "Selected as Campus Ambassador Intern for International Model United Nations, promoting youth leadership and global diplomatic dialogue.",
-    previewImage: "/internship and skill certificate and hackathon/offer_preview.jpg",
-    fileUrl: "/internship and skill certificate and hackathon/offer.pdf",
-    color: "#8b5cf6",
-    badge: "International MUN",
-    certId: "IMUN-CA-2024"
-  },
-  {
-    id: "nvidia-gtc-2026",
-    title: "NVIDIA GTC Spring 2026 Global AI Conference",
-    org: "NVIDIA Corporation",
-    category: "Conference Pass",
-    type: "certification",
-    date: "March 2026",
-    issueDate: "March 18, 2026",
-    desc: "Virtual registration pass for NVIDIA GTC Spring 2026, exploring cutting-edge AI breakthroughs, GPU computing, and deep learning technologies.",
-    previewImage: "/internship and skill certificate and hackathon/nvidia_gtc26_custom_1773847172314001LnyV_preview.jpg",
-    fileUrl: "/internship and skill certificate and hackathon/nvidia_gtc26_custom_1773847172314001LnyV.pdf",
-    color: "#76b900",
-    badge: "NVIDIA GTC AI",
-    certId: "NVIDIA-GTC-2026"
   }
 ];
 
@@ -532,20 +487,6 @@ export const socialLinks = [
     iconUrl: "/linkedin.svg",
     lightIconUrl: "/linkedin.svg",
     color: "#0a66c2",
-  },
-  {
-    name: "Instagram",
-    link: "https://www.instagram.com/rabi.p.bhagat.18?igsh=eWIydWR3Z24xNDV2",
-    iconUrl: "https://cdn.simpleicons.org/instagram/white",
-    lightIconUrl: "https://cdn.simpleicons.org/instagram/e4405f",
-    color: "#e4405f",
-  },
-  {
-    name: "Facebook",
-    link: "https://www.facebook.com/rabi.p.bhagat.18/",
-    iconUrl: "https://cdn.simpleicons.org/facebook/white",
-    lightIconUrl: "https://cdn.simpleicons.org/facebook/1877F2",
-    color: "#1877F2",
   },
 ];
 
@@ -584,5 +525,4 @@ export const contactInfo = {
   email: "rabibhagat789@gmail.com",
   phone: "+91 8307855628",
   phoneAlt: "+977 9815787410",
-  whatsapp: "+9779815787410",
 };

@@ -64,7 +64,7 @@ export default function Hero() {
           className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-semibold shadow-lg shadow-emerald-500/5 backdrop-blur-md"
         >
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>Available for Roles & Freelance Projects</span>
+          <span>Actively seeking SDE Internships & New Grad Roles</span>
         </motion.div>
 
         {/* Main Headline */}

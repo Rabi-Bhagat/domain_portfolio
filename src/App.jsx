@@ -9,10 +9,10 @@ import PortfolioBot from "./components/ui/PortfolioBot";
 import TechMarquee from "./components/ui/TechMarquee";
 import { AnimatePresence } from "framer-motion";
 
-// const Experience = lazy(() => import('./sections/Experience'));
-// const Certifications = lazy(() => import('./sections/Certifications'));
-// const Projects = lazy(() => import('./sections/Projects'));
-// const Contact = lazy(() => import('./sections/Contact'));
+const Experience = lazy(() => import('./sections/Experience'));
+const Certifications = lazy(() => import('./sections/Certifications'));
+const Projects = lazy(() => import('./sections/Projects'));
+const Contact = lazy(() => import('./sections/Contact'));
 
 const Canvas = React.lazy(() =>
   import("@react-three/fiber").then((m) => ({ default: m.Canvas })),
