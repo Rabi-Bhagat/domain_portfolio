@@ -1,61 +1,82 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Float, PresentationControls, ContactShadows, Html } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, RefreshCw } from 'lucide-react';
+import { X, ExternalLink, ArrowLeft } from 'lucide-react';
 
 export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) {
   const [iframeError, setIframeError] = useState(false);
 
+  useEffect(() => {
+    // Push state so browser back button closes modal instead of closing/navigating away from portfolio
+    window.history.pushState({ modalOpen: true }, '');
+
+    const handlePopState = () => {
+      onClose();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      document.body.style.overflow = 'unset';
+    };
+  }, [onClose]);
+
   if (!project) return null;
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/85 backdrop-blur-md"
+        onClick={(e) => e.target === e.currentTarget && onClose()}
+        className="fixed inset-0 z-[99999] flex flex-col bg-slate-950"
       >
-        {/* Header Bar */}
-        <div className="absolute top-6 left-6 z-[110] flex items-center gap-3">
-          <div className="px-4 py-2 rounded-xl bg-slate-900/80 backdrop-blur-lg border border-slate-700/60 text-white flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <div>
-              <h3 className="font-bold text-sm leading-none text-white">{project.name}</h3>
-              <span className="text-[11px] text-slate-400 font-medium">{project.category} • 3D Interactive View</span>
+        {/* Fixed Top Navigation Bar */}
+        <div className="w-full px-4 sm:px-6 py-3 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-4 z-[120] shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all border border-slate-700/80 shadow-md shrink-0"
+              title="Back to Portfolio"
+            >
+              <ArrowLeft size={16} /> Back to Projects
+            </button>
+
+            <div className="h-4 w-px bg-slate-800 shrink-0 hidden sm:block"></div>
+
+            <div className="min-w-0">
+              <h3 className="font-bold text-sm text-white truncate max-w-[200px] sm:max-w-[320px]">{project.name}</h3>
+              <p className="text-[11px] text-slate-400 font-medium truncate">{project.category} • 3D Canvas View</p>
             </div>
           </div>
-        </div>
 
-        {/* Top Hint */}
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 text-center pointer-events-none z-[110] hidden md:block">
-          <span className="px-4 py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-800 text-slate-300 text-xs font-semibold shadow-xl">
+          <div className="hidden md:block text-center text-xs text-slate-400 bg-slate-950/80 px-3.5 py-1.5 rounded-full border border-slate-800">
             🖱️ Drag to rotate 3D view • Scroll to zoom
-          </span>
-        </div>
+          </div>
 
-        {/* Close & Action Buttons */}
-        <div className="absolute top-6 right-6 z-[110] flex items-center gap-3">
-          {onOpenLiveDemo && (
-            <button
-              onClick={() => {
-                onClose();
-                onOpenLiveDemo(project);
-              }}
-              className="px-4 py-2.5 rounded-xl bg-primary hover:bg-blue-600 text-white text-xs font-bold shadow-lg shadow-primary/30 transition-all flex items-center gap-2"
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-primary to-blue-600 text-white text-xs font-bold shadow-lg shadow-primary/20 hover:opacity-95 transition-opacity flex items-center gap-1.5"
             >
-              Interactive Demo <ExternalLink size={14} />
-            </button>
-          )}
+              Open in New Tab <ExternalLink size={14} />
+            </a>
 
-          <button 
-            onClick={onClose}
-            className="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors border border-slate-700/60 backdrop-blur-lg"
-            aria-label="Close 3D View"
-          >
-            <X size={20} />
-          </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              aria-label="Close 3D View"
+            >
+              <X size={22} />
+            </button>
+          </div>
         </div>
 
         {/* 3D Canvas */}
@@ -172,4 +193,6 @@ export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) 
       </motion.div>
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 }

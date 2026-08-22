@@ -178,12 +178,23 @@ export default function Projects() {
 
                     {/* Action Bar */}
                     <div className="flex gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-white/10 items-center flex-wrap">
-                      {/* Primary Interactive Demo Button */}
-                      <button
-                        onClick={() => setSelectedLiveDemo(project)}
+                      {/* Open Live Site in New Tab */}
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold shadow-md shadow-primary/20 hover:bg-blue-600 transition-all transform group-hover:scale-105"
                       >
-                        <Eye size={15} /> Live Preview
+                        <ExternalLink size={15} /> Live Site
+                      </a>
+
+                      {/* Frame Preview Button */}
+                      <button
+                        onClick={() => setSelectedLiveDemo(project)}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-xs font-bold border border-slate-200 dark:border-slate-700/60 transition-colors"
+                        title="Preview in Frame"
+                      >
+                        <Eye size={14} /> Frame View
                       </button>
 
                       {/* 3D View Button */}
@@ -195,7 +206,7 @@ export default function Projects() {
                         <Sparkles size={14} /> 3D View
                       </button>
 
-                      {/* Repo & Direct Link */}
+                      {/* Repo Link */}
                       <div className="flex items-center gap-2 ml-auto">
                         <a
                           href={project.repo}
@@ -205,16 +216,6 @@ export default function Projects() {
                           title="View Source Code on GitHub"
                         >
                           <Github size={18} />
-                        </a>
-
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
-                          title="Open live site directly in new tab"
-                        >
-                          <ExternalLink size={18} />
                         </a>
                       </div>
                     </div>

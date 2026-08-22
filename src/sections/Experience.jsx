@@ -17,7 +17,7 @@ export default function Experience() {
 
       <div className="max-w-4xl mx-auto relative px-4">
         {/* Timeline Line (Vertical) */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2 md:translate-x-0"></div>
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2 md:translate-x-0"></div>
 
         <div className="space-y-12">
           {experience.map((item, index) => {
@@ -34,10 +34,10 @@ export default function Experience() {
                 }`}
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-8 md:left-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-slate-900 -translate-x-1/2 md:-translate-x-1/2 mt-6 z-10 shadow-[0_0_12px_rgba(59,130,246,0.6)]"></div>
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-2 border-white dark:border-slate-900 -translate-x-1/2 md:-translate-x-1/2 mt-7 z-10 shadow-[0_0_12px_rgba(59,130,246,0.6)]"></div>
 
                 {/* Content Card */}
-                <div className="ml-12 md:ml-0 md:w-1/2 glass-card glass-card-hover p-6 md:p-8 group rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl">
+                <div className="ml-8 md:ml-0 md:w-1/2 glass-card glass-card-hover p-5 md:p-8 group rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl">
                   <div className="flex items-center gap-3 mb-2">
                     {isEducation ? (
                       <GraduationCap className="text-secondary shrink-0" size={26} />

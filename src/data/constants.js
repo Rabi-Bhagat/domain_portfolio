@@ -119,6 +119,35 @@ export const skills = [
   },
 ];
 
+/*
+  =============================================================================
+  📂 PROJECTS DATA SECTION
+  =============================================================================
+  To ADD a new project, copy the template below and paste it inside the `projects` array.
+  To DELETE a project, simply delete or comment out its `{ ... }` block.
+
+  📌 EASY COPY-PASTE PROJECT TEMPLATE:
+  ------------------------------------
+  {
+    id: "my-new-project-id",
+    name: "My Project Name",
+    desc: "A brief 1-2 sentence description of what this project does.",
+    tech: "React, Tailwind CSS, Node.js, MongoDB",
+    category: "Full Stack", // "Full Stack" | "Web App" | "Mobile App" | "Tool" | "Game"
+    link: "https://my-project.vercel.app",
+    repo: "https://github.com/Rabi-Bhagat/my-repo-name",
+    color: "#3b82f6", // #3b82f6 (blue), #a855f7 (purple), #10b981 (emerald), #ec4899 (pink), #f59e0b (amber)
+    features: [
+      "Key Feature 1 Description",
+      "Key Feature 2 Description",
+      "Key Feature 3 Description",
+      "Key Feature 4 Description"
+    ],
+    status: "Live Production"
+  },
+  =============================================================================
+*/
+
 export const projects = [
   {
     id: "mohanpur-village",
@@ -274,6 +303,37 @@ export const projects = [
     status: "Live Production"
   },
 ];
+
+/*
+  =============================================================================
+  🏆 CERTIFICATIONS & ACHIEVEMENTS DATA SECTION
+  =============================================================================
+  To ADD a new certificate, hackathon award, or internship offer:
+  1. Save your certificate image (.png / .jpg) or PDF file inside:
+     `public/internship and skill certificate and hackathon/`
+  2. Copy the template below and paste it inside the `achievements` array.
+
+  To DELETE a certificate, simply delete or comment out its `{ ... }` block.
+
+  📌 EASY COPY-PASTE CERTIFICATE TEMPLATE:
+  -----------------------------------------
+  {
+    id: "my-certificate-id",
+    title: "Certificate or Award Title",
+    org: "Issuing Organization or Platform Name",
+    category: "Certification", // "Certification" | "Hackathon Award" | "Internship Offer" | "Skill Badge"
+    type: "certificate", // "certificate" | "hackathon" | "internship"
+    date: "2025",
+    issueDate: "Month Year",
+    desc: "Description of what was learned or accomplished.",
+    previewImage: "/internship and skill certificate and hackathon/your_image.png",
+    fileUrl: "/internship and skill certificate and hackathon/your_file.pdf",
+    color: "#3b82f6",
+    badge: "Verified Certificate",
+    certId: "CERT-12345"
+  },
+  =============================================================================
+*/
 
 export const achievements = [
   {

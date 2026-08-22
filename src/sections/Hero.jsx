@@ -56,17 +56,6 @@ export default function Hero() {
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow pointer-events-none"></div>
         <div className="absolute top-20 -right-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow animation-delay-2000 pointer-events-none"></div>
 
-        {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-semibold shadow-lg shadow-emerald-500/5 backdrop-blur-md"
-        >
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>Actively seeking SDE Internships & New Grad Roles</span>
-        </motion.div>
-
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -74,7 +63,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 relative max-w-4xl"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15] md:leading-[1.1]">
             Engineering <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x bg-[length:200%_auto]">
               Digital Experiences
@@ -87,7 +76,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg sm:text-2xl md:text-3xl text-slate-700 dark:text-slate-200 font-semibold font-mono mb-4 min-h-[2em] flex items-center justify-center gap-1"
+          className="text-base sm:text-2xl md:text-3xl text-slate-700 dark:text-slate-200 font-semibold font-mono mb-4 min-h-[2em] flex items-center justify-center gap-1 flex-wrap"
         >
           <span className="text-accent">&gt;</span>
           <span className="text-slate-900 dark:text-white">{typedRole}</span>
@@ -99,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10"
+          className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10"
         >
           Hi, I am <span className="text-slate-900 dark:text-white font-bold">Rabi Bhagat</span> — a B.Tech Computer Science student specializing in building high-impact full-stack web applications, scalable backends, and mobile apps.
         </motion.p>
@@ -109,7 +98,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6 mb-12"
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6 mb-12 max-w-sm sm:max-w-none mx-auto"
         >
           <Button3D href="#projects" variant="primary" size="lg">
             Explore Live Demos
@@ -125,7 +114,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.6 }}
-          className="flex gap-4 mb-14"
+          className="flex gap-3 sm:gap-4 mb-14 flex-wrap justify-center"
         >
           {socialLinks.map((social) => (
             <motion.a
@@ -136,7 +125,7 @@ export default function Hero() {
               whileHover={{ scale: 1.15, y: -4 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-12 h-12 rounded-2xl glass-card flex items-center justify-center border-slate-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-white/30 shadow-lg transition-colors group"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card flex items-center justify-center border-slate-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-white/30 shadow-lg transition-colors group"
               title={social.name}
               aria-label={social.name}
             >
@@ -158,18 +147,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.7 }}
-          className="grid grid-cols-3 gap-4 md:gap-8 w-full max-w-xl px-2"
+          className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 w-full max-w-xl px-2"
         >
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="glass-card px-4 py-5 rounded-2xl text-center border border-slate-200/80 dark:border-white/10 shadow-lg"
+              className="glass-card px-2.5 sm:px-4 py-4 sm:py-5 rounded-2xl text-center border border-slate-200/80 dark:border-white/10 shadow-lg"
             >
-              <div className="text-3xl md:text-4xl font-black text-gradient">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-gradient">
                 {stat.value}
                 {stat.suffix}
               </div>
-              <div className="text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium mt-1">
+              <div className="text-[11px] sm:text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium mt-1 leading-snug">
                 {stat.label}
               </div>
             </div>

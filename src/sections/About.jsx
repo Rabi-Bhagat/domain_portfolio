@@ -69,7 +69,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4"
           >
             {highlights.map((item, i) => {
               const Icon = item.icon;

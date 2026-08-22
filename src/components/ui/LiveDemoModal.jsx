@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, ExternalLink, Github, Monitor, Tablet, Smartphone, 
-  RotateCw, ChevronLeft, ChevronRight, Check, Copy, AlertCircle, Sparkles, Eye
+  RotateCw, ChevronLeft, ChevronRight, Check, Copy, AlertCircle, Sparkles, Eye, ArrowLeft
 } from 'lucide-react';
 
 export default function LiveDemoModal({ project, projects = [], onClose, onSelectProject, onOpen3D }) {
@@ -15,8 +16,14 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
 
   const currentIndex = projects.findIndex(p => p.id === project?.id || p.name === project?.name);
 
-  // Keyboard navigation & body scroll lock
+  // Keyboard navigation, browser history back interceptor & body scroll lock
   useEffect(() => {
+    window.history.pushState({ modalOpen: true }, '');
+
+    const handlePopState = () => {
+      onClose();
+    };
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
@@ -27,10 +34,12 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
       }
     };
 
+    window.addEventListener('popstate', handlePopState);
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
     return () => {
+      window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
@@ -63,13 +72,14 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
     mobile: 'w-[375px] max-w-full h-[640px] max-h-[70vh]'
   };
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/85 backdrop-blur-xl"
+        onClick={(e) => e.target === e.currentTarget && onClose()}
+        className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/90 backdrop-blur-2xl"
       >
         <motion.div
           initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -82,6 +92,15 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
           <div className="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between gap-4 shrink-0 flex-wrap sm:flex-nowrap">
             {/* Left Info & Nav */}
             <div className="flex items-center gap-3 min-w-0">
+              <button
+                onClick={onClose}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold transition-all border border-slate-700/80 shadow-sm shrink-0"
+                title="Back to Projects"
+              >
+                <ArrowLeft size={16} />
+                <span className="hidden sm:inline">Back</span>
+              </button>
+
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => currentIndex > 0 && onSelectProject(projects[currentIndex - 1])}
@@ -351,4 +370,6 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
       </motion.div>
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 }

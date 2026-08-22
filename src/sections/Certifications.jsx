@@ -7,6 +7,30 @@ import Button3D from "../components/ui/Button3D";
 
 const CertificateModal = lazy(() => import("../components/ui/CertificateModal"));
 
+function ImageWithFallback({ src, alt, className, color }) {
+  const [error, setError] = useState(false);
+
+  if (error || !src) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-slate-900/90 space-y-2">
+        <Award size={42} style={{ color: color || "#3b82f6" }} />
+        <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">{alt}</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className={className}
+      onError={() => setError(true)}
+    />
+  );
+}
+
 export default function Certifications() {
   const [activeType, setActiveType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,17 +149,12 @@ export default function Certifications() {
                   onClick={() => setSelectedAchievement(cert)}
                   className="w-full h-44 rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden relative mb-5 cursor-pointer group/img shrink-0 flex items-center justify-center"
                 >
-                  {cert.previewImage ? (
-                    <img
-                      src={cert.previewImage}
-                      alt={cert.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
-                    />
-                  ) : (
-                    <Award size={48} style={{ color: cert.color }} />
-                  )}
+                  <ImageWithFallback
+                    src={cert.previewImage}
+                    alt={cert.title}
+                    color={cert.color}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                  />
 
                   {/* Dark overlay & Hover Preview Badge */}
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
