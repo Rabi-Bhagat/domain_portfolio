@@ -63,19 +63,23 @@ export default function Navbar({ dark, setDark }) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <a
+        {/* 3D Brand Logo */}
+        <motion.a
           href="#home"
-          className="text-2xl font-black relative group flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="text-2xl font-black relative group flex items-center gap-2.5"
           onClick={(e) => handleClick(e, "#home")}
+          style={{ perspective: "1000px" }}
         >
-          <span className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary via-secondary to-accent flex items-center justify-center text-white text-sm font-bold shadow-md shadow-primary/30">
-            RB
-          </span>
-          <span className="bg-gradient-to-r from-slate-900 via-primary to-accent dark:from-white dark:via-blue-400 dark:to-accent bg-clip-text text-transparent tracking-tight">
+          <div className="relative w-9 h-9 rounded-2xl bg-gradient-to-tr from-primary via-secondary to-accent flex items-center justify-center text-white text-xs font-black shadow-lg shadow-primary/40 group-hover:shadow-primary/70 transition-all duration-300 transform group-hover:rotate-6 group-hover:scale-110 border border-white/30 overflow-hidden">
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10 tracking-tighter">RB</span>
+          </div>
+          <span className="bg-gradient-to-r from-slate-900 via-primary to-accent dark:from-white dark:via-blue-400 dark:to-accent bg-clip-text text-transparent tracking-tight text-xl sm:text-2xl font-black">
             Rabi Bhagat
           </span>
-        </a>
+        </motion.a>
 
         {/* Desktop Menu Links */}
         <div className="hidden lg:flex items-center space-x-1 bg-slate-100/60 dark:bg-slate-800/40 p-1.5 rounded-full border border-slate-200/60 dark:border-white/5 backdrop-blur-md">

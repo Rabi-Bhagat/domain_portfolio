@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Section from "../components/ui/Section";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
+import Logo3D from "../components/ui/Logo3D";
 import { heroRoles, stats, socialLinks } from "../data/constants";
 
 function useTypewriter(words, typeSpeed = 80, deleteSpeed = 40, pause = 1800) {
@@ -114,31 +115,22 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.6 }}
-          className="flex gap-3 sm:gap-4 mb-14 flex-wrap justify-center"
+          className="flex gap-4 sm:gap-6 mb-14 flex-wrap justify-center items-center"
         >
           {socialLinks.map((social) => (
-            <motion.a
-              key={social.name}
-              href={social.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.15, y: -4 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card flex items-center justify-center border-slate-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-white/30 shadow-lg transition-colors group"
-              title={social.name}
-              aria-label={social.name}
-            >
-              <img
+            <div key={social.name} className="flex flex-col items-center gap-1 group/heroSocial">
+              <Logo3D
                 src={social.iconUrl}
                 alt={social.name}
-                loading="lazy"
-                decoding="async"
-                width="22"
-                height="22"
-                className="w-5 h-5 object-contain transition-transform group-hover:scale-110 invert dark:invert-0"
+                color={social.color}
+                size="lg"
+                href={social.link}
+                showGlow={true}
               />
-            </motion.a>
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 group-hover/heroSocial:text-primary transition-colors">
+                {social.name}
+              </span>
+            </div>
           ))}
         </motion.div>
 

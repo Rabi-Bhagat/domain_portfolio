@@ -1,6 +1,7 @@
 import Section from "../components/ui/Section";
 import { skills } from "../data/constants";
 import { motion } from "framer-motion";
+import Logo3D from "../components/ui/Logo3D";
 
 export default function Skills() {
   return (
@@ -51,15 +52,13 @@ export default function Skills() {
                       </h3>
                       <p className="text-slate-500 dark:text-slate-400 text-sm">{category.desc}</p>
                     </div>
-                    <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800/80 p-2.5 flex items-center justify-center border border-slate-200 dark:border-white/10 shrink-0">
-                      <img
+                    <div className="shrink-0">
+                      <Logo3D
                         src={category.iconUrl}
                         alt={category.title}
-                        loading="lazy"
-                        decoding="async"
-                        width="36"
-                        height="36"
-                        className="w-full h-full object-contain"
+                        color={category.color}
+                        size="lg"
+                        showGlow={true}
                       />
                     </div>
                   </div>
@@ -69,19 +68,18 @@ export default function Skills() {
                     {category.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/50 transition-colors"
+                        className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/50 transition-all duration-300 shadow-sm hover:shadow-md group/skill"
                       >
-                        <img
+                        <Logo3D
                           src={skill.iconUrl}
                           alt={skill.name}
-                          loading="lazy"
-                          decoding="async"
-                          width="24"
-                          height="24"
-                          className="w-6 h-6 object-contain shrink-0"
+                          color={skill.color || category.color}
+                          size="sm"
+                          showGlow={true}
+                          containerClassName="shrink-0"
                         />
                         <div className="min-w-0">
-                          <span className="text-slate-800 dark:text-slate-200 font-semibold text-sm block truncate">
+                          <span className="text-slate-800 dark:text-slate-200 font-bold text-sm block truncate group-hover/skill:text-primary transition-colors">
                             {skill.name}
                           </span>
                           <span className="text-slate-500 dark:text-slate-400 text-[11px] block truncate">

@@ -9,21 +9,25 @@ export const skills = [
         name: "React",
         desc: "Modern UI library & component architecture",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        color: "#61DAFB",
       },
       {
         name: "Tailwind CSS",
         desc: "Utility-first CSS framework for rapid UI styling",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+        color: "#06B6D4",
       },
       {
         name: "JavaScript",
         desc: "ES6+, async programming & web APIs",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        color: "#F7DF1E",
       },
       {
         name: "HTML5 & CSS3",
         desc: "Semantic structure & responsive layouts",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+        color: "#E34F26",
       },
     ]
   },
@@ -37,11 +41,13 @@ export const skills = [
         name: "Node.js",
         desc: "Server-side JavaScript runtime",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+        color: "#339933",
       },
       {
         name: "Express.js",
         desc: "Fast, unopinionated web framework for Node.js",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+        color: "#828282",
       },
     ]
   },
@@ -55,11 +61,13 @@ export const skills = [
         name: "Flutter",
         desc: "Single codebase native mobile applications",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        color: "#02569B",
       },
       {
         name: "Dart",
         desc: "Client-optimized language for fast apps",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+        color: "#0175C2",
       },
     ]
   },
@@ -73,6 +81,7 @@ export const skills = [
         name: "MongoDB",
         desc: "Document-oriented NoSQL database",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        color: "#47A248",
       },
     ]
   },
@@ -86,16 +95,19 @@ export const skills = [
         name: "Python",
         desc: "Data structures, scripting & web dev",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        color: "#3776AB",
       },
       {
         name: "C++",
         desc: "System programming & competitive coding",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+        color: "#00599C",
       },
       {
         name: "C",
         desc: "Foundation language for memory management",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+        color: "#A8B9CC",
       },
     ]
   },
@@ -109,11 +121,13 @@ export const skills = [
         name: "Git & GitHub",
         desc: "Version control & collaborative development",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+        color: "#F05032",
       },
       {
         name: "VS Code",
         desc: "Primary IDE with custom dev extensions",
         iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+        color: "#007ACC",
       },
     ]
   },
@@ -540,13 +554,25 @@ export const socialLinks = [
     iconUrl: "https://cdn.simpleicons.org/github/white",
     lightIconUrl: "https://cdn.simpleicons.org/github/000000",
     color: "#181717",
+    handle: "@Rabi-Bhagat",
   },
   {
     name: "LinkedIn",
     link: "https://linkedin.com/in/rabi-bhagat789",
-    iconUrl: "/linkedin.svg",
-    lightIconUrl: "/linkedin.svg",
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
+    lightIconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
     color: "#0a66c2",
+    handle: "in/rabi-bhagat789",
+  },
+  {
+    name: "LeetCode",
+    link: "https://leetcode.com/u/Rabibhagat/",
+    iconUrl: "https://cdn.simpleicons.org/leetcode/FFA116",
+    lightIconUrl: "https://cdn.simpleicons.org/leetcode/FFA116",
+    color: "#FFA116",
+    handle: "@Rabibhagat",
+    badge: "Problem Solver",
+    desc: "Algorithms & Data Structures",
   },
 ];
 
@@ -585,4 +611,8 @@ export const contactInfo = {
   email: "rabibhagat789@gmail.com",
   phone: "+91 8307855628",
   phoneAlt: "+977 9815787410",
+  leetcode: "https://leetcode.com/u/Rabibhagat/",
+  leetcodeHandle: "@Rabibhagat",
+  github: "https://github.com/Rabi-Bhagat",
+  linkedin: "https://linkedin.com/in/rabi-bhagat789",
 };
