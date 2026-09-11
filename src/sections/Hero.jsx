@@ -83,18 +83,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.7 }}
-          className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 w-full max-w-xl px-2"
+          className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 w-full max-w-xl px-1 sm:px-2"
         >
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="glass-card px-2.5 sm:px-4 py-4 sm:py-5 rounded-2xl text-center border border-slate-200/80 dark:border-white/10 shadow-lg"
+              className="glass-card px-2 sm:px-4 py-3.5 sm:py-5 rounded-2xl text-center border border-slate-200/80 dark:border-white/10 shadow-lg"
             >
-              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-gradient">
+              <div className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
                 {stat.value}
                 {stat.suffix}
               </div>
-              <div className="text-[11px] sm:text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium mt-1 leading-snug">
+              <div className="text-[10px] sm:text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium mt-1 leading-snug">
                 {stat.label}
               </div>
             </div>

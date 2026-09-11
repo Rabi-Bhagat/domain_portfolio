@@ -46,7 +46,7 @@ export default function Projects() {
           Featured Projects
         </h2>
         <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
-          Interactive showcase of my web applications, full-stack systems, and mobile solutions. Click any project for an interactive live demo preview!
+          Interactive showcase of my full-stack web applications, REST API systems, and web tools. Click any project for a live demo preview!
         </p>
       </div>
 
