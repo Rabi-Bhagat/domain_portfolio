@@ -7,8 +7,8 @@ export default function Experience() {
   return (
     <Section id="experience" className="section-padding">
       <div className="text-center mb-16 space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
-          Education & <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">Academics</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          Education & Academics
         </h2>
         <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
           Academic foundation and computer science engineering degree.

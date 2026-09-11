@@ -2,12 +2,14 @@ import React, { useState, useMemo } from 'react';
 import Section from "../components/ui/Section";
 import { achievements } from "../data/constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Search, Trophy, Briefcase, FileText, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Award, Search, Trophy, Briefcase, FileText, CheckCircle2 } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
 
 export default function Certifications() {
   const [activeType, setActiveType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredId, setHoveredId] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // Categories & counts
   const categories = useMemo(() => [
@@ -34,12 +36,20 @@ export default function Certifications() {
     });
   }, [activeType, searchQuery]);
 
+  const handleMouseMove = (e, certId) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
   return (
     <Section id="certifications" className="section-padding relative">
       {/* Header */}
       <div className="text-center mb-10 space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
-          Achievements & <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-secondary to-primary">Certifications</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          Achievements & Certifications
         </h2>
         <p className="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg leading-relaxed">
           Verified details of national hackathons, GDG awards, internship appointment letters, LORs, and professional certifications.
@@ -95,29 +105,57 @@ export default function Certifications() {
         )}
       </div>
 
-      {/* Grid of Achievement Detail Cards (Pure Text & Metadata) */}
+      {/* Grid of Achievement Detail Cards with Gliding Motion Box */}
       <motion.div
         layout
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+        onMouseLeave={() => setHoveredId(null)}
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto relative"
       >
         <AnimatePresence>
           {filteredAchievements.map((cert) => {
             const Icon = cert.type === "hackathon" ? Trophy : cert.type === "internship" ? Briefcase : Award;
-            
+            const certKey = cert.id || cert.title;
+            const isHovered = hoveredId === certKey;
+
             return (
               <motion.div
                 layout
-                key={cert.id || cert.title}
+                key={certKey}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="h-full"
+                onMouseEnter={() => setHoveredId(certKey)}
+                onMouseMove={(e) => handleMouseMove(e, certKey)}
+                className="h-full relative group cursor-pointer"
               >
-                <div className="glass-card glass-card-hover p-6 flex flex-col group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl h-full justify-between">
-                  {/* Background Glow Orb */}
+                {/* Smooth Gliding Motion Box that moves from card to card */}
+                {isHovered && (
+                  <motion.div
+                    layoutId="credentialMovingHoverBox"
+                    className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/30 via-secondary/30 to-accent/30 dark:from-primary/40 dark:via-purple-500/40 dark:to-accent/40 blur-md pointer-events-none z-0"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 28,
+                    }}
+                  />
+                )}
+
+                <div className="glass-card p-6 flex flex-col group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl h-full justify-between z-10 transition-transform duration-300 group-hover:-translate-y-1">
+                  {/* Cursor Spotlight Glow Effect inside card */}
+                  {isHovered && (
+                    <div
+                      className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-100 z-0"
+                      style={{
+                        background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, ${cert.color ? cert.color + '25' : 'rgba(59, 130, 246, 0.2)'}, transparent 80%)`,
+                      }}
+                    />
+                  )}
+
+                  {/* Ambient Accent Glow */}
                   <div
-                    className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-15 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
+                    className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-15 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"
                     style={{ backgroundColor: cert.color || "#3b82f6" }}
                   ></div>
 

@@ -64,11 +64,8 @@ export default function Contact() {
       )}
 
       <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
-          Get in{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-primary to-secondary">
-            Touch
-          </span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          Get In Touch
         </h2>
         <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
           Have a project in mind, open position, or want to discuss full-stack & algorithm engineering? Feel free to reach out directly! 🙌

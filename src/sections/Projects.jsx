@@ -42,8 +42,8 @@ export default function Projects() {
   return (
     <Section id="projects" className="section-padding relative">
       <div className="text-center mb-10 space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
-          Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-accent">Projects</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          Featured Projects
         </h2>
         <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
           Interactive showcase of my web applications, full-stack systems, and mobile solutions. Click any project for an interactive live demo preview!

@@ -24,7 +24,7 @@ export default function Hero() {
           className="mb-4 relative max-w-4xl"
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Rabi prasad Bhagat
+            Rabi Prasad Bhagat
           </h1>
         </motion.div>
 

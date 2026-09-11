@@ -15,8 +15,8 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              About <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">Me</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              About Me
             </h2>
 
             <div className="glass-card p-6 md:p-8 space-y-5 text-slate-600 dark:text-slate-300 text-lg leading-relaxed shadow-xl relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10">
