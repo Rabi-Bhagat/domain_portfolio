@@ -1,40 +1,13 @@
 import Section from "../components/ui/Section";
 import { motion } from "framer-motion";
 import profilePic from "../assets/profile-pic.jpg";
-import { GraduationCap, Code2, Rocket, Award } from "lucide-react";
+
 
 export default function About() {
-  const highlights = [
-    {
-      icon: GraduationCap,
-      title: "B.Tech in CSE",
-      subtitle: "2023 - 2027 • MMDU",
-      color: "text-blue-500"
-    },
-    {
-      icon: Code2,
-      title: "MERN Stack",
-      subtitle: "Full-Stack Web Dev",
-      color: "text-emerald-500"
-    },
-    {
-      icon: Rocket,
-      title: "9+ Built Projects",
-      subtitle: "Web Apps & REST APIs",
-      color: "text-purple-500"
-    },
-    {
-      icon: Award,
-      title: "Certificates & Awards",
-      subtitle: "Hackathons & Training",
-      color: "text-amber-500"
-    }
-  ];
-
   return (
     <Section id="about" className="py-20 relative">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
-        {/* Left Column: Text & Metrics */}
+        {/* Left Column: Text */}
         <div className="space-y-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -61,30 +34,6 @@ export default function About() {
                 I love turning complex problems into elegant, user-friendly digital products with clean architectures and interactive experiences.
               </p>
             </div>
-          </motion.div>
-
-          {/* Metric Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4"
-          >
-            {highlights.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <div key={i} className="glass-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 flex items-center gap-3">
-                  <div className={`p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 ${item.color} shrink-0`}>
-                    <Icon size={22} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{item.subtitle}</p>
-                  </div>
-                </div>
-              );
-            })}
           </motion.div>
         </div>
 
