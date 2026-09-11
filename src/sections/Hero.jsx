@@ -21,12 +21,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-6 relative max-w-4xl"
+          className="mb-4 relative max-w-4xl"
         >
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x bg-[length:200%_auto]">
-              Rabi Bhagat
-            </span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Rabi prasad Bhagat
           </h1>
         </motion.div>
 
@@ -35,7 +33,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-base sm:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10 text-center font-sans"
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10 text-center"
         >
           Computer Science & Engineering student at Maharishi Markandeshwar University (MMDU) specializing in full-stack web development. Passionate about building high-performance web applications, scalable REST APIs, and modern user experiences using the MERN stack, JavaScript, Python, and C++.
         </motion.p>
