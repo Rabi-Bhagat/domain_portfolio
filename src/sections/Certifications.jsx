@@ -1,40 +1,13 @@
-import React, { useState, lazy, Suspense, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Section from "../components/ui/Section";
 import { achievements } from "../data/constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, ExternalLink, Search, Eye, ShieldCheck, Trophy, Briefcase, FileText } from "lucide-react";
+import { Award, Search, Trophy, Briefcase, FileText, ShieldCheck, CheckCircle2 } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
-
-const CertificateModal = lazy(() => import("../components/ui/CertificateModal"));
-
-function ImageWithFallback({ src, alt, className, color }) {
-  const [error, setError] = useState(false);
-
-  if (error || !src) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-slate-900/90 space-y-2">
-        <Award size={42} style={{ color: color || "#3b82f6" }} />
-        <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">{alt}</span>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      className={className}
-      onError={() => setError(true)}
-    />
-  );
-}
 
 export default function Certifications() {
   const [activeType, setActiveType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedAchievement, setSelectedAchievement] = useState(null);
 
   // Categories & counts
   const categories = useMemo(() => [
@@ -54,7 +27,8 @@ export default function Certifications() {
         item.title.toLowerCase().includes(query) ||
         item.org.toLowerCase().includes(query) ||
         item.desc.toLowerCase().includes(query) ||
-        (item.badge && item.badge.toLowerCase().includes(query));
+        (item.badge && item.badge.toLowerCase().includes(query)) ||
+        (item.certId && item.certId.toLowerCase().includes(query));
 
       return matchesType && matchesSearch;
     });
@@ -68,7 +42,7 @@ export default function Certifications() {
           Achievements & <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-secondary to-primary">Certifications</span>
         </h2>
         <p className="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg leading-relaxed">
-          Comprehensive showcase of hackathon awards, Google GDG achievements, internship offer letters, recommendation letters, and technical certifications.
+          Verified details of national hackathons, GDG awards, internship appointment letters, LORs, and professional certifications.
         </p>
       </div>
 
@@ -121,127 +95,96 @@ export default function Certifications() {
         )}
       </div>
 
-      {/* Grid of Achievement Cards */}
+      {/* Grid of Achievement Detail Cards (Pure Text & Metadata) */}
       <motion.div
         layout
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
       >
         <AnimatePresence>
-          {filteredAchievements.map((cert) => (
-            <motion.div
-              layout
-              key={cert.id || cert.title}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="h-full"
-            >
-              <div className="glass-card glass-card-hover p-5 md:p-6 flex flex-col group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl h-full">
-                {/* Background Glow Orb */}
-                <div
-                  className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"
-                  style={{ backgroundColor: cert.color || "#3b82f6" }}
-                ></div>
+          {filteredAchievements.map((cert) => {
+            const Icon = cert.type === "hackathon" ? Trophy : cert.type === "internship" ? Briefcase : Award;
+            
+            return (
+              <motion.div
+                layout
+                key={cert.id || cert.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="h-full"
+              >
+                <div className="glass-card glass-card-hover p-6 flex flex-col group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl h-full justify-between">
+                  {/* Background Glow Orb */}
+                  <div
+                    className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-15 group-hover:opacity-35 transition-opacity duration-500 pointer-events-none"
+                    style={{ backgroundColor: cert.color || "#3b82f6" }}
+                  ></div>
 
-                {/* Card Top: Preview Thumbnail Box */}
-                <div
-                  onClick={() => setSelectedAchievement(cert)}
-                  className="w-full h-44 rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden relative mb-5 cursor-pointer group/img shrink-0 flex items-center justify-center"
-                >
-                  <ImageWithFallback
-                    src={cert.previewImage}
-                    alt={cert.title}
-                    color={cert.color}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
-                  />
-
-                  {/* Dark overlay & Hover Preview Badge */}
-                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                    <span className="px-4 py-2 rounded-xl bg-slate-900/90 text-white text-xs font-bold shadow-lg border border-white/20 flex items-center gap-1.5 transform translate-y-2 group-hover/img:translate-y-0 transition-transform">
-                      <Eye size={14} /> Full Document Preview
-                    </span>
-                  </div>
-
-                  {/* Badge Ribbon */}
-                  {cert.badge && (
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md text-white border border-white/10 shadow-md">
-                      {cert.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Card Content */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Header line: Org & Date */}
-                    <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+                  <div className="relative z-10 space-y-4">
+                    {/* Header line: Org Pill & Category Icon */}
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
                       <span
-                        className="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-md border"
+                        className="text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-sm flex items-center gap-1.5"
                         style={{
                           color: cert.color || '#3b82f6',
                           borderColor: `${cert.color || '#3b82f6'}40`,
                           backgroundColor: `${cert.color || '#3b82f6'}15`
                         }}
                       >
+                        <Icon size={13} />
                         {cert.org}
                       </span>
+                      
                       <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                         {cert.date}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3
-                      onClick={() => setSelectedAchievement(cert)}
-                      className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors cursor-pointer line-clamp-2"
-                    >
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors">
                       {cert.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
+                    {/* Category & Badge Tags */}
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                        {cert.category}
+                      </span>
+
+                      {cert.badge && (
+                        <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-primary/10 text-primary border border-primary/20 flex items-center gap-1">
+                          <CheckCircle2 size={12} />
+                          {cert.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Detailed Description */}
+                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed pt-2">
                       {cert.desc}
                     </p>
                   </div>
 
-                  {/* Action Bar */}
-                  <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-3 mt-auto">
-                    <button
-                      onClick={() => setSelectedAchievement(cert)}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold shadow-md shadow-primary/20 hover:bg-blue-600 transition-all"
-                    >
-                      <Eye size={14} /> Preview Credential
-                    </button>
-
-                    <a
-                      href={cert.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
-                      title="Open Document File"
-                    >
-                      <ExternalLink size={18} />
-                    </a>
+                  {/* Metadata Footer */}
+                  <div className="relative z-10 pt-4 mt-6 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                    {cert.certId && (
+                      <span className="truncate">
+                        ID: <strong className="text-slate-800 dark:text-slate-200">{cert.certId}</strong>
+                      </span>
+                    )}
+                    {cert.issueDate && (
+                      <span className="shrink-0 ml-auto">
+                        Issued: {cert.issueDate}
+                      </span>
+                    )}
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </motion.div>
-
-      {/* Certificate Modal */}
-      {selectedAchievement && (
-        <Suspense fallback={null}>
-          <CertificateModal
-            achievement={selectedAchievement}
-            achievements={achievements}
-            onClose={() => setSelectedAchievement(null)}
-            onSelect={(ach) => setSelectedAchievement(ach)}
-          />
-        </Suspense>
-      )}
     </Section>
   );
 }

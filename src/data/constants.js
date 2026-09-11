@@ -52,26 +52,6 @@ export const skills = [
     ]
   },
   {
-    title: "Mobile App Development",
-    desc: "Cross-platform mobile apps for Android & iOS",
-    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-    color: "#02569B",
-    skills: [
-      {
-        name: "Flutter",
-        desc: "Single codebase native mobile applications",
-        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-        color: "#02569B",
-      },
-      {
-        name: "Dart",
-        desc: "Client-optimized language for fast apps",
-        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-        color: "#0175C2",
-      },
-    ]
-  },
-  {
     title: "Database Management",
     desc: "Scalable data storage & query optimization",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
@@ -537,8 +517,8 @@ export const certifications = achievements;
 export const heroRoles = [
   "Full-Stack Developer",
   "MERN Stack Specialist",
-  "Mobile App Creator (Flutter)",
-  "UI/UX Craftsperson",
+  "Web Application Developer",
+  "Software Engineer",
 ];
 
 export const stats = [
@@ -578,32 +558,11 @@ export const socialLinks = [
 
 export const experience = [
   {
-    role: "Full-Stack Developer",
-    company: "Freelance / Self-Directed",
-    date: "2024 - Present",
-    desc: "Engineering full-stack MERN applications and cross-platform mobile apps for web and mobile. Specializing in high-performance React frontends, Node.js REST APIs, and MongoDB database architecture.",
-    skills: ["React", "Node.js", "Express.js", "MongoDB", "Flutter", "Tailwind CSS"],
-  },
-  {
-    role: "SDE Intern (Software Development Engineer)",
-    company: "Bluestock Fintech",
-    date: "May 2025 - Jun 2025",
-    desc: "Selected for Software Development Engineer internship working remotely on fintech application development, modular React components, and dynamic software features.",
-    skills: ["React", "JavaScript", "Fintech Applications", "UI Components"],
-  },
-  {
-    role: "Frontend Development Intern",
-    company: "CodeAlpha",
-    date: "May 2025 - Jun 2025",
-    desc: "Completed virtual frontend internship program building responsive web applications, task tools, and calculators. Earned LOR from Founder & CEO.",
-    skills: ["HTML5", "CSS3", "JavaScript", "React", "Git"],
-  },
-  {
     role: "B.Tech in Computer Science & Engineering",
-    company: "Maharishi Markandeshwar University",
+    company: "Maharishi Markandeshwar (Deemed to be University) - MM(DU)",
     date: "2023 - 2027",
-    desc: "Pursuing Bachelor of Technology degree. Building rigorous foundations in Data Structures, Algorithms, Software Engineering, Database Systems, and Web Application Architecture.",
-    skills: ["Data Structures", "Algorithms", "C++", "Python", "Software Engineering"],
+    desc: "Pursuing Bachelor of Technology degree in Computer Science & Engineering. Building strong academic foundations in Data Structures, Algorithms, Software Engineering, Operating Systems, Database Management Systems, and Full-Stack Web Development.",
+    skills: ["Data Structures & Algorithms", "Full-Stack Web Dev", "C++", "Python", "Software Engineering", "Database Systems"],
   },
 ];
 

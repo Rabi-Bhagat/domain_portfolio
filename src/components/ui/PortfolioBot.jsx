@@ -38,15 +38,15 @@ export default function PortfolioBot() {
 
       switch(option.action) {
         case 'about':
-          botResponse = "Rabi Bhagat is a B.Tech Computer Science student (2023–2027) at Maharishi Markandeshwar University specializing in Full-Stack (MERN) and Mobile (Flutter) development. 🚀";
+          botResponse = "Rabi Bhagat is a B.Tech Computer Science student (2023–2027) at Maharishi Markandeshwar University (MMDU) specializing in Full-Stack (MERN) web development. 🚀";
           scrollToSection('about');
           break;
         case 'skills':
-          botResponse = "Rabi is skilled in React.js, Tailwind CSS, Node.js, Express, MongoDB, C++, Python, and Flutter! He builds high-performance web and mobile applications. ⚡";
+          botResponse = "Rabi is skilled in React.js, Tailwind CSS, Node.js, Express, MongoDB, C++, Python, and Git! He builds high-performance web applications and REST APIs. ⚡";
           scrollToSection('skills');
           break;
         case 'projects':
-          botResponse = "Rabi has engineered 9+ live projects including MERN stack applications, booking portals, and mobile apps. Click 'Live Preview' on any project card to interact with them! 💻";
+          botResponse = "Rabi has engineered 9+ live projects including MERN stack applications, booking portals, document portals, and interactive tools. Click 'Live Site' or 'Frame View' to explore! 💻";
           scrollToSection('projects');
           break;
         case 'certs':

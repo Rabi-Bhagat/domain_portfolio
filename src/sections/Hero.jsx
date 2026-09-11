@@ -1,52 +1,11 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Section from "../components/ui/Section";
-import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
 import Logo3D from "../components/ui/Logo3D";
-import { heroRoles, stats, socialLinks } from "../data/constants";
-
-function useTypewriter(words, typeSpeed = 80, deleteSpeed = 40, pause = 1800) {
-  const [index, setIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const current = words[index % words.length];
-
-    if (!deleting && text === current) {
-      const t = setTimeout(() => setDeleting(true), pause);
-      return () => clearTimeout(t);
-    }
-
-    if (deleting && text === "") {
-      const t = setTimeout(() => {
-        setDeleting(false);
-        setIndex((i) => (i + 1) % words.length);
-      }, typeSpeed);
-      return () => clearTimeout(t);
-    }
-
-    const t = setTimeout(
-      () => {
-        setText(
-          deleting
-            ? current.slice(0, text.length - 1)
-            : current.slice(0, text.length + 1),
-        );
-      },
-      deleting ? deleteSpeed : typeSpeed,
-    );
-
-    return () => clearTimeout(t);
-  }, [text, deleting, index, words, typeSpeed, deleteSpeed, pause]);
-
-  return text;
-}
+import { stats, socialLinks } from "../data/constants";
 
 export default function Hero() {
-  const typedRole = useTypewriter(heroRoles);
-
   return (
     <Section
       id="home"
@@ -57,41 +16,28 @@ export default function Hero() {
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow pointer-events-none"></div>
         <div className="absolute top-20 -right-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse-slow animation-delay-2000 pointer-events-none"></div>
 
-        {/* Main Headline */}
+        {/* Main Name Heading */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 relative max-w-4xl"
         >
-          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15] md:leading-[1.1]">
-            Engineering <br />
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient-x bg-[length:200%_auto]">
-              Digital Experiences
+              Rabi Bhagat
             </span>
           </h1>
         </motion.div>
 
-        {/* Typewriter Roles */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-base sm:text-2xl md:text-3xl text-slate-700 dark:text-slate-200 font-semibold font-mono mb-4 min-h-[2em] flex items-center justify-center gap-1 flex-wrap"
-        >
-          <span className="text-accent">&gt;</span>
-          <span className="text-slate-900 dark:text-white">{typedRole}</span>
-          <span className="caret-blink text-primary font-bold">|</span>
-        </motion.div>
-
-        {/* Bio Subtitle */}
+        {/* Bio / About Paragraph */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10"
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-base sm:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl px-4 leading-relaxed mb-10 text-center font-sans"
         >
-          Hi, I am <span className="text-slate-900 dark:text-white font-bold">Rabi Bhagat</span> — a B.Tech Computer Science student specializing in building high-impact full-stack web applications, scalable backends, and mobile apps.
+          Computer Science & Engineering student at Maharishi Markandeshwar University (MMDU) specializing in full-stack web development. Passionate about building high-performance web applications, scalable REST APIs, and modern user experiences using the MERN stack, JavaScript, Python, and C++.
         </motion.p>
 
         {/* Action Buttons */}

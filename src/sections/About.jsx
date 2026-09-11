@@ -8,25 +8,25 @@ export default function About() {
     {
       icon: GraduationCap,
       title: "B.Tech in CSE",
-      subtitle: "2023 - 2027 • MMU",
+      subtitle: "2023 - 2027 • MMDU",
       color: "text-blue-500"
     },
     {
       icon: Code2,
-      title: "MERN & Flutter",
-      subtitle: "Full-Stack & Mobile",
+      title: "MERN Stack",
+      subtitle: "Full-Stack Web Dev",
       color: "text-emerald-500"
     },
     {
       icon: Rocket,
       title: "9+ Built Projects",
-      subtitle: "Web, APIs & Mobile",
+      subtitle: "Web Apps & REST APIs",
       color: "text-purple-500"
     },
     {
       icon: Award,
-      title: "Multiple Internships",
-      subtitle: "CodeAlpha & CodSoft",
+      title: "Certificates & Awards",
+      subtitle: "Hackathons & Training",
       color: "text-amber-500"
     }
   ];
@@ -50,11 +50,11 @@ export default function About() {
               <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
 
               <p>
-                I am a passionate software developer currently pursuing my <span className="text-slate-900 dark:text-white font-bold">B.Tech in Computer Science & Engineering (2023–2027)</span> at Maharishi Markandeshwar University.
+                I am a passionate software developer currently pursuing my <span className="text-slate-900 dark:text-white font-bold">B.Tech in Computer Science & Engineering (2023–2027)</span> at Maharishi Markandeshwar University (MMDU).
               </p>
 
               <p>
-                My focus centers on engineering responsive, high-performance web applications and mobile solutions. I specialize in the <span className="text-primary font-bold">MERN Stack (MongoDB, Express.js, React, Node.js)</span> alongside <span className="text-accent font-bold">Flutter, Python, and C++</span>.
+                My focus centers on engineering responsive, high-performance web applications and robust server architectures. I specialize in the <span className="text-primary font-bold">MERN Stack (MongoDB, Express.js, React, Node.js)</span> alongside <span className="text-accent font-bold">Python, C++, and modern web toolchains</span>.
               </p>
 
               <p>
