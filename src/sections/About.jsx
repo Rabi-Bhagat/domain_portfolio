@@ -60,7 +60,7 @@ export default function About() {
                 decoding="async"
                 width="640"
                 height="800"
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-top transform transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 right-4 z-30 p-3 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/10 text-white text-center">
                 <span className="font-bold text-sm block">Rabi Bhagat</span>
