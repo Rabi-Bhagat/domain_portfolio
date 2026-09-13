@@ -2,14 +2,16 @@ import React, { useState, useMemo } from 'react';
 import Section from "../components/ui/Section";
 import { achievements } from "../data/constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Search, Trophy, Briefcase, FileText, CheckCircle2 } from "lucide-react";
+import { Award, Search, Trophy, Briefcase, FileText, CheckCircle2, ExternalLink } from "lucide-react";
 import Button3D from "../components/ui/Button3D";
+import CertificateModal from "../components/ui/CertificateModal";
 
 export default function Certifications() {
   const [activeType, setActiveType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredId, setHoveredId] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [selectedCert, setSelectedCert] = useState(null);
 
   // Categories & counts
   const categories = useMemo(() => [
@@ -67,7 +69,7 @@ export default function Certifications() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by title, organization (Google, EY, Bluestock)..."
+            placeholder="Search by title, organization (Cisco, Google, EY, Bluestock)..."
             className="w-full pl-11 pr-4 py-3.5 bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 backdrop-blur-xl transition-all shadow-lg text-sm"
           />
           {searchQuery && (
@@ -127,6 +129,7 @@ export default function Certifications() {
                 transition={{ duration: 0.3 }}
                 onMouseEnter={() => setHoveredId(certKey)}
                 onMouseMove={(e) => handleMouseMove(e, certKey)}
+                onClick={() => setSelectedCert(cert)}
                 className="h-full relative group cursor-pointer"
               >
                 {/* Smooth Gliding Motion Box that moves from card to card */}
@@ -180,8 +183,9 @@ export default function Certifications() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors">
-                      {cert.title}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors flex items-center justify-between gap-2">
+                      <span>{cert.title}</span>
+                      <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 text-primary transition-opacity shrink-0" />
                     </h3>
 
                     {/* Category & Badge Tags */}
@@ -211,11 +215,9 @@ export default function Certifications() {
                         ID: <strong className="text-slate-800 dark:text-slate-200">{cert.certId}</strong>
                       </span>
                     )}
-                    {cert.issueDate && (
-                      <span className="shrink-0 ml-auto">
-                        Issued: {cert.issueDate}
-                      </span>
-                    )}
+                    <span className="shrink-0 ml-auto flex items-center gap-1 text-primary font-bold font-sans">
+                      View Credential <ExternalLink size={12} />
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -223,6 +225,16 @@ export default function Certifications() {
           })}
         </AnimatePresence>
       </motion.div>
+
+      {/* Interactive Modal */}
+      {selectedCert && (
+        <CertificateModal
+          achievement={selectedCert}
+          achievements={filteredAchievements}
+          onClose={() => setSelectedCert(null)}
+          onSelect={setSelectedCert}
+        />
+      )}
     </Section>
   );
 }
