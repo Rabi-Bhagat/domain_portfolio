@@ -17,18 +17,20 @@ export default class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-center text-white">
-          <div className="glass-card max-w-md rounded-3xl p-8">
-            <h1 className="font-display text-2xl font-bold">Something went off-script.</h1>
-            <p className="mt-3 text-sm text-slate-300">
+        <div className="flex min-h-screen items-center justify-center bg-canvas px-6 text-center">
+          <div className="panel max-w-md rounded-2xl p-8">
+            <h1 className="font-display text-xl font-semibold text-ink">
+              Something went wrong.
+            </h1>
+            <p className="mt-3 text-sm text-muted">
               A section failed to render. Reload the page to try again.
             </p>
             <button
               type="button"
               onClick={() => window.location.reload()}
-              className="mt-6 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-blue-600 focus-ring"
+              className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-ring"
             >
-              Reload portfolio
+              Reload
             </button>
           </div>
         </div>

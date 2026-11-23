@@ -766,7 +766,7 @@ export const availability = {
   tone: "emerald",
 };
 
-export const location = "Mullana, Ambala, India";
+export const location = "Rajbiraj, Saptari, Nepal";
 
 export const quickFacts = [
   { label: "Location", value: location, icon: "location" },

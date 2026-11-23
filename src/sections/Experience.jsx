@@ -2,221 +2,91 @@ import Section from "../components/layout/Section";
 import SectionHeading from "../components/layout/SectionHeading";
 import Reveal from "../components/ui/Reveal";
 import { experience } from "../data/constants";
-import {
-  Briefcase,
-  Calendar,
-  GraduationCap,
-  MapPin,
-} from "lucide-react";
-
-const workPalette = {
-  icon: Briefcase,
-  label: "Internship",
-  accent: "text-secondary",
-  border: "border-secondary/25",
-  bg: "bg-secondary/10",
-};
-
-const educationPalettes = [
-  {
-    accent: "text-primary",
-    border: "border-primary/20",
-    bg: "bg-primary/10",
-    glow: "#3b82f6",
-  },
-  {
-    accent: "text-secondary",
-    border: "border-secondary/20",
-    bg: "bg-secondary/10",
-    glow: "#6366f1",
-  },
-  {
-    accent: "text-accent",
-    border: "border-accent/20",
-    bg: "bg-accent/10",
-    glow: "#0d9488",
-  },
-];
+import { ArrowUpRight } from "lucide-react";
 
 export default function Experience() {
-  const workItems = experience.filter((item) => item.type === "work");
-  const educationItems = experience.filter((item) => item.type === "education");
+  const work = experience.filter((item) => item.type === "work");
+  const education = experience.filter((item) => item.type === "education");
 
   return (
-    <Section id="experience" className="section-padding">
+    <Section id="experience">
       <SectionHeading
-        eyebrow="Career & academics"
-        title="Experience &"
-        highlight="Education"
+        index="03"
+        eyebrow="Experience"
+        title="Work & education"
         subtitle="Internships, hands-on product work, and the academic record behind it."
       />
 
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-5 flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-secondary/25 bg-secondary/10 text-secondary">
-            <Briefcase size={15} />
-          </span>
-          <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
-            Professional Experience
+      <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <Reveal>
+          <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-faint">
+            Professional
           </h3>
-          <span className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent dark:from-white/10" />
-        </div>
 
-        <div className="relative">
-          <div
-            className="absolute bottom-2 left-4 top-2 w-px bg-gradient-to-b from-primary/40 to-transparent sm:left-5"
-            aria-hidden="true"
-          />
+          <ol className="space-y-8 border-l border-line pl-6">
+            {work.map((item) => (
+              <li key={`${item.role}-${item.company}`} className="relative">
+                <span className="absolute -left-[1.65rem] top-1.5 h-2 w-2 rounded-full border border-primary bg-canvas" />
 
-          {workItems.map((item, index) => {
-            const meta = workPalette;
-            const Icon = meta.icon;
-
-            return (
-              <Reveal
-                key={`${item.role}-${item.company}`}
-                delay={index * 0.08}
-                y={20}
-                className="relative pb-8 pl-12 last:pb-0 sm:pl-16"
-              >
-                <span
-                  className={`absolute left-0 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border bg-white shadow-md dark:bg-slate-900 sm:h-10 sm:w-10 ${meta.border} ${meta.accent}`}
-                >
-                  <Icon size={16} className="sm:hidden" />
-                  <Icon size={18} className="hidden sm:block" />
-                </span>
-
-                <div className="glass-card group relative overflow-hidden rounded-3xl p-5 shadow-xl transition-transform duration-300 hover:-translate-y-0.5 sm:p-7">
-                  <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-secondary/20 blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
-
-                  <div className="relative z-10">
-                    <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                      <div>
-                        <span
-                          className={`mb-2 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider ${meta.border} ${meta.bg} ${meta.accent}`}
-                        >
-                          <Icon size={11} />
-                          {meta.label}
-                        </span>
-                        <h3 className="font-display text-xl font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary dark:text-white">
-                          {item.role}
-                        </h3>
-                        <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                          {item.company}
-                        </p>
-                      </div>
-
-                      <div className="flex w-fit shrink-0 flex-col gap-1.5 sm:items-end">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-[11px] font-bold text-primary">
-                          <Calendar size={13} />
-                          {item.date}
-                        </span>
-                        {item.location && (
-                          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
-                            <MapPin size={12} />
-                            {item.location}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base">
-                      {item.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {item.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700 shadow-sm dark:border-slate-700/80 dark:bg-slate-800/90 dark:text-slate-200"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        <div className="mb-5 mt-14 flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
-            <GraduationCap size={15} />
-          </span>
-          <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
-            Academic Background
-          </h3>
-          <span className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent dark:from-white/10" />
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-3">
-          {educationItems.map((item, index) => {
-            const palette = educationPalettes[index % educationPalettes.length];
-
-            return (
-              <Reveal key={`${item.role}-${item.company}`} delay={index * 0.07} y={22}>
-                <div className="glass-card group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
-                  <div
-                    className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
-                    style={{ backgroundColor: palette.glow }}
-                  />
-
-                  <div className="relative z-10 flex items-start justify-between gap-3">
-                    <span
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl border ${palette.border} ${palette.bg} ${palette.accent}`}
-                    >
-                      <GraduationCap size={18} />
-                    </span>
-
-                    <div className="text-right">
-                      <div className="font-display text-3xl font-black leading-none text-primary">
-                        {item.score}
-                      </div>
-                      <div className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                        {item.scoreLabel}
-                      </div>
-                    </div>
-                  </div>
-
-                  <h4 className="relative z-10 mt-5 font-display text-lg font-bold leading-snug text-slate-900 dark:text-white">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h4 className="font-display text-base font-semibold text-ink">
                     {item.role}
                   </h4>
-                  <p className="relative z-10 mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    {item.company}
-                  </p>
+                  <span className="text-[11px] text-faint">{item.date}</span>
+                </div>
 
-                  <div className="relative z-10 mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium text-slate-500 dark:text-slate-400">
-                    <span className="inline-flex items-center gap-1.5">
-                      <Calendar size={12} /> {item.date}
-                    </span>
-                    {item.location && (
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin size={12} /> {item.location}
-                      </span>
-                    )}
+                <p className="mt-0.5 text-sm font-medium text-primary">{item.company}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{item.desc}</p>
+
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {item.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-line px-2.5 py-0.5 text-[10px] font-medium text-muted"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-faint">
+            Academic
+          </h3>
+
+          <div className="space-y-4">
+            {education.map((item) => (
+              <div key={item.company} className="panel panel-hover rounded-xl p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-ink">{item.role}</h4>
+                    <p className="mt-0.5 text-xs text-muted">{item.company}</p>
                   </div>
-
-                  <p className="relative z-10 mt-3 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                    {item.desc}
-                  </p>
-
-                  <div className="relative z-10 mt-4 flex flex-wrap gap-1.5">
-                    {item.skills.slice(0, 4).map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-700 dark:border-slate-700/70 dark:bg-slate-800/80 dark:text-slate-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                  <div className="shrink-0 text-right">
+                    <p className="font-display text-xl font-semibold leading-none text-primary">
+                      {item.score}
+                    </p>
+                    <p className="mt-1 text-[10px] uppercase tracking-wider text-faint">
+                      {item.scoreLabel}
+                    </p>
                   </div>
                 </div>
-              </Reveal>
-            );
-          })}
-        </div>
+
+                <div className="mt-4 flex items-center justify-between border-t border-line pt-3 text-[11px] text-faint">
+                  <span>{item.date}</span>
+                  <span className="inline-flex items-center gap-1">
+                    {item.location}
+                    <ArrowUpRight size={11} />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </Section>
   );

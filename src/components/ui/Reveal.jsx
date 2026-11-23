@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 export default function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 18,
   x = 0,
   once = true,
   className = "",
@@ -19,7 +19,7 @@ export default function Reveal({
       initial={{ opacity: 0, y, x }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once, margin: "-60px" }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
