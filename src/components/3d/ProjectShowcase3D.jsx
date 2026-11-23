@@ -1,27 +1,30 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Float, PresentationControls, ContactShadows, Html } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, ArrowLeft } from 'lucide-react';
+import { X, ExternalLink, ArrowLeft, Monitor } from 'lucide-react';
+import useFocusTrap from '../../hooks/useFocusTrap';
+import useLockBodyScroll from '../../hooks/useLockBodyScroll';
+import useModalHistory from '../../hooks/useModalHistory';
 
 export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) {
   const [iframeError, setIframeError] = useState(false);
+  const dialogRef = useRef(null);
+
+  useLockBodyScroll(true);
+  useModalHistory(onClose);
+  useFocusTrap(dialogRef, true);
 
   useEffect(() => {
-    // Push state so browser back button closes modal instead of closing/navigating away from portfolio
-    window.history.pushState({ modalOpen: true }, '');
-
-    const handlePopState = () => {
-      onClose();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
     };
 
-    window.addEventListener('popstate', handlePopState);
-    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
-      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 
@@ -30,11 +33,17 @@ export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) 
   const modalContent = (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="showcase-title"
+        tabIndex={-1}
+        style={{ transformPerspective: 1600 }}
+        initial={{ opacity: 0, scale: 0.98, rotateX: 4 }}
+        animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+        exit={{ opacity: 0, scale: 0.98 }}
         onClick={(e) => e.target === e.currentTarget && onClose()}
-        className="fixed inset-0 z-[99999] flex flex-col bg-slate-950"
+        className="fixed inset-0 z-[99999] flex flex-col bg-slate-950 outline-none"
       >
         {/* Fixed Top Navigation Bar */}
         <div className="w-full px-4 sm:px-6 py-3 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-4 z-[120] shrink-0">
@@ -50,7 +59,7 @@ export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) 
             <div className="h-4 w-px bg-slate-800 shrink-0 hidden sm:block"></div>
 
             <div className="min-w-0">
-              <h3 className="font-bold text-sm text-white truncate max-w-[200px] sm:max-w-[320px]">{project.name}</h3>
+              <h3 id="showcase-title" className="font-bold text-sm text-white truncate max-w-[200px] sm:max-w-[320px]">{project.name}</h3>
               <p className="text-[11px] text-slate-400 font-medium truncate">{project.category} • 3D Canvas View</p>
             </div>
           </div>
@@ -60,6 +69,14 @@ export default function ProjectShowcase3D({ project, onClose, onOpenLiveDemo }) 
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => onOpenLiveDemo?.(project)}
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all border border-slate-700/80 shadow-md"
+              title="Open the browser preview"
+            >
+              <Monitor size={14} /> Frame View
+            </button>
+
             <a
               href={project.link}
               target="_blank"

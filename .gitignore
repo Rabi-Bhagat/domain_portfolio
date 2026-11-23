@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Local source archive (raw documents, not deployed)
+archive/
+
+# Tool state
+.commandcode/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

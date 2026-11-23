@@ -1,31 +1,62 @@
-import React, { useState, useMemo } from 'react';
-import Section from "../components/ui/Section";
+import { useState, useMemo } from "react";
+import Section from "../components/layout/Section";
+import SectionHeading from "../components/layout/SectionHeading";
+import FilterPill from "../components/ui/FilterPill";
+import SpotlightCard from "../components/ui/SpotlightCard";
 import { achievements } from "../data/constants";
-import { motion, AnimatePresence } from "framer-motion";
-import { Award, Search, Trophy, Briefcase, FileText, CheckCircle2, ExternalLink } from "lucide-react";
-import Button3D from "../components/ui/Button3D";
-import CertificateModal from "../components/ui/CertificateModal";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import {
+  Award,
+  Briefcase,
+  CheckCircle2,
+  ExternalLink,
+  FileText,
+  Search,
+  Star,
+  Trophy,
+} from "lucide-react";
+import CertificateModal from "../components/modals/CertificateModal";
+
+const typeIcons = {
+  hackathon: Trophy,
+  internship: Briefcase,
+  certification: FileText,
+};
 
 export default function Certifications() {
   const [activeType, setActiveType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredId, setHoveredId] = useState(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [selectedCert, setSelectedCert] = useState(null);
+  const reduce = useReducedMotion();
 
-  // Categories & counts
-  const categories = useMemo(() => [
-    { key: "all", label: "All Credentials", count: achievements.length, icon: Award },
-    { key: "hackathon", label: "🏆 Hackathons & Competitions", count: achievements.filter(a => a.type === "hackathon").length, icon: Trophy },
-    { key: "internship", label: "💼 Internships & LORs", count: achievements.filter(a => a.type === "internship").length, icon: Briefcase },
-    { key: "certification", label: "📜 Certifications & Tech", count: achievements.filter(a => a.type === "certification").length, icon: FileText },
-  ], []);
+  const categories = useMemo(
+    () => [
+      { key: "all", label: "All credentials", count: achievements.length },
+      {
+        key: "hackathon",
+        label: "Hackathons",
+        count: achievements.filter((item) => item.type === "hackathon").length,
+      },
+      {
+        key: "internship",
+        label: "Internships & LORs",
+        count: achievements.filter((item) => item.type === "internship").length,
+      },
+      {
+        key: "certification",
+        label: "Certifications",
+        count: achievements.filter((item) => item.type === "certification").length,
+      },
+    ],
+    []
+  );
 
-  // Filter logic
   const filteredAchievements = useMemo(() => {
-    return achievements.filter(item => {
+    const query = searchQuery.toLowerCase().trim();
+
+    return achievements.filter((item) => {
       const matchesType = activeType === "all" || item.type === activeType;
-      const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !query ||
         item.title.toLowerCase().includes(query) ||
@@ -38,195 +69,213 @@ export default function Certifications() {
     });
   }, [activeType, searchQuery]);
 
-  const handleMouseMove = (e, certId) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
-
   return (
     <Section id="certifications" className="section-padding relative">
-      {/* Header */}
-      <div className="text-center mb-10 space-y-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-          Achievements & Certifications
-        </h2>
-        <p className="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg leading-relaxed">
-          Verified details of national hackathons, GDG awards, internship appointment letters, LORs, and professional certifications.
-        </p>
-      </div>
+      <SectionHeading
+        eyebrow="Proof of work"
+        title="Achievements &"
+        highlight="Certifications"
+        subtitle="Verified national hackathons, GDG awards, internship appointment letters, LORs, and professional certifications."
+      />
 
-      {/* Search & Filter Controls */}
-      <div className="max-w-4xl mx-auto mb-12 space-y-6">
-        {/* Search Bar */}
-        <div className="relative max-w-md mx-auto">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-            <Search size={18} />
+      <div className="mx-auto mb-10 max-w-4xl space-y-6">
+        <div className="mx-auto max-w-md">
+          <label htmlFor="credential-search" className="sr-only">
+            Search credentials
+          </label>
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+              <Search size={18} />
+            </div>
+            <input
+              id="credential-search"
+              type="text"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search by title, org (Cisco, Google, EY)..."
+              className="w-full rounded-2xl border border-slate-300 bg-white/80 py-3.5 pl-11 pr-16 text-sm text-slate-900 shadow-lg backdrop-blur-xl transition-all placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-white"
+            />
+            {searchQuery ? (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-0 flex items-center pr-4 text-xs font-semibold text-slate-400 hover:text-primary focus-ring rounded"
+              >
+                Clear
+              </button>
+            ) : (
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                {achievements.length} total
+              </span>
+            )}
           </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by title, organization (Cisco, Google, EY, Bluestock)..."
-            className="w-full pl-11 pr-4 py-3.5 bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 backdrop-blur-xl transition-all shadow-lg text-sm"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-xs text-slate-400 hover:text-slate-200"
-            >
-              Clear
-            </button>
-          )}
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {categories.map((cat) => (
-            <Button3D
-              key={cat.key}
-              onClick={() => setActiveType(cat.key)}
-              variant={activeType === cat.key ? "primary" : "secondary"}
-              size="sm"
+        <div
+          className="flex flex-wrap justify-center gap-2.5"
+          role="group"
+          aria-label="Filter credentials by type"
+        >
+          {categories.map((category) => (
+            <FilterPill
+              key={category.key}
+              active={activeType === category.key}
+              onClick={() => setActiveType(category.key)}
+              layoutId="credentials-filter-pill"
             >
-              {cat.label} <span className="ml-1 opacity-80 text-xs">({cat.count})</span>
-            </Button3D>
+              {category.label}
+              <span className="text-[10px] opacity-75">({category.count})</span>
+            </FilterPill>
           ))}
         </div>
       </div>
 
-      {/* Results Header */}
-      <div className="flex items-center justify-between mb-8 max-w-7xl mx-auto text-sm text-slate-500 dark:text-slate-400 px-2">
-        <span>Showing <strong className="text-slate-900 dark:text-white">{filteredAchievements.length}</strong> credential{filteredAchievements.length !== 1 ? 's' : ''}</span>
+      <div className="mx-auto mb-6 flex max-w-7xl items-center justify-between px-2 text-sm text-slate-500 dark:text-slate-400">
+        <span>
+          Showing{" "}
+          <strong className="text-slate-900 dark:text-white">
+            {filteredAchievements.length}
+          </strong>{" "}
+          credential{filteredAchievements.length !== 1 ? "s" : ""}
+        </span>
         {searchQuery && (
           <span className="text-xs">
-            Filter: "<span className="text-primary font-semibold">{searchQuery}</span>"
+            Filter: &ldquo;<span className="font-semibold text-primary">{searchQuery}</span>&rdquo;
           </span>
         )}
       </div>
 
-      {/* Grid of Achievement Detail Cards with Gliding Motion Box */}
-      <motion.div
-        layout
-        onMouseLeave={() => setHoveredId(null)}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto relative"
-      >
-        <AnimatePresence>
-          {filteredAchievements.map((cert) => {
-            const Icon = cert.type === "hackathon" ? Trophy : cert.type === "internship" ? Briefcase : Award;
-            const certKey = cert.id || cert.title;
-            const isHovered = hoveredId === certKey;
+      {filteredAchievements.length === 0 ? (
+        <div className="glass-card mx-auto max-w-xl rounded-3xl py-16 text-center">
+          <Award size={44} className="mx-auto mb-4 text-slate-400" />
+          <h3 className="mb-2 text-xl font-bold text-slate-800 dark:text-white">
+            No credentials match that search
+          </h3>
+          <p className="mb-6 text-sm text-slate-500 dark:text-slate-400">
+            Try a different organization or clear the filters.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveType("all");
+              setSearchQuery("");
+            }}
+            className="rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-md transition-colors hover:bg-blue-600 focus-ring"
+          >
+            Reset filters
+          </button>
+        </div>
+      ) : (
+        <motion.div
+          layout
+          onMouseLeave={() => setHoveredId(null)}
+          className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredAchievements.map((cert) => {
+              const Icon = typeIcons[cert.type] || Award;
+              const certKey = cert.id || cert.title;
+              const isHovered = hoveredId === certKey;
+              const isFeatured =
+                cert.badge &&
+                /top|winner|national|recognized/i.test(cert.badge);
 
-            return (
-              <motion.div
-                layout
-                key={certKey}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                onMouseEnter={() => setHoveredId(certKey)}
-                onMouseMove={(e) => handleMouseMove(e, certKey)}
-                onClick={() => setSelectedCert(cert)}
-                className="h-full relative group cursor-pointer"
-              >
-                {/* Smooth Gliding Motion Box that moves from card to card */}
-                {isHovered && (
-                  <motion.div
-                    layoutId="credentialMovingHoverBox"
-                    className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/30 via-secondary/30 to-accent/30 dark:from-primary/40 dark:via-purple-500/40 dark:to-accent/40 blur-md pointer-events-none z-0"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 28,
-                    }}
-                  />
-                )}
-
-                <div className="glass-card p-6 flex flex-col group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl h-full justify-between z-10 transition-transform duration-300 group-hover:-translate-y-1">
-                  {/* Cursor Spotlight Glow Effect inside card */}
+              return (
+                <motion.div
+                  layout
+                  key={certKey}
+                  initial={reduce ? false : { opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={reduce ? undefined : { opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  onMouseEnter={() => setHoveredId(certKey)}
+                  onClick={() => setSelectedCert(cert)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setSelectedCert(cert);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View credential: ${cert.title}`}
+                  className="group relative h-full cursor-pointer rounded-3xl focus-ring"
+                >
                   {isHovered && (
-                    <div
-                      className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-100 z-0"
-                      style={{
-                        background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, ${cert.color ? cert.color + '25' : 'rgba(59, 130, 246, 0.2)'}, transparent 80%)`,
-                      }}
+                    <motion.div
+                      layoutId="credential-moving-frame"
+                      className="pointer-events-none absolute -inset-1 z-0 rounded-3xl bg-primary/20 blur-md dark:bg-primary/30"
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
                     />
                   )}
 
-                  {/* Ambient Accent Glow */}
-                  <div
-                    className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-15 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"
-                    style={{ backgroundColor: cert.color || "#3b82f6" }}
-                  ></div>
+                  <SpotlightCard
+                    className="glass-card relative z-10 flex h-full flex-col justify-between rounded-3xl border border-slate-200 p-6 shadow-xl transition-transform duration-300 group-hover:-translate-y-1 dark:border-white/10"
+                    color={`${cert.color || "#3b82f6"}22`}
+                  >
+                    <div>
+                      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                          <span
+                            className="h-1.5 w-1.5 shrink-0 rounded-full"
+                            style={{ backgroundColor: cert.color || "#3b82f6" }}
+                          />
+                          <Icon size={12} className="text-slate-500 dark:text-slate-400" />
+                          {cert.org}
+                        </span>
 
-                  <div className="relative z-10 space-y-4">
-                    {/* Header line: Org Pill & Category Icon */}
-                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                      <span
-                        className="text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-sm flex items-center gap-1.5"
-                        style={{
-                          color: cert.color || '#3b82f6',
-                          borderColor: `${cert.color || '#3b82f6'}40`,
-                          backgroundColor: `${cert.color || '#3b82f6'}15`
-                        }}
-                      >
-                        <Icon size={13} />
-                        {cert.org}
-                      </span>
-                      
-                      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                        {cert.date}
-                      </span>
+                        <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+                          {cert.date}
+                        </span>
+                      </div>
+
+                      <h3 className="mb-3 flex items-start justify-between gap-2 font-display text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary dark:text-white">
+                        <span>{cert.title}</span>
+                        <ExternalLink
+                          size={15}
+                          className="mt-1 shrink-0 text-primary opacity-0 transition-opacity group-hover:opacity-100"
+                        />
+                      </h3>
+
+                      <div className="mb-3 flex flex-wrap gap-1.5">
+                        <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                          {cert.category}
+                        </span>
+
+                        {cert.badge && (
+                          <span className="inline-flex items-center gap-1 rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary">
+                            {isFeatured ? <Star size={10} className="fill-current" /> : <CheckCircle2 size={10} />}
+                            {cert.badge}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                        {cert.desc}
+                      </p>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors flex items-center justify-between gap-2">
-                      <span>{cert.title}</span>
-                      <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 text-primary transition-opacity shrink-0" />
-                    </h3>
-
-                    {/* Category & Badge Tags */}
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                        {cert.category}
-                      </span>
-
-                      {cert.badge && (
-                        <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-primary/10 text-primary border border-primary/20 flex items-center gap-1">
-                          <CheckCircle2 size={12} />
-                          {cert.badge}
+                    <div className="mt-6 flex items-center justify-between gap-2 border-t border-slate-200 pt-4 font-mono text-[10px] text-slate-500 dark:border-white/10 dark:text-slate-400">
+                      {cert.certId && (
+                        <span className="truncate">
+                          ID:{" "}
+                          <strong className="text-slate-800 dark:text-slate-200">
+                            {cert.certId}
+                          </strong>
                         </span>
                       )}
-                    </div>
-
-                    {/* Detailed Description */}
-                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed pt-2">
-                      {cert.desc}
-                    </p>
-                  </div>
-
-                  {/* Metadata Footer */}
-                  <div className="relative z-10 pt-4 mt-6 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-                    {cert.certId && (
-                      <span className="truncate">
-                        ID: <strong className="text-slate-800 dark:text-slate-200">{cert.certId}</strong>
+                      <span className="ml-auto flex shrink-0 items-center gap-1 font-sans text-[10px] font-bold text-primary">
+                        View credential <ExternalLink size={11} />
                       </span>
-                    )}
-                    <span className="shrink-0 ml-auto flex items-center gap-1 text-primary font-bold font-sans">
-                      View Credential <ExternalLink size={12} />
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </motion.div>
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
+      )}
 
-      {/* Interactive Modal */}
       {selectedCert && (
         <CertificateModal
           achievement={selectedCert}

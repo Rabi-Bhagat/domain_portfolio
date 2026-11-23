@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import useFocusTrap from '../../hooks/useFocusTrap';
+import useLockBodyScroll from '../../hooks/useLockBodyScroll';
+import useModalHistory from '../../hooks/useModalHistory';
 import { 
   X, ExternalLink, Github, Monitor, Tablet, Smartphone, 
   RotateCw, ChevronLeft, ChevronRight, Check, Copy, AlertCircle, Sparkles, Eye, ArrowLeft
@@ -15,42 +18,37 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
   const [iframeKey, setIframeKey] = useState(0);
 
   const currentIndex = projects.findIndex(p => p.id === project?.id || p.name === project?.name);
+  const dialogRef = useRef(null);
 
-  // Keyboard navigation, browser history back interceptor & body scroll lock
+  useLockBodyScroll(true);
+  useModalHistory(onClose);
+  useFocusTrap(dialogRef, true);
+
+  const selectProject = useCallback((nextProject) => {
+    setIframeError(false);
+    setLoading(true);
+    setIframeKey((prev) => prev + 1);
+    onSelectProject(nextProject);
+  }, [onSelectProject]);
+
+  // Keyboard navigation
   useEffect(() => {
-    window.history.pushState({ modalOpen: true }, '');
-
-    const handlePopState = () => {
-      onClose();
-    };
-
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        onSelectProject(projects[currentIndex - 1]);
+        selectProject(projects[currentIndex - 1]);
       }
       if (e.key === 'ArrowRight' && currentIndex < projects.length - 1) {
-        onSelectProject(projects[currentIndex + 1]);
+        selectProject(projects[currentIndex + 1]);
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
     window.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
     };
-  }, [currentIndex, projects, onClose, onSelectProject]);
-
-  // Reset state when project changes
-  useEffect(() => {
-    setIframeError(false);
-    setLoading(true);
-    setIframeKey(prev => prev + 1);
-  }, [project]);
+  }, [currentIndex, projects, onClose, selectProject]);
 
   if (!project) return null;
 
@@ -82,11 +80,17 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
         className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/90 backdrop-blur-2xl"
       >
         <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="live-demo-title"
+          tabIndex={-1}
+          style={{ transformPerspective: 1400 }}
+          initial={{ scale: 0.95, opacity: 0, y: 24, rotateX: 7 }}
+          animate={{ scale: 1, opacity: 1, y: 0, rotateX: 0 }}
+          exit={{ scale: 0.95, opacity: 0, y: 20, rotateX: -4 }}
           transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
-          className="w-full max-w-7xl h-[92vh] flex flex-col rounded-2xl bg-slate-900 border border-slate-700/60 shadow-2xl overflow-hidden relative"
+          className="w-full max-w-7xl h-[92vh] flex flex-col rounded-2xl bg-slate-900 border border-slate-700/60 shadow-2xl overflow-hidden relative outline-none"
         >
           {/* Header Bar */}
           <div className="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between gap-4 shrink-0 flex-wrap sm:flex-nowrap">
@@ -103,7 +107,7 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
 
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
-                  onClick={() => currentIndex > 0 && onSelectProject(projects[currentIndex - 1])}
+                  onClick={() => currentIndex > 0 && selectProject(projects[currentIndex - 1])}
                   disabled={currentIndex <= 0}
                   className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   title="Previous Project (←)"
@@ -111,7 +115,7 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
                   <ChevronLeft size={20} />
                 </button>
                 <button
-                  onClick={() => currentIndex < projects.length - 1 && onSelectProject(projects[currentIndex + 1])}
+                  onClick={() => currentIndex < projects.length - 1 && selectProject(projects[currentIndex + 1])}
                   disabled={currentIndex >= projects.length - 1}
                   className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   title="Next Project (→)"
@@ -124,7 +128,7 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
 
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="text-base font-bold text-white truncate max-w-[200px] sm:max-w-[300px]">
+                  <h3 id="live-demo-title" className="text-base font-bold text-white truncate max-w-[200px] sm:max-w-[300px]">
                     {project.name}
                   </h3>
                   <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 shrink-0">
@@ -174,7 +178,7 @@ export default function LiveDemoModal({ project, projects = [], onClose, onSelec
                     onClose();
                     onOpen3D(project);
                   }}
-                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 text-xs font-semibold transition-colors"
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-secondary/20 text-indigo-300 border border-secondary/30 hover:bg-secondary/30 text-xs font-semibold transition-colors"
                   title="Open in 3D Scene"
                 >
                   <Sparkles size={14} /> 3D View

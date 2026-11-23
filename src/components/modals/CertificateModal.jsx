@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import useFocusTrap from '../../hooks/useFocusTrap';
+import useLockBodyScroll from '../../hooks/useLockBodyScroll';
+import useModalHistory from '../../hooks/useModalHistory';
 import { X, ExternalLink, Download, Award, ChevronLeft, ChevronRight, ShieldCheck, ArrowLeft } from 'lucide-react';
 
 export default function CertificateModal({ achievement, achievements = [], onClose, onSelect }) {
-  const [imageError, setImageError] = useState(false);
+  const [imageErrorId, setImageErrorId] = useState(null);
   const currentIndex = achievements.findIndex(a => a.id === achievement?.id || a.title === achievement?.title);
+  const imageError = imageErrorId === (achievement?.id || achievement?.title);
+  const dialogRef = useRef(null);
+
+  useLockBodyScroll(true);
+  useModalHistory(onClose);
+  useFocusTrap(dialogRef, true);
 
   useEffect(() => {
-    window.history.pushState({ modalOpen: true }, '');
-
-    const handlePopState = () => {
-      onClose();
-    };
-
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
@@ -24,20 +27,12 @@ export default function CertificateModal({ achievement, achievements = [], onClo
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
     window.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
     };
   }, [currentIndex, achievements, onClose, onSelect]);
-
-  useEffect(() => {
-    setImageError(false);
-  }, [achievement]);
 
   if (!achievement) return null;
 
@@ -51,11 +46,17 @@ export default function CertificateModal({ achievement, achievements = [], onClo
         className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/90 backdrop-blur-2xl"
       >
         <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="certificate-modal-title"
+          tabIndex={-1}
+          style={{ transformPerspective: 1400 }}
+          initial={{ scale: 0.95, opacity: 0, y: 24, rotateX: 7 }}
+          animate={{ scale: 1, opacity: 1, y: 0, rotateX: 0 }}
+          exit={{ scale: 0.95, opacity: 0, y: 20, rotateX: -4 }}
           transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
-          className="w-full max-w-6xl h-[92vh] max-h-[900px] flex flex-col rounded-3xl bg-slate-900 border border-slate-700/60 shadow-2xl overflow-hidden relative"
+          className="w-full max-w-6xl h-[92vh] max-h-[900px] flex flex-col rounded-3xl bg-slate-900 border border-slate-700/60 shadow-2xl overflow-hidden relative outline-none"
         >
           {/* Header Bar */}
           <div className="px-4 sm:px-6 py-3.5 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
@@ -92,7 +93,7 @@ export default function CertificateModal({ achievement, achievements = [], onClo
 
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="text-base sm:text-lg font-bold text-white truncate max-w-[240px] sm:max-w-[420px]">
+                  <h3 id="certificate-modal-title" className="text-base sm:text-lg font-bold text-white truncate max-w-[240px] sm:max-w-[420px]">
                     {achievement.title}
                   </h3>
                   <span
@@ -140,7 +141,7 @@ export default function CertificateModal({ achievement, achievements = [], onClo
                     src={achievement.previewImage}
                     alt={achievement.title}
                     className="max-w-full max-h-[68vh] object-contain rounded-2xl border border-slate-800 shadow-2xl transition-transform hover:scale-[1.01]"
-                    onError={() => setImageError(true)}
+                    onError={() => setImageErrorId(achievement.id || achievement.title)}
                   />
                 ) : (
                   <div className="w-full h-80 max-w-lg p-8 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center text-center space-y-4">
@@ -195,7 +196,7 @@ export default function CertificateModal({ achievement, achievements = [], onClo
                   {achievement.badge && (
                     <div className="flex items-center justify-between text-slate-300">
                       <span className="text-slate-400 text-xs uppercase font-semibold">Highlight</span>
-                      <span className="text-xs font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
+                      <span className="text-xs font-bold text-indigo-400 bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20">
                         {achievement.badge}
                       </span>
                     </div>

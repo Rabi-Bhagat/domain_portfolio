@@ -203,7 +203,8 @@ export const projects = [
       "Role-Based Admin Dashboard",
       "Responsive Glassmorphic Interface"
     ],
-    status: "Live Production"
+    status: "Live Production",
+    featured: true
   },
   {
     id: "hotelbazaar",
@@ -220,7 +221,8 @@ export const projects = [
       "User Reservation History",
       "Interactive Card Gallery"
     ],
-    status: "Live Production"
+    status: "Live Production",
+    featured: true
   },
   {
     id: "securedocs",
@@ -237,7 +239,8 @@ export const projects = [
       "Category Tagging & Fast Search",
       "Audit Trail & Storage Logs"
     ],
-    status: "Live Production"
+    status: "Live Production",
+    featured: true
   },
   {
     id: "signify-pro",
@@ -569,21 +572,109 @@ export const achievements = [
     color: "#0d9488",
     badge: "TCS iON Certified",
     certId: "TCS-ION-SOFT-SKILLS"
+  },
+  {
+    id: "adobe-university-hackathon",
+    title: "Adobe University Hackathon - Certificate of Participation",
+    org: "Adobe",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "November 2026",
+    issueDate: "November 2026",
+    desc: "Participated in the Adobe University Hackathon, collaborating on a university-level technology challenge as a student of Maharishi Markandeshwar University, Mullana.",
+    previewImage: "/internship and skill certificate and hackathon/adobe_university_hackathon_preview.png",
+    fileUrl: "/internship and skill certificate and hackathon/Adobe University Hackathon Certificate.pdf",
+    color: "#dc2626",
+    badge: "Adobe",
+    certId: "ADOBE-UH-2026"
+  },
+  {
+    id: "coursera-wordpress",
+    title: "Build a Free Website with WordPress",
+    org: "Coursera Project Network",
+    category: "Certification",
+    type: "certification",
+    date: "March 2024",
+    issueDate: "March 11, 2024",
+    desc: "Completed a guided Coursera project covering WordPress setup, site structure, pages, and publishing a free website.",
+    previewImage: "/internship and skill certificate and hackathon/wordpress_coursera_preview.png",
+    fileUrl: "/internship and skill certificate and hackathon/Course WordPress certificate.pdf",
+    color: "#21759b",
+    badge: "Coursera Verified",
+    certId: "MJNJUZ7ZQ8J9"
+  },
+  {
+    id: "tvs-credit-epic-8",
+    title: "TVS Credit E.P.I.C 8.0 - IT Challenge",
+    org: "TVS Credit",
+    category: "Hackathon",
+    type: "hackathon",
+    date: "October 2026",
+    issueDate: "October 2026",
+    desc: "Participated in the TVS Credit E.P.I.C 8.0 IT Challenge, applying problem-solving and technology skills in a national-level competition.",
+    previewImage: "/internship and skill certificate and hackathon/tvs_credit_epic_preview.png",
+    fileUrl: "/internship and skill certificate and hackathon/TVS Credit EPIC 8.0 IT Challenge.pdf",
+    color: "#0057a4",
+    badge: "Certificate of Participation",
+    certId: "TVS-EPIC-8.0"
+  },
+  {
+    id: "pep-supply-chain-workshop",
+    title: "Pep Supply Chain Stars Awareness Workshop",
+    org: "Pep Supply Chain Stars",
+    category: "Workshop",
+    type: "certification",
+    date: "2026",
+    issueDate: "2026",
+    desc: "Completed an awareness workshop on supply chain operations, industry processes, and professional practices.",
+    previewImage: "/internship and skill certificate and hackathon/Pep Supply Chain Stars Awareness Workshop.png",
+    fileUrl: "/internship and skill certificate and hackathon/Pep Supply Chain Stars Awareness Workshop.png",
+    color: "#0f4c81",
+    badge: "Workshop Completed",
+    certId: "PEP-SCS-2026"
+  },
+  {
+    id: "codealpha-offer-letter",
+    title: "CodeAlpha Frontend Development Internship Offer Letter",
+    org: "CodeAlpha",
+    category: "Internship Offer",
+    type: "internship",
+    date: "May 2025 - Jun 2025",
+    issueDate: "May 8, 2025",
+    desc: "Official offer letter confirming selection as a Frontend Development Intern at CodeAlpha for the 15 May - 15 June 2025 cohort.",
+    previewImage: "/internship and skill certificate and hackathon/codealpha_offer_letter_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/codealpha offer letter.pdf",
+    color: "#f59e0b",
+    badge: "Internship Offer",
+    certId: "CA/MA1/8178"
+  },
+  {
+    id: "imun-campus-ambassador",
+    title: "International MUN Campus Ambassador Internship Offer",
+    org: "International Model United Nations (IMUN)",
+    category: "Internship Offer",
+    type: "internship",
+    date: "December 2023",
+    issueDate: "December 15, 2023",
+    desc: "Selected as a Campus Ambassador Intern at International MUN, responsible for outreach, referrals, and promoting IMUN conferences through social media and campus networks.",
+    previewImage: "/internship and skill certificate and hackathon/offer_preview.jpg",
+    fileUrl: "/internship and skill certificate and hackathon/offer.pdf",
+    color: "#1e3a8a",
+    badge: "Campus Ambassador",
+    certId: "IMUN-CA-2023"
   }
 ];
 
-export const certifications = achievements;
-
 export const heroRoles = [
   "Full-Stack Developer",
-  "MERN Stack Specialist",
   "Web Application Developer",
   "Software Engineer",
+  "Problem Solver",
 ];
 
 export const stats = [
   { label: "Projects Built", value: 9, suffix: "+" },
-  { label: "Certificates & Hackathons", value: 15, suffix: "+" },
+  { label: "Certificates & Hackathons", value: 19, suffix: "+" },
   { label: "Years Coding", value: 3, suffix: "+" },
 ];
 
@@ -592,46 +683,98 @@ export const socialLinks = [
     name: "GitHub",
     link: "https://github.com/Rabi-Bhagat",
     iconUrl: "https://cdn.simpleicons.org/github/white",
-    lightIconUrl: "https://cdn.simpleicons.org/github/000000",
     color: "#181717",
-    handle: "@Rabi-Bhagat",
   },
   {
     name: "LinkedIn",
     link: "https://linkedin.com/in/rabi-bhagat789",
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
-    lightIconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
     color: "#0a66c2",
-    handle: "in/rabi-bhagat789",
   },
   {
     name: "LeetCode",
     link: "https://leetcode.com/u/Rabibhagat/",
     iconUrl: "https://cdn.simpleicons.org/leetcode/FFA116",
-    lightIconUrl: "https://cdn.simpleicons.org/leetcode/FFA116",
     color: "#FFA116",
-    handle: "@Rabibhagat",
-    badge: "Problem Solver",
-    desc: "Algorithms & Data Structures",
   },
 ];
 
 export const experience = [
   {
-    role: "B.Tech in Computer Science & Engineering",
+    role: "Frontend Development Virtual Intern",
+    company: "CodeAlpha (MSME, Govt. of India)",
+    date: "May 2025 - Jun 2025",
+    type: "work",
+    location: "Remote",
+    desc: "Completed a one-month intensive frontend internship building interactive web applications, reusable UI components, and responsive layouts. Awarded an official Letter of Recommendation from the Founder & CEO for technical performance and collaboration.",
+    skills: ["React", "Tailwind CSS", "JavaScript", "UI Components", "Responsive Design"],
+  },
+  {
+    role: "Software Development Engineer (SDE) Intern",
+    company: "Bluestock Fintech",
+    date: "May 2025 - Jun 2025",
+    type: "work",
+    location: "Remote",
+    desc: "Received the official SDE internship appointment letter from Bluestock Fintech (#startupindia recognized), contributing to fintech application development, component design, and dynamic web solutions.",
+    skills: ["Fintech", "React", "Component Design", "Web Development"],
+  },
+  {
+    role: "B.Tech in Computer Science & Engineering (7th Semester)",
     company: "Maharishi Markandeshwar (Deemed to be University) - MM(DU)",
     date: "2023 - 2027",
-    desc: "Pursuing Bachelor of Technology degree in Computer Science & Engineering. Building strong academic foundations in Data Structures, Algorithms, Software Engineering, Operating Systems, Database Management Systems, and Full-Stack Web Development.",
+    type: "education",
+    location: "Mullana, Ambala, India",
+    score: "7.24 / 10.0",
+    scoreLabel: "CGPA",
+    desc: "Pursuing a B.Tech in Computer Science & Engineering with a current CGPA of 7.24/10.0. Coursework spans Data Structures, Algorithms, DBMS, Operating Systems, Software Engineering, and Full-Stack Web Development.",
     skills: ["Data Structures & Algorithms", "Full-Stack Web Dev", "C++", "Python", "Software Engineering", "Database Systems"],
+  },
+  {
+    role: "Higher Secondary Education (Class 12)",
+    company: "Shiksha Deep Boarding Secondary School",
+    date: "2021 - 2023",
+    type: "education",
+    location: "Biratnagar, Morang, Nepal",
+    score: "66.75%",
+    scoreLabel: "Percentage",
+    desc: "Completed higher secondary education with 66.75%, building a foundation in mathematics, science, and computer-related subjects.",
+    skills: ["Mathematics", "Science", "English"],
+  },
+  {
+    role: "Secondary Education (Class 10)",
+    company: "Ram Dayal Ma Vi Sakhuwa Kachandaha",
+    date: "2021",
+    type: "education",
+    location: "Saptari, Nepal",
+    score: "82.5%",
+    scoreLabel: "Percentage",
+    desc: "Completed the Secondary Education Examination (SEE) with 82.5% (GPA 3.20), demonstrating strong academic performance across core subjects.",
+    skills: ["Mathematics", "Science", "English", "Social Studies"],
   },
 ];
 
 export const contactInfo = {
   email: "rabibhagat789@gmail.com",
   phone: "+91 8307855628",
-  phoneAlt: "+977 9815787410",
   leetcode: "https://leetcode.com/u/Rabibhagat/",
   leetcodeHandle: "@Rabibhagat",
-  github: "https://github.com/Rabi-Bhagat",
-  linkedin: "https://linkedin.com/in/rabi-bhagat789",
 };
+
+export const availability = {
+  status: "Open to opportunities",
+  detail: "SDE internships & freelance full-stack work",
+  tone: "emerald",
+};
+
+export const location = "Mullana, Ambala, India";
+
+export const quickFacts = [
+  { label: "Location", value: location, icon: "location" },
+  { label: "Degree", value: "B.Tech CSE · 7th sem · 7.24 CGPA", icon: "degree" },
+  { label: "Academics", value: "82.5% (10th) · 66.75% (12th)", icon: "degree" },
+  { label: "Projects", value: "9+ live builds", icon: "focus" },
+  { label: "Focus", value: "MERN stack & REST APIs", icon: "focus" },
+  { label: "Availability", value: availability.detail, icon: "availability" },
+];
+
+export const resumeUrl = "/resume.pdf";

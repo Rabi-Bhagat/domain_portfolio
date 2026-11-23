@@ -2,30 +2,79 @@ import { useState, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 
+function ShootingStars({ dark }) {
+  const groupRef = useRef();
+
+  const [stars] = useState(() =>
+    Array.from({ length: 3 }, (_, index) => ({
+      x: (Math.random() - 0.5) * 30,
+      y: 8 + Math.random() * 10,
+      z: -4 - Math.random() * 8,
+      speed: 5 + Math.random() * 4,
+      offset: index * 3,
+    }))
+  );
+
+  useFrame((state, delta) => {
+    if (!groupRef.current || document.hidden) return;
+
+    groupRef.current.children.forEach((mesh, index) => {
+      const star = stars[index];
+      mesh.position.x -= star.speed * delta;
+      mesh.position.y -= star.speed * 0.38 * delta;
+
+      if (mesh.position.x < -24 || mesh.position.y < -14) {
+        mesh.position.x = 18 + Math.random() * 10;
+        mesh.position.y = 9 + Math.random() * 10;
+      }
+    });
+  });
+
+  return (
+    <group ref={groupRef}>
+      {stars.map((star, index) => (
+        <mesh
+          key={index}
+          position={[star.x, star.y, star.z]}
+          rotation={[0, 0, Math.PI / 2.6]}
+        >
+          <boxGeometry args={[0.025, 0.025, 3.2]} />
+          <meshBasicMaterial
+            color={dark ? "#bfdbfe" : "#3b82f6"}
+            transparent
+            opacity={0.4}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 export default function StarBackground(props) {
   const ref = useRef();
   const groupRef = useRef();
 
   const [particleCount] = useState(() => {
+    if (typeof window === "undefined") return 0;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const isLowPower = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isLowPower) return 0;
-    return isMobile ? 1500 : 6000;
+    return isMobile ? 1200 : 4500;
   });
 
   const [sphere] = useState(() => {
     const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const r = 15 + Math.random() * 30;
+
+    for (let index = 0; index < particleCount; index += 1) {
+      const radius = 15 + Math.random() * 30;
       const theta = 2 * Math.PI * Math.random();
       const phi = Math.acos(2 * Math.random() - 1);
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
+
+      positions[index * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[index * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[index * 3 + 2] = radius * Math.cos(phi);
     }
+
     return positions;
   });
 
@@ -35,19 +84,14 @@ export default function StarBackground(props) {
     const handleMouseMove = (event) => {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = (event.clientY / window.innerHeight) * 2 - 1;
-      targetRotation.current = {
-        x: y * 0.2,
-        y: x * 0.2,
-      };
+      targetRotation.current = { x: y * 0.2, y: x * 0.2 };
     };
 
     const handleOrientation = (event) => {
       if (event.beta !== null && event.gamma !== null) {
-        const x = (event.beta / 180) * 2;
-        const y = (event.gamma / 90) * 2;
         targetRotation.current = {
-          x: x * 0.5,
-          y: y * 0.5,
+          x: (event.beta / 180) * 0.5,
+          y: (event.gamma / 90) * 0.5,
         };
       }
     };
@@ -62,15 +106,20 @@ export default function StarBackground(props) {
   }, []);
 
   useFrame((state, delta) => {
-    if (!ref.current || !groupRef.current) return;
+    if (!ref.current || !groupRef.current || document.hidden) return;
+
+    const time = state.clock.elapsedTime;
+
     ref.current.rotation.x -= delta / 15;
     ref.current.rotation.y -= delta / 20;
 
-    if (groupRef.current) {
-      groupRef.current.rotation.x +=
-        (targetRotation.current.x - groupRef.current.rotation.x) * delta * 2;
-      groupRef.current.rotation.y +=
-        (targetRotation.current.y - groupRef.current.rotation.y) * delta * 2;
+    groupRef.current.rotation.x +=
+      (targetRotation.current.x - groupRef.current.rotation.x) * delta * 2;
+    groupRef.current.rotation.y +=
+      (targetRotation.current.y - groupRef.current.rotation.y) * delta * 2;
+
+    if (ref.current?.material) {
+      ref.current.material.opacity = 0.78 + Math.sin(time * 1.6) * 0.14;
     }
   });
 
@@ -91,11 +140,12 @@ export default function StarBackground(props) {
           transparent
           color={props.dark ? "#ffffff" : "#64748b"}
           size={0.05}
-          sizeAttenuation={true}
+          sizeAttenuation
           depthWrite={false}
-          opacity={1.0}
+          opacity={0.9}
         />
       </Points>
+      <ShootingStars dark={props.dark} />
     </group>
   );
 }

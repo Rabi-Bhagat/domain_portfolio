@@ -1,16 +1,11 @@
 import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 
-/**
- * Logo3D - Highly responsive & attractive 3D Logo component
- * Features 3D tilt physics, layered depth extrusion (translateZ),
- * brand ambient lighting glow, and smooth touch/hover dynamics.
- */
 export default function Logo3D({
   src,
   alt = "Logo",
   color = "#3b82f6",
-  size = "md", // "sm" | "md" | "lg" | "xl" or custom CSS classes
+  size = "md",
   className = "",
   containerClassName = "",
   showGlow = true,
@@ -21,8 +16,8 @@ export default function Logo3D({
 }) {
   const ref = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const reduce = useReducedMotion();
 
-  // Motion values for smooth 3D tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -33,7 +28,6 @@ export default function Logo3D({
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
 
-  // Size preset mapping
   const sizeMap = {
     sm: "w-9 h-9 p-1.5 rounded-xl",
     md: "w-12 h-12 p-2.5 rounded-2xl",
@@ -48,23 +42,15 @@ export default function Logo3D({
     xl: "w-9 h-9",
   };
 
-  const containerStyle = typeof size === "string" ? sizeMap[size] || sizeMap.md : "";
-  const imgStyle = typeof size === "string" ? imgSizeMap[size] || imgSizeMap.md : "";
+  const containerStyle = sizeMap[size] || sizeMap.md;
+  const imgStyle = imgSizeMap[size] || imgSizeMap.md;
 
-  const handleMouseMove = (e) => {
-    if (!ref.current) return;
+  const handleMouseMove = (event) => {
+    if (reduce || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+    x.set((event.clientX - rect.left) / rect.width - 0.5);
+    y.set((event.clientY - rect.top) / rect.height - 0.5);
   };
-
-  const handleMouseEnter = () => setIsHovered(true);
 
   const handleMouseLeave = () => {
     setIsHovered(false);
@@ -80,45 +66,48 @@ export default function Logo3D({
       <motion.div
         ref={ref}
         onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
         style={{
-          rotateX,
-          rotateY,
+          rotateX: reduce ? 0 : rotateX,
+          rotateY: reduce ? 0 : rotateY,
           transformStyle: "preserve-3d",
         }}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={reduce ? undefined : { scale: 1.08 }}
+        whileTap={reduce ? undefined : { scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 20 }}
-        className={`relative flex items-center justify-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/15 shadow-lg group overflow-hidden ${containerStyle} ${className}`}
+        className={`relative flex items-center justify-center overflow-hidden border border-slate-200/80 bg-white/80 shadow-lg backdrop-blur-xl dark:border-white/15 dark:bg-slate-900/80 ${containerStyle} ${className}`}
       >
-        {/* 3D Brand Glowing Light Aura */}
         {showGlow && (
           <div
-            className="absolute inset-0 opacity-25 dark:opacity-40 group-hover:opacity-85 transition-opacity duration-300 pointer-events-none rounded-inherit"
+            className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-25 transition-opacity duration-300 group-hover:opacity-85 dark:opacity-40"
             style={{
               background: `radial-gradient(circle at center, ${color} 0%, transparent 75%)`,
               filter: "blur(6px)",
-              transform: "translateZ(-10px)",
+              transform: reduce ? undefined : "translateZ(-10px)",
             }}
           />
         )}
 
-        {/* 3D Border Glow on Hover */}
         <div
-          className="absolute inset-0 rounded-inherit opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{
-            boxShadow: `0 0 20px ${color}60, inset 0 0 10px ${color}40`,
-          }}
+          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ boxShadow: `0 0 20px ${color}60, inset 0 0 10px ${color}40` }}
         />
 
-        {/* Specular Light Sheen Animation */}
-        <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent rotate-45 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+        {!reduce && (
+          <div className="pointer-events-none absolute -inset-[100%] rotate-45 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-full dark:via-white/10" />
+        )}
 
-        {/* Floating 3D Extruded Logo Image */}
         <div
-          style={{ transform: isHovered ? "translateZ(24px) scale(1.1)" : "translateZ(10px)", transition: "transform 0.25s ease-out" }}
+          style={{
+            transform: reduce
+              ? undefined
+              : isHovered
+                ? "translateZ(24px) scale(1.1)"
+                : "translateZ(10px)",
+            transition: reduce ? undefined : "transform 0.25s ease-out",
+          }}
           className="relative z-10 flex items-center justify-center"
         >
           <img
@@ -126,11 +115,11 @@ export default function Logo3D({
             alt={alt}
             loading="lazy"
             decoding="async"
-            className={`object-contain transition-all duration-300 filter drop-shadow-md ${imgStyle}`}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-              if (e.currentTarget.parentElement) {
-                e.currentTarget.parentElement.innerText = alt.slice(0, 2).toUpperCase();
+            className={`object-contain drop-shadow-md transition-all duration-300 ${imgStyle}`}
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+              if (event.currentTarget.parentElement) {
+                event.currentTarget.parentElement.innerText = alt.slice(0, 2).toUpperCase();
               }
             }}
           />

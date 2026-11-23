@@ -10,6 +10,7 @@ export default function PortfolioBot() {
   const [showGreeting, setShowGreeting] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [inputText, setInputText] = useState("");
+  const [hasUnread, setHasUnread] = useState(true);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -18,6 +19,13 @@ export default function PortfolioBot() {
     }
   ]);
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
+  const idRef = useRef(2);
+
+  const nextId = () => {
+    idRef.current += 1;
+    return idRef.current;
+  };
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -87,7 +95,22 @@ export default function PortfolioBot() {
       };
     }
 
-    // 8. CONTACT, EMAIL, PHONE, SOCIALS, HIRE
+    // 8. RESUME & AVAILABILITY
+    if (query.match(/\b(resume|cv|download)\b/)) {
+      return {
+        text: "📄 **Rabi's Resume & CV:**\n\nThe latest PDF resume is bundled with this portfolio and includes education, internships, projects, and certifications.\n\nUse the **Download Resume** button in the hero, navbar, About section, or Contact section.",
+        actionSection: { id: 'contact', label: '📄 Go to Resume & Contact' }
+      };
+    }
+
+    if (query.match(/\b(available|availability|open to|freelance|hiring|hire me|opportunit)\b/)) {
+      return {
+        text: "✅ **Availability:**\n\nRabi is currently **open to SDE internships** and **freelance full-stack work**. He is based in India and works remotely with teams across time zones.\n\nThe fastest way to start a conversation is email or the contact form.",
+        actionSection: { id: 'contact', label: '✅ Check Availability & Contact' }
+      };
+    }
+
+    // 9. CONTACT, EMAIL, PHONE, SOCIALS, HIRE
     if (query.match(/\b(contact|email|mail|phone|mobile|call|number|reach|hire|github|linkedin|leetcode|connect|social)\b/)) {
       return {
         text: "📬 **Get in Touch with Rabi Bhagat:**\n\n• **Email**: `rabibhagat789@gmail.com`\n• **Phone (India)**: `+91 8307855628`\n• **Phone (Nepal)**: `+977 9815787410`\n• **LinkedIn**: [linkedin.com/in/rabi-bhagat789](https://linkedin.com/in/rabi-bhagat789)\n• **GitHub**: [github.com/Rabi-Bhagat](https://github.com/Rabi-Bhagat)\n• **LeetCode**: [leetcode.com/u/Rabibhagat/](https://leetcode.com/u/Rabibhagat/)\n\n*Rabi is open to SDE Internships, Full-Stack Developer Roles, and Freelance Projects!*",
@@ -114,7 +137,7 @@ export default function PortfolioBot() {
     const message = textToSend || inputText;
     if (!message.trim()) return;
 
-    const userMsgId = Date.now();
+    const userMsgId = nextId();
     setMessages(prev => [...prev, { id: userMsgId, type: 'user', text: message }]);
     setInputText("");
     setIsTyping(true);
@@ -125,7 +148,7 @@ export default function PortfolioBot() {
       setMessages(prev => [
         ...prev, 
         { 
-          id: Date.now() + 1, 
+          id: nextId(), 
           type: 'bot', 
           text: responseObj.text,
           actionSection: responseObj.actionSection
@@ -145,13 +168,15 @@ export default function PortfolioBot() {
     { label: "💻 Featured Projects", query: "What projects has Rabi built?" },
     { label: "🏆 Hackathons & Awards", query: "What hackathons and national awards has Rabi won?" },
     { label: "📜 Certifications", query: "What certifications does Rabi hold?" },
+    { label: "📄 Resume", query: "Where can I download Rabi's resume?" },
+    { label: "✅ Availability", query: "Is Rabi available for hire or internships?" },
     { label: "📬 Contact Details", query: "How can I contact Rabi Bhagat?" },
   ];
 
   const handleReset = () => {
     setMessages([
       {
-        id: Date.now(),
+        id: nextId(),
         type: 'bot',
         text: "Chat reset! How else can I assist your exploration of Rabi's portfolio?"
       }
@@ -168,14 +193,31 @@ export default function PortfolioBot() {
     return () => { clearTimeout(timer); clearTimeout(hideTimer); };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const focusTimer = setTimeout(() => inputRef.current?.focus(), 180);
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      clearTimeout(focusTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
   // Simple Markdown & Bullet Parser
   const renderFormattedText = (text) => {
     if (!text) return null;
     const lines = text.split('\n');
     return lines.map((line, idx) => {
       const isBullet = line.trim().startsWith('• ') || line.trim().startsWith('- ');
-      const cleanLine = line.replace(/^\s*[•\-]\s*/, '');
-      const parts = cleanLine.split(/(\*\*.*?\*\*|\`.*?\`|\[.*?\]\(.*?\))/g);
+      const cleanLine = line.replace(/^\s*[•-]\s*/, '');
+      const parts = cleanLine.split(/(\*\*.*?\*\*|`.*?`|\[.*?\]\(.*?\))/g);
 
       return (
         <div key={idx} className={`${isBullet ? 'pl-2 flex items-start gap-1.5 my-0.5' : 'my-0.5'}`}>
@@ -211,6 +253,8 @@ export default function PortfolioBot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            role="dialog"
+            aria-label="Portfolio assistant"
             initial={{ opacity: 0, scale: 0.9, y: 20, x: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20, x: -10 }}
@@ -258,7 +302,12 @@ export default function PortfolioBot() {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 custom-scrollbar bg-slate-50/50 dark:bg-slate-950/40">
+            <div
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+              className="flex-1 overflow-y-auto p-4 space-y-3.5 custom-scrollbar bg-slate-50/50 dark:bg-slate-950/40"
+            >
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   {msg.type === 'bot' && (
@@ -322,10 +371,12 @@ export default function PortfolioBot() {
               className="p-3 border-t border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 flex items-center gap-2"
             >
               <input
+                ref={inputRef}
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Ask about projects, Bluestock intern, skills..."
+                aria-label="Ask the portfolio assistant"
                 className="flex-1 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-primary transition-colors"
               />
               <button
@@ -360,8 +411,11 @@ export default function PortfolioBot() {
         <motion.button
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-primary via-blue-600 to-accent flex items-center justify-center text-white shadow-xl shadow-primary/30 relative z-50 hover:shadow-primary/50 transition-shadow border border-white/20"
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setHasUnread(false);
+          }}
+          className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-primary via-blue-600 to-accent flex items-center justify-center text-white shadow-xl shadow-primary/30 relative z-50 hover:shadow-primary/50 transition-shadow border border-white/20"
           aria-label="Open portfolio bot assistant"
         >
           {isOpen ? (
@@ -372,7 +426,7 @@ export default function PortfolioBot() {
             </div>
           )}
 
-          {!isOpen && (
+          {!isOpen && hasUnread && (
             <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
               <span className="w-full h-full rounded-full bg-emerald-500 animate-ping opacity-75 absolute"></span>
             </span>

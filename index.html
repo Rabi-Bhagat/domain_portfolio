@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
@@ -12,6 +16,11 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="index,follow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Rabi Bhagat" />
   <title>Rabi Bhagat | Full-Stack Developer</title>
   <meta name="description"
     content="Portfolio of Rabi Bhagat - Full Stack Developer specializing in React, Three.js, Flutter, and modern web technologies. Exploring Digital Reality." />
@@ -63,10 +72,32 @@
       "knowsAbout": ["React", "Node.js", "Flutter", "MongoDB", "Three.js", "Tailwind CSS"]
     }
   </script>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        var dark = stored
+          ? stored === "dark"
+          : !window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (error) {
+        /* Theme boot is best-effort. */
+      }
+    })();
+  </script>
 </head>
 
 <body>
   <div id="root"></div>
+  <noscript>
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;font-family:Inter,sans-serif;background:#030712;color:#f8fafc;text-align:center">
+      <div>
+        <h1 style="font-size:24px;margin:0 0 8px">Rabi Bhagat - Full-Stack Developer</h1>
+        <p style="margin:0;color:#94a3b8">This portfolio needs JavaScript to render the interactive experience.</p>
+      </div>
+    </div>
+  </noscript>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
