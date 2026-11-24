@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           <p className="text-sm font-semibold text-ink">Rabi Bhagat</p>
           <p className="mt-1 text-xs text-muted">
-            Full-stack developer · Rajbiraj, Saptari, Nepal
+            Full-stack developer · Mullana, India
           </p>
         </div>
 

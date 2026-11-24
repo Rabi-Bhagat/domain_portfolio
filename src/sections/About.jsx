@@ -22,7 +22,7 @@ const highlights = [
   },
   {
     label: "Base",
-    value: "Rajbiraj, Saptari, Nepal",
+    value: "Mullana, India",
     note: "Open to remote & relocation",
   },
 ];

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const ANSWERS = [
   {
     keys: ["hi", "hello", "hey", "who", "about", "intro"],
-    text: "Rabi Prasad Bhagat is a full-stack developer and B.Tech CSE student at MM(DU), based in Rajbiraj, Saptari, Nepal. He builds MERN applications, REST APIs, and polished interfaces.",
+    text: "Rabi Prasad Bhagat is a full-stack developer and B.Tech CSE student at MM(DU), based in Mullana, India. He builds MERN applications, REST APIs, and polished interfaces.",
     target: "about",
   },
   {
