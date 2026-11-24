@@ -11,7 +11,7 @@ const FRAMES = Object.keys(modules)
   .sort()
   .map((key) => modules[key]);
 
-const SIZE = 36;
+const SIZE = 48;
 const HOTSPOT_X = 0.29;
 const HOTSPOT_Y = 0.195;
 
