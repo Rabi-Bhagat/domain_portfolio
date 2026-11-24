@@ -1,31 +1,22 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import Section from "../components/layout/Section";
-import StatusPill from "../components/ui/StatusPill";
 import ButtonLink from "../components/ui/Button3D";
 import Typewriter from "../components/ui/Typewriter";
 import CountUp from "../components/ui/CountUp";
 import Logo3D from "../components/ui/Logo3D";
-import { availability, heroRoles, location, resumeUrl, socialLinks, stats } from "../data/constants";
+import { heroRoles, location, resumeUrl, socialLinks, stats } from "../data/constants";
 
 export default function Hero() {
   return (
     <Section id="home" className="pt-32 sm:pt-36">
       <div className="grid gap-14 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <StatusPill label={availability.status} detail={location} />
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-7 font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl"
+            className="font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl"
           >
             Rabi Prasad <span className="text-primary">Bhagat</span>
           </motion.h1>
